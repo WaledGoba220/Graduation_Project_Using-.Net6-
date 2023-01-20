@@ -1,0 +1,417 @@
+﻿@model ProfilePageVM
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/rev/veno-box/venobox.css">
+}
+
+<!--============= breadcrumb start ===============-->
+<div class="pq-breadcrumb">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <div class="pq-breadcrumb-title">
+                        <h2>My Profile</h2>
+                    </div>
+                    <div class="pq-breadcrumb-container mt-2">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-controller="Home"><i class="fas fa-home mr-2"></i>Home</a></li>
+                            <li class="breadcrumb-item active">My Profile</li>
+                        </ol>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-4">
+                <div class="pq-breadcrumb-img text-right wow fadeInRight animated" style="visibility: visible;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============= breadcrumb End ===============-->
+
+<!-- Start Account -->
+<div class="account mt-5">
+    <div class="container">
+        <div class="row">
+
+            <!-- Start Tabs -->
+            <div class="col-lg-3 col-md-4 mb-lg-0 mb-md-0 mb-4">
+                <div class="tabs">
+                    <li class="active dashboard">
+                        <i class="fa fa-sliders"></i>
+                        Dashboard
+                    </li>
+                    <li class="Modle">
+                        <i class="bi bi-journal-album"></i>
+                        Diseases Detection
+                    </li>
+                    <li class="hardware">
+                        <i class="bi bi-gear-wide-connected"></i>
+                        Measuring box
+                    </li>
+
+                    <a asp-controller="Account" asp-action="LogOut">
+                        <li>
+                            <i class="bi bi-box-arrow-left"></i>
+                            Logout
+                        </li>
+                    </a>
+                </div>
+            </div>
+            <!-- End Tabs -->
+            <!--  =================================================================================================== -->
+            <!-- Start Pages -->
+            <div class="col-lg-9 col-md-8">
+                <div class="pages">
+
+                    <!-- Strat Dashboard -->
+                    <div class="dashboard page active">
+                        <div class="image-box mb-4">
+                            <form asp-controller="Profile" asp-action="UpdateUserPhoto" role="form" method="post" enctype="multipart/form-data" id="imgForm">
+                                <div class="drop-zone d-flex align-items-center">
+                                    @if (Model.User?.Photo != null)
+                                    {
+                                        <img class="drop-zone__prompt" src="data:image/*;base64,@(Convert.ToBase64String(Model.User.Photo))" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img class="drop-zone__prompt" src="images/person.png" alt="">
+                                    }
+                                    @if (string.IsNullOrEmpty(Model.User?.FullName)) {
+                                        <div class="title">
+                                            <span>@Model.User?.UserName</span>
+                                        </div>
+                                    }
+                                    else {
+                                        <div class="title">
+                                            <span>@Model.User.FullName</span>
+                                            <p class="mb-0">@Model.User.UserName</p>
+                                        </div>
+                                    }
+                                    
+                                    <i class="fa fa-plus"></i>
+                                    <input type="file" name="myFile" class="drop-zone__input" id="userPhoto">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="info row mt-3">
+                            <div class="left col-lg-8 mb-4">
+                                @if (User.IsInRole(Roles.Doctor) && Model.Doctor is not null) {
+                                    <ul>
+                                        <li>
+                                            <h6><i class="fas fa-notes-medical"></i> Clinic:</h6>
+                                            <span>@Model.Doctor.Clinic</span>
+                                        </li>
+                                        <li>
+                                            <h6><i class="fas fa-file-signature"></i> Brief Profile About You:</h6>
+                                            @Model.Doctor.Brief
+                                        </li>
+                                        <li>
+                                            <h6><i class="fas fa-map-marker-alt"></i> Location:</h6>
+                                            @Model.Doctor.Location
+                                        </li>
+                                        <li>
+                                            <h6 class="mb-3"><i class="fas fa-images"></i> Clinic Photos:</h6>
+                                            <div class="row">
+                                                @if (Model.Doctor.ClinicImages is not null) {
+                                                    @foreach (var photo in Model.Doctor.ClinicImages) {
+                                                        <div class="box_image col-lg-4 col-md-6 mb-3">
+                                                            <button onClick=Delete("/Profile/DeleteClinicImage/@photo.Id--@photo.DoctorId")>
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </button>
+                                                            <a class="venobox" data-gall="myGallery" href="data:image/*;base64,@(Convert.ToBase64String(photo.Image))">
+                                                                <img src="data:image/*;base64,@(Convert.ToBase64String(photo.Image))" class="w-100" alt="">
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                }
+                                                <div class="col-lg-4 col-md-6 mb-3">
+                                                    <form id="form_add_image" asp-action="AddClinicImages" role="form" method="post" enctype="multipart/form-data" class="w-100 add-image row justify-content-center align-items-center">
+                                                        <div class="icon">
+                                                            +
+                                                        </div>
+                                                        @*Doctor Id*@
+                                                        <input type="hidden" name="doctorId" value="@Model.Doctor.Id" />
+                                                        @*Clinic Image*@
+                                                        <input type="file" id="add_image" name="clinicImage" class="w-100 h-100">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                }
+
+                                <p>From your account dashboard. you can easily view your <span>Historical</span></p>
+                                <p>manage your <span>Account</span> and <span>Edit Your Profile</span></p>
+
+                                <!-- Trigger the modal with a button -->
+                                <button class="btn mt-3 edit_profile" id="openModel">Edit Profile <i class="fa fa-pen-to-square"></i></button>
+                                @if (User.IsInRole(Roles.Doctor)) {
+                                    <button class="btn mt-3 edit_profile edit_profile1" id="openModelDoctor">Edit Information <i class="fa fa-pen-to-square"></i></button>
+                                }
+
+                                <!-- Model Form -->
+                                <div id="myModel" class="modal">
+                                    <!-- Modal content -->
+                                    <div class="modal-content">
+                                        <h4 class="modal-title">Edit Profile</h4>
+                                        <span class="close">&times;</span>
+                                        <hr class="mt-3 mb-3">
+                                        <form asp-controller="Profile" asp-action="UpdateUserInfo" method="post" role="form">
+                                            <label for="username">User Name</label>
+                                            <div class="form-group mb-3">
+                                                <i class="fas fa-user"></i>
+                                                <input id="username" name="userName" value="@Model.User?.UserName" type="text" class="form-control" placeholder="" required>
+                                            </div>
+
+                                            <label for="fullname">Full Name</label>
+                                            <div class="form-group mb-3">
+                                                <i class="fas fa-user-edit"></i>
+                                                <input id="fullname" name="fullName" value="@Model.User?.FullName" type="text" class="form-control" placeholder="">
+                                            </div>
+
+                                            <button class="submit btn bt-primary" type="submit">Save</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                @if (User.IsInRole(Roles.Doctor))
+                                {
+                                    <!-- Model Form Doctor -->
+                                    <div id="myModelDoctor" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+                                            <h4 class="modal-title">Edit Information</h4>
+                                            <span class="close colse1">&times;</span>
+                                            <hr class="mt-3 mb-3">
+                                            <form asp-action="SaveDoctor" role="form" method="post">
+
+                                                @*Id*@
+                                                @if(Model.Doctor == null) {
+                                                    <input type="hidden" asp-for="Doctor.Id" value="0" />
+                                                } else {
+                                                    <input type="hidden" asp-for="Doctor.Id" />
+                                                }
+
+                                                @*User Id*@
+                                                <input type="hidden" asp-for="Doctor.AppUserId" value="@Model.User.Id" />
+
+                                                @*Select Specialization*@
+                                                <label for="special">Select Specialization</label>
+                                                <div class="form-group form-group-select mb-3">
+                                                    <select asp-for="Doctor.SpecializationId" class="round" id="special" asp-items="@(new SelectList(ViewBag.LstbSpecialization, "Id","Name_EN"))">
+                                                    </select>
+                                                </div>
+
+                                                @*Clinic*@
+                                                <label for="clinic">Clinic</label>
+                                                <div class="form-group mb-3">
+                                                    <i class="fas fa-notes-medical"></i>
+                                                    <input asp-for="Doctor.Clinic" id="clinic" type="text" class="form-control">
+                                                </div>
+
+                                                @*Phone*@
+                                                <label for="phone">Phone</label>
+                                                <div class="form-group mb-3">
+                                                    <i class="fas fa-phone"></i>
+                                                    <input asp-for="Doctor.Phone" id="phone" type="number" class="form-control">
+                                                </div>
+
+                                                @*Brief*@
+                                                <label for="brief">Brief Profile About You</label>
+                                                <div class="form-group mb-3">
+                                                    <i class="fas fa-file-signature"></i>
+                                                    <textarea asp-for="Doctor.Brief" id="brief" class="form-control"></textarea>
+                                                </div>
+
+                                                <div class="row">
+                                                    @*Country*@
+                                                    <div class="col-lg-6">
+                                                        <label for="country">Select Country</label>
+                                                        <div class="form-group form-group-select mb-3">
+                                                            <select asp-for="Doctor.Country" class="round" id="country">
+                                                                <option value="Egypt">Egypt</option>
+                                                                <option value="France">France</option>
+                                                            </select>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    
+                                                    @*City*@
+                                                    <div class="col-lg-6">
+                                                        <label for="city">Select City</label>
+                                                        <div class="form-group form-group-select mb-3">
+                                                            <select asp-for="Doctor.City" class="round" id="city">
+                                                                <option value="Alexandria">Alexandria</option>
+                                                                <option value="Cairo">Cairo</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                @*Location*@
+                                                <label for="location">Location</label>
+                                                <div class="form-group mb-3">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                    <input asp-for="Doctor.Location" id="location" type="text" class="form-control">
+                                                </div>
+
+                                                <button class="submit btn bt-success" type="submit">Save</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                            @if (User.IsInRole(Roles.Doctor))
+                            {
+                                <div class="right col-lg-4">
+                                <div class="box">
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-map-marker-alt"></i> @Model.Doctor.City, @Model.Doctor.Country
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-phone"></i> @Model.Doctor.Phone
+                                        </li>
+                                    </ul>
+                                    <div class="special">
+                                        <h6><i class="fas fa-tag"></i> Specialization:</h6>
+                                        <span>@Model.Doctor.Specialization?.Name_EN</span>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- End Dashboard -->
+                    <!--=================================================================================-->
+                    <!-- Start historical for modle -->
+                    <div class="Modle page">
+                        <div class="card">
+                            <div class="card-header">
+                                Your Modle
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped table-bordered table-hover table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Modle</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Items</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#523</td>
+                                            <td>22/10/2020</td>
+                                            <td>Processing</td>
+                                            <td>$125.00</td>
+                                            <td>2 item</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#102</td>
+                                            <td>30/5/2016</td>
+                                            <td>Completed</td>
+                                            <td>$256.00</td>
+                                            <td>5 item</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#53</td>
+                                            <td>8/11/2018</td>
+                                            <td>Processing</td>
+                                            <td>$501.00</td>
+                                            <td>6 item</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#96</td>
+                                            <td>2/4/2021</td>
+                                            <td>Completed</td>
+                                            <td>$569.00</td>
+                                            <td>7 item</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End historical for modle -->
+                    <!--==================================================================================-->
+                    <!-- Start historical for hardware -->
+
+                    <div class="hardware page">
+                        <div class="card">
+                            <div class="card-header">
+                                Your hardware
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped table-bordered table-hover table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">hardware</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Items</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#523</td>
+                                            <td>22/10/2020</td>
+                                            <td>Processing</td>
+                                            <td>$125.00</td>
+                                            <td>2 item</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#102</td>
+                                            <td>30/5/2016</td>
+                                            <td>Completed</td>
+                                            <td>$256.00</td>
+                                            <td>5 item</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#53</td>
+                                            <td>8/11/2018</td>
+                                            <td>Processing</td>
+                                            <td>$501.00</td>
+                                            <td>6 item</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#96</td>
+                                            <td>2/4/2021</td>
+                                            <td>Completed</td>
+                                            <td>$569.00</td>
+                                            <td>7 item</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End historical for hardware -->
+
+                </div>
+            </div>
+            <!-- End Pages -->
+        </div>
+    </div>
+</div>
+
+<br>
+
+@section Scripts {
+    <script src="~/js/profile.js" asp-append-version="true"></script>
+    <script src="~/rev/veno-box/venobox.min.js"></script>
+    <script src="~/ajax/ClinicImage.js"></script>
+    @{
+        await Html.RenderPartialAsync("_Notification");
+    }
+}
