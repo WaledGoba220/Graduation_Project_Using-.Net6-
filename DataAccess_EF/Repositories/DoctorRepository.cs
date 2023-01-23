@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces_Repository;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,17 @@ namespace DataAccess_EF.Repositories
         public DoctorRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
+        }
+
+        public async Task<int> GetIdByUserIdAsync(string userId)
+        {
+
+            var item = await _context.TbDoctors.AsNoTracking()
+                .FirstOrDefaultAsync(a => a.AppUserId == userId);
+
+            int doctorId = item.Id;
+
+            return doctorId;
         }
     }
 }

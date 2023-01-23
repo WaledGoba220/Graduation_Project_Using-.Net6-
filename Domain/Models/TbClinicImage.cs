@@ -15,6 +15,6 @@ namespace Domain.Models
         public int DoctorId { get; set; }
 
         // Relations
-        public virtual TbDoctor? Doctor { get; set; }
+        public TbDoctor? Doctor { get; set; }
     }
 }

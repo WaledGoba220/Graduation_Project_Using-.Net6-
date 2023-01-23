@@ -10,5 +10,6 @@ namespace Domain.Interfaces_Repository
 {
     public interface IDoctorRepository : IBaseRepository<TbDoctor>
     {
+        Task<int> GetIdByUserIdAsync(string userId);
     }
 }

@@ -17,6 +17,9 @@ namespace DataAccess_EF
         public ISpecializationRepository TbSpecialization { get; private set; }
         public IDoctorRepository TbDoctors { get; private set; }
         public IClinicImageRepository TbClinicImages { get; private set; }
+        public IDiseaseTypeRepository TbDiseaseTypes { get; private set; }
+        public IDiseaseRepository TbDiseases { get; private set; }
+        public IAdviceRepository TbAdvices { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -26,6 +29,9 @@ namespace DataAccess_EF
             TbSpecialization = new SpecializationRepository(context);
             TbDoctors = new DoctorRepository(context);
             TbClinicImages = new ClinicImageRepository(context);
+            TbDiseaseTypes = new DiseaseTypeRepository(context);
+            TbDiseases = new DiseaseRepository(context);
+            TbAdvices = new AdviceRepository(context);
         }
 
         public async Task<int> Complete()

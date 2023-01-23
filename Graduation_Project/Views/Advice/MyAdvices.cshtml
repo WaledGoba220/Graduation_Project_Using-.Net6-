@@ -1,0 +1,236 @@
+﻿@model MyAdviceVM
+
+@{
+    ViewData["Title"] = "My Advices";
+}
+
+<!--============= breadcrumb start ===============-->
+<div class="pq-breadcrumb" style="background-image: url('../rev/assets/page-title4.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <div class="pq-breadcrumb-title">
+                        <h2>My Medical Advices</h2>
+                    </div>
+                    <div class="pq-breadcrumb-container mt-2">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a asp-controller="Home" asp-action="Index">
+                                    <i class="fas fa-home mr-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">My Medical Advices</li>
+                        </ol>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-4">
+                <div class="pq-breadcrumb-img text-right wow fadeInRight animated" style="visibility: visible;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============= breadcrumb End ===============-->
+<!--============= Advices Start ===============-->
+<section class="3-colume-grid advices pb-5 pt-5">
+    <div class="container">
+
+        <button class="btn btn-success add_advice mb-5" id="openModelAdvice">Add New Advice <i class="fas fa-plus"></i></button>
+        <!-- Model Form -->
+        <div id="modelAdvice" class="modal model">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h4 class="modal-title">Add Advice</h4>
+                <span class="close3">&times;</span>
+                <hr class="mt-3 mb-3">
+                <form asp-action="SaveAdvice" role="form" method="post" enctype="multipart/form-data">
+
+                    @*Id*@
+                    @if (Model.AdviceVM == null)
+                    {
+                        <input type="hidden" asp-for="AdviceVM.Id" value="0" />
+                    }
+                    else
+                    {
+                        <input type="hidden" asp-for="AdviceVM.Id" />
+                    }
+
+                    @*DoctorId*@
+                    <input type="hidden" asp-for="AdviceVM.DoctorId" value="@ViewBag.doctorId" />
+
+                    @*Image*@
+                    <div class="drop-zone mb-3">
+                        <span class="drop-zone__prompt mr-3">
+                            Drop image here or click to upload
+                        </span>
+                        <input type="file" name="file" class="drop-zone__input">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @*Disease Type*@
+                            <label for="Type">Type Of Disease</label>
+                            <div class="form-group form-group-select mb-3">
+                                <select id="DiseaseTypeId" asp-for="AdviceVM.DiseaseTypeId" asp-items="@(new SelectList(ViewBag.LstDiseaseTypes, "Id","Name_EN"))" class="round" id="Type">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            @*Disease*@
+                            <label for="Disease">Disease</label>
+                            <div class="form-group form-group-select mb-3">
+                                <select id="DiseaseId" asp-for="AdviceVM.DiseaseId" class="round" id="Disease">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Title*@
+                    <label for="title">Title</label>
+                    <div class="form-group mb-3">
+                        <i class="fas fa-heading"></i>
+                        <input asp-for="AdviceVM.Title" id="title" type="text" class="form-control" placeholder="">
+                    </div>
+
+                    @*Content*@
+                    <label for="content">Content</label>
+                    <div class="form-group mb-3">
+                        <i class="far fa-newspaper"></i>
+                        <textarea asp-for="AdviceVM.Content" id="content" class="form-control"></textarea>
+                    </div>
+
+                    <button class="submit btn bt-success" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            @if(Model.LstAdvices is not null) {
+                @foreach (var item in Model.LstAdvices)
+                {
+                    <div class="col-lg-4">
+                        <div class="pq-blog pq-blog-col-1">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="pq-blog-post">
+                                        <a href="adviceDetails.html">
+                                            <div class="pq-post-media">
+                                                <img loading ="lazy" src="../images/blog/1.jpg" class="img-fluid" alt="">
+                                                <div class="pq-post-date">
+                                                    <a> <span>December 17, 2021</span></a>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="pq-blog-contain">
+                                            <div class="pq-post-meta">
+                                                <ul class="d-flex align-items-center justify-content-between">
+                                                    <li class="pq-post-author">
+                                                        <a href="doctor.html">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="doctorImage">
+                                                                    <img src="../images/person.png" class="w-100 h-100" alt="">
+                                                                </div>
+                                                                <div class="name">Doctor Name</div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="pq-post-comment">
+                                                        <a>
+                                                            <i class="fa fa-comments"></i>
+                                                            2 Comments
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="pq-post-meta">
+                                                <ul class="d-flex align-items-center justify-content-between">
+                                                    <li class="pq-post-author">
+                                                        <i class="fas fa-stethoscope"></i>
+                                                        Type of disease
+                                                    </li>
+                                                    <li class="pq-post-comment">
+                                                        <i class="fas fa-disease"></i>
+                                                        Disease
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="pq-blog-title">
+                                                <a href="adviceDetails.html">
+                                                    Get
+                                                    the Exercise Limited Mobility
+                                                </a>
+                                            </h5>
+                                            <div class="pq-blog-info">
+                                                <p>
+                                                    It is a long established fact that a reader will be distracted by the
+                                                    readable content of a page when looking at its layout.
+                                                </p>
+                                            </div>
+                                            <a href="get-the-exercise-limited-mobility.html"
+                                       class="pq-button pq-button-flat">
+                                                <div class="pq-button-block">
+                                                    <span class="pq-button-text">Read More</span>
+                                                    <i class="ion ion-plus-round"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="col-lg-12">
+                <div class="pq-pagination">
+                    <nav aria-label="Page navigation">
+                        <ul class="page-numbers">
+                            <li><a href="#" aria-current="page" class="page-numbers current">1</a></li>
+                            <li><a class="page-numbers" href="#">2</a></li>
+                            <li><a class="next page-numbers" href="#">Next page</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--============= Advices End ===============-->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_Notification");
+    }
+    <script src="~/js/myAdvices.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#DiseaseTypeId").on('change', function () {
+                var diseaseTypeId = $(this).val();
+                var diseaseId = $("#DiseaseId");
+
+                diseaseId.empty();
+
+                if (diseaseTypeId != '') {
+                    $.ajax({
+                        url: '/Advice/GetDiseasesByDiseaseTypeId?diseaseTypeId=' + diseaseTypeId,
+                        type: 'GET',
+                        success: function (data) {
+                            $.each(data, function (i, val) {
+                                diseaseId.append($('<option></option>').attr('value', val.id).text(val.name_EN));
+                            });
+                        },
+                        error: function () {
+                            alert("Somthing went wrong!");
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
+}

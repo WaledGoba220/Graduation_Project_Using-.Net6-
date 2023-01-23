@@ -13,6 +13,7 @@ namespace Domain.Models
         public TbDoctor()
         {
             ClinicImages = new HashSet<TbClinicImage>();
+            Advices = new HashSet<TbAdvice>();
         }
         public int Id { get; set; }
         public string? Clinic { get; set; }
@@ -28,8 +29,9 @@ namespace Domain.Models
         public string AppUserId { get; set; }
 
         // Relations
-        public virtual ApplicationUser? AppUser { get; set; }
-        public virtual TbSpecialization? Specialization { get; set; }
+        public ApplicationUser? AppUser { get; set; }
+        public TbSpecialization? Specialization { get; set; }
         public virtual ICollection<TbClinicImage>? ClinicImages { get; set; }
+        public virtual ICollection<TbAdvice>? Advices { get; set; }
     }
 }

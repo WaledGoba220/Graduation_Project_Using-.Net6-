@@ -19,6 +19,9 @@ namespace DataAccess_EF
         public DbSet<TbSpecialization> TbSpecialization { get; set; }
         public DbSet<TbDoctor> TbDoctors { get; set; }
         public DbSet<TbClinicImage> TbClinicImages { get; set; }
+        public DbSet<TbDiseaseType> TbDiseaseTypes { get; set; }
+        public DbSet<TbDisease> TbDiseases { get; set; }
+        public DbSet<TbAdvice> TbAdvices { get; set; }
 
 
     }

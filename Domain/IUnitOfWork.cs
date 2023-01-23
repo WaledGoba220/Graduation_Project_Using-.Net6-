@@ -14,6 +14,9 @@ namespace Domain
         ISpecializationRepository TbSpecialization { get; }
         IDoctorRepository TbDoctors { get; }
         IClinicImageRepository TbClinicImages { get; }
+        IDiseaseTypeRepository TbDiseaseTypes { get; }
+        IDiseaseRepository TbDiseases { get; }
+        IAdviceRepository TbAdvices { get; }
 
 
         Task<int> Complete();

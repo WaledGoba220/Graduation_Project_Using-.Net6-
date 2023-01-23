@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7GiM5D6Zyczasp12hhv1Adx0jHfgLLFVI3tMdx6hi/A=",
+  "Hash": "jwvihFmBptrul7Wh9R0TMBZ6M+/dTCvcoQD6sNctEho=",
   "Source": "Graduation_Project",
   "BasePath": "_content/Graduation_Project",
   "Mode": "Default",
@@ -2567,6 +2567,23 @@
       "OriginalItemSpec": "wwwroot\\js\\login_script.js"
     },
     {
+      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\js\\myAdvices.js",
+      "SourceId": "Graduation_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\",
+      "BasePath": "_content/Graduation_Project",
+      "RelativePath": "js/myAdvices.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\myAdvices.js"
+    },
+    {
       "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\js\\owl.carousel.min.js",
       "SourceId": "Graduation_Project",
       "SourceType": "Discovered",
@@ -3194,6 +3211,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\rev\\assets\\3-5-50x100.jpg"
+    },
+    {
+      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\rev\\assets\\page-title4.jpg",
+      "SourceId": "Graduation_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\",
+      "BasePath": "_content/Graduation_Project",
+      "RelativePath": "rev/assets/page-title4.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\rev\\assets\\page-title4.jpg"
     },
     {
       "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\rev\\assets\\petan-1.png",

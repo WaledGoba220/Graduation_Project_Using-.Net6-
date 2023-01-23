@@ -6,6 +6,7 @@ using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Utility.Consts;
 
 namespace Graduation_Project.Controllers
@@ -43,12 +44,11 @@ namespace Graduation_Project.Controllers
                     model.Doctor = await _unitOfWork.TbDoctors.GetFirstOrDefaultAsync(a=>a.AppUserId == currentUser.Id, new[] { "Specialization", "ClinicImages" });
                 }
 
-                ViewBag.LstbSpecialization = await _unitOfWork.TbSpecialization.GetAllAsync();
+                ViewBag.LstSpecialization = await _unitOfWork.TbSpecialization.GetAllAsync();
             }
 
             return View(model);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> UpdateUserPhoto(IFormFile myFile)
@@ -82,22 +82,27 @@ namespace Graduation_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveDoctor(ProfilePageVM model)
         {
-            var currentUser = await GetCurrentUser();
-            model.User = currentUser;
 
             if (!ModelState.IsValid)
             {
+                var currentUser = await GetCurrentUser();
+                model.User = currentUser;
+                model.Doctor = await _unitOfWork.TbDoctors.GetFirstOrDefaultAsync(a => a.AppUserId == currentUser.Id, new[] { "Specialization", "ClinicImages" });
+
                 TempData["Error"] = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).FirstOrDefault();
+                ViewBag.LstSpecialization = await _unitOfWork.TbSpecialization.GetAllAsync();
                 return View("Index", model);
             }
 
-            if(model.Doctor == null || model.Doctor.Id == 0)
+            if(model.Doctor is null || model.Doctor.Id == 0)
             {
+                // Add
                 await _unitOfWork.TbDoctors.AddAsync(model.Doctor);
                 TempData["Success"] = "Update Information Successfully!";
             }
             else
             {
+                // Edit
                 var doctor = await _unitOfWork.TbDoctors.GetFirstOrDefaultAsync(x=>x.Id == model.Doctor.Id);
                 doctor.Location = model.Doctor.Location;
                 doctor.Clinic = model.Doctor.Clinic;
@@ -112,7 +117,6 @@ namespace Graduation_Project.Controllers
             }
 
             await _unitOfWork.Complete();
-            ViewBag.LstbSpecialization = await _unitOfWork.TbSpecialization.GetAllAsync();
 
             return RedirectToAction("Index");
         }
@@ -158,7 +162,7 @@ namespace Graduation_Project.Controllers
 
             return Json(new { success = false, message = "There is no photo to delete it, try again" });
         }
-
+        
         private async Task<ApplicationUser> GetCurrentUser()
         {
             return await _userManager.GetUserAsync(User);

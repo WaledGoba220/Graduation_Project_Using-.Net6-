@@ -93,6 +93,49 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Models.TbAdvice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DiseaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DiseaseTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DiseaseId");
+
+                    b.HasIndex("DiseaseTypeId");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("TbAdvices");
+                });
+
             modelBuilder.Entity("Domain.Models.TbClinicImage", b =>
                 {
                     b.Property<int>("Id")
@@ -134,6 +177,53 @@ namespace DataAccess_EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TbContacts");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbDisease", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("DiseaseTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name_AR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name_EN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DiseaseTypeId");
+
+                    b.ToTable("TbDiseases");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbDiseaseType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name_AR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name_EN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TbDiseaseTypes");
                 });
 
             modelBuilder.Entity("Domain.Models.TbDoctor", b =>
@@ -335,6 +425,29 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Models.TbAdvice", b =>
+                {
+                    b.HasOne("Domain.Models.TbDisease", "Disease")
+                        .WithMany("Advices")
+                        .HasForeignKey("DiseaseId");
+
+                    b.HasOne("Domain.Models.TbDiseaseType", "DiseaseType")
+                        .WithMany("Advices")
+                        .HasForeignKey("DiseaseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.TbDoctor", "Doctor")
+                        .WithMany("Advices")
+                        .HasForeignKey("DoctorId");
+
+                    b.Navigation("Disease");
+
+                    b.Navigation("DiseaseType");
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("Domain.Models.TbClinicImage", b =>
                 {
                     b.HasOne("Domain.Models.TbDoctor", "Doctor")
@@ -344,6 +457,17 @@ namespace DataAccess_EF.Migrations
                         .IsRequired();
 
                     b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbDisease", b =>
+                {
+                    b.HasOne("Domain.Models.TbDiseaseType", "DiseaseType")
+                        .WithMany("Diseases")
+                        .HasForeignKey("DiseaseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DiseaseType");
                 });
 
             modelBuilder.Entity("Domain.Models.TbDoctor", b =>
@@ -416,8 +540,22 @@ namespace DataAccess_EF.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Domain.Models.TbDisease", b =>
+                {
+                    b.Navigation("Advices");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbDiseaseType", b =>
+                {
+                    b.Navigation("Advices");
+
+                    b.Navigation("Diseases");
+                });
+
             modelBuilder.Entity("Domain.Models.TbDoctor", b =>
                 {
+                    b.Navigation("Advices");
+
                     b.Navigation("ClinicImages");
                 });
 

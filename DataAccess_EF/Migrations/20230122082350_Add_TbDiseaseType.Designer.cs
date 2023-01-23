@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess_EF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230119140847_Update_TbSpecialization")]
-    partial class Update_TbSpecialization
+    [Migration("20230122082350_Add_TbDiseaseType")]
+    partial class Add_TbDiseaseType
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,9 +75,6 @@ namespace DataAccess_EF.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TbDoctorId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -95,9 +92,29 @@ namespace DataAccess_EF.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("TbDoctorId");
-
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Models.TbClinicImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("TbClinicImages");
                 });
 
             modelBuilder.Entity("Domain.Models.TbContact", b =>
@@ -121,6 +138,23 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("TbContacts");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbDiseaseType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TbDiseaseTypes");
+                });
+
             modelBuilder.Entity("Domain.Models.TbDoctor", b =>
                 {
                     b.Property<int>("Id")
@@ -131,7 +165,7 @@ namespace DataAccess_EF.Migrations
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Brief")
                         .IsRequired()
@@ -154,10 +188,14 @@ namespace DataAccess_EF.Migrations
                     b.Property<int>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<int>("SpecializationlId")
+                    b.Property<int>("SpecializationId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("SpecializationId");
 
                     b.ToTable("TbDoctors");
                 });
@@ -316,26 +354,34 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TbDoctorTbSpecialization", b =>
+            modelBuilder.Entity("Domain.Models.TbClinicImage", b =>
                 {
-                    b.Property<int>("DoctorsId")
-                        .HasColumnType("int");
+                    b.HasOne("Domain.Models.TbDoctor", "Doctor")
+                        .WithMany("ClinicImages")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("SpecializationId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DoctorsId", "SpecializationId");
-
-                    b.HasIndex("SpecializationId");
-
-                    b.ToTable("TbDoctorTbSpecialization");
+                    b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("Domain.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Domain.Models.TbDoctor", b =>
                 {
-                    b.HasOne("Domain.Models.TbDoctor", null)
-                        .WithMany("AppUser")
-                        .HasForeignKey("TbDoctorId");
+                    b.HasOne("Domain.Models.ApplicationUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.TbSpecialization", "Specialization")
+                        .WithMany("Doctors")
+                        .HasForeignKey("SpecializationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Specialization");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -389,24 +435,14 @@ namespace DataAccess_EF.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TbDoctorTbSpecialization", b =>
-                {
-                    b.HasOne("Domain.Models.TbDoctor", null)
-                        .WithMany()
-                        .HasForeignKey("DoctorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Models.TbSpecialization", null)
-                        .WithMany()
-                        .HasForeignKey("SpecializationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Domain.Models.TbDoctor", b =>
                 {
-                    b.Navigation("AppUser");
+                    b.Navigation("ClinicImages");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbSpecialization", b =>
+                {
+                    b.Navigation("Doctors");
                 });
 #pragma warning restore 612, 618
         }
