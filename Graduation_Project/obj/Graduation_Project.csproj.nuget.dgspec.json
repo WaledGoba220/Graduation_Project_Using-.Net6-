@@ -206,6 +206,14 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.11, )"
+            },
+            "cloudscribe.Pagination.Models": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "cloudscribe.Web.Pagination": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
@@ -255,6 +263,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "E:\\Asp.net Projects\\Graduation_Project\\DataAccess_EF\\DataAccess_EF.csproj": {
+                "projectPath": "E:\\Asp.net Projects\\Graduation_Project\\DataAccess_EF\\DataAccess_EF.csproj"
+              },
               "E:\\Asp.net Projects\\Graduation_Project\\Domain\\Domain.csproj": {
                 "projectPath": "E:\\Asp.net Projects\\Graduation_Project\\Domain\\Domain.csproj"
               },

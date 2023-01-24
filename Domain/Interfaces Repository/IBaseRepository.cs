@@ -14,6 +14,7 @@ namespace Domain.Interfaces
         Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> criteria, string[]? includes = null);
 
         Task<bool> FindAsync(Expression<Func<T, bool>> criteria);
+        Task<int> CountAsync();
         Task<bool> AddAsync(T entity);
         bool Update(T entity);
         bool Delete(T entity);

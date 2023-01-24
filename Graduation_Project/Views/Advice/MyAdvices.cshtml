@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "My Advices";
+    int number = Convert.ToInt32(ViewData["itemsCount"]);
 }
 
 <!--============= breadcrumb start ===============-->
@@ -33,6 +34,7 @@
     </div>
 </div>
 <!--============= breadcrumb End ===============-->
+
 <!--============= Advices Start ===============-->
 <section class="3-colume-grid advices pb-5 pt-5">
     <div class="container">
@@ -74,7 +76,6 @@
                             <label for="Type">Type Of Disease</label>
                             <div class="form-group form-group-select mb-3">
                                 <select id="DiseaseTypeId" asp-for="AdviceVM.DiseaseTypeId" asp-items="@(new SelectList(ViewBag.LstDiseaseTypes, "Id","Name_EN"))" class="round" id="Type">
-                                    <option value=""></option>
                                 </select>
                             </div>
                         </div>
@@ -83,7 +84,6 @@
                             <label for="Disease">Disease</label>
                             <div class="form-group form-group-select mb-3">
                                 <select id="DiseaseId" asp-for="AdviceVM.DiseaseId" class="round" id="Disease">
-                                    <option value=""></option>
                                 </select>
                             </div>
                         </div>
@@ -113,90 +113,26 @@
                 @foreach (var item in Model.LstAdvices)
                 {
                     <div class="col-lg-4">
-                        <div class="pq-blog pq-blog-col-1">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="pq-blog-post">
-                                        <a href="adviceDetails.html">
-                                            <div class="pq-post-media">
-                                                <img loading ="lazy" src="../images/blog/1.jpg" class="img-fluid" alt="">
-                                                <div class="pq-post-date">
-                                                    <a> <span>December 17, 2021</span></a>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <div class="pq-blog-contain">
-                                            <div class="pq-post-meta">
-                                                <ul class="d-flex align-items-center justify-content-between">
-                                                    <li class="pq-post-author">
-                                                        <a href="doctor.html">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="doctorImage">
-                                                                    <img src="../images/person.png" class="w-100 h-100" alt="">
-                                                                </div>
-                                                                <div class="name">Doctor Name</div>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="pq-post-comment">
-                                                        <a>
-                                                            <i class="fa fa-comments"></i>
-                                                            2 Comments
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="pq-post-meta">
-                                                <ul class="d-flex align-items-center justify-content-between">
-                                                    <li class="pq-post-author">
-                                                        <i class="fas fa-stethoscope"></i>
-                                                        Type of disease
-                                                    </li>
-                                                    <li class="pq-post-comment">
-                                                        <i class="fas fa-disease"></i>
-                                                        Disease
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <h5 class="pq-blog-title">
-                                                <a href="adviceDetails.html">
-                                                    Get
-                                                    the Exercise Limited Mobility
-                                                </a>
-                                            </h5>
-                                            <div class="pq-blog-info">
-                                                <p>
-                                                    It is a long established fact that a reader will be distracted by the
-                                                    readable content of a page when looking at its layout.
-                                                </p>
-                                            </div>
-                                            <a href="get-the-exercise-limited-mobility.html"
-                                       class="pq-button pq-button-flat">
-                                                <div class="pq-button-block">
-                                                    <span class="pq-button-text">Read More</span>
-                                                    <i class="ion ion-plus-round"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <partial name="_Advice" model="item" />
                     </div>
                 }
             }
 
-            <div class="col-lg-12">
-                <div class="pq-pagination">
-                    <nav aria-label="Page navigation">
-                        <ul class="page-numbers">
-                            <li><a href="#" aria-current="page" class="page-numbers current">1</a></li>
-                            <li><a class="page-numbers" href="#">2</a></li>
-                            <li><a class="next page-numbers" href="#">Next page</a></li>
-                        </ul>
-                    </nav>
-                </div>
+            <!-- Start Pagination -->
+            <div class="m-auto d-flex justify-content-center">
+                <cs-pager cs-paging-pagenumber="(int)Model.Pagination.pageNumber"
+                            cs-paging-totalitems="number"
+                            cs-paging-pagesize="(int)Model.Pagination.pageSize"
+                            cs-pagenumber-param="pagenumber"
+                            cs-pager-li-current-class="page-item active"
+                            cs-pager-li-other-class="page-item"
+                            cs-pager-li-non-active-class="page-item disabled"
+                            cs-pager-link-current-class="page-link"
+                            cs-pager-link-other-class="page-link"
+                            asp-controller="Advice"
+                            asp-action="MyAdvices"></cs-pager>
             </div>
+            <!-- ENd Pagination -->
         </div>
     </div>
 </section>
@@ -209,9 +145,28 @@
     <script src="~/js/myAdvices.js"></script>
     <script>
         $(document).ready(function () {
+
+            var diseaseTypeId = $("#DiseaseTypeId").val();
+            var diseaseId = $("#DiseaseId");
+
+            if (diseaseTypeId != '') {
+                $.ajax({
+                    url: '/Advice/GetDiseasesByDiseaseTypeId?diseaseTypeId=' + diseaseTypeId,
+                    type: 'GET',
+                    success: function (data) {
+                        $.each(data, function (i, val) {
+                            diseaseId.append($('<option></option>').attr('value', val.id).text(val.name_EN));
+                        });
+                    },
+                    error: function () {
+                        alert("Somthing went wrong!");
+                    }
+                });
+            }
+
             $("#DiseaseTypeId").on('change', function () {
-                var diseaseTypeId = $(this).val();
-                var diseaseId = $("#DiseaseId");
+                diseaseTypeId = $(this).val();
+                diseaseId = $("#DiseaseId");
 
                 diseaseId.empty();
 

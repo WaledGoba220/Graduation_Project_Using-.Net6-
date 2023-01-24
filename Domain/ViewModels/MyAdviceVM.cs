@@ -9,7 +9,8 @@ namespace Domain.ViewModels
 {
     public class MyAdviceVM
     {
-        public IEnumerable<TbAdvice>? LstAdvices { get; set; }
+        public List<AdviceVM>? LstAdvices { get; set; }
         public AddAdviceVM? AdviceVM { get; set; }
+        public PagePagination? Pagination { get; set; }
     }
 }

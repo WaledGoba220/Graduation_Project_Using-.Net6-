@@ -62,6 +62,11 @@ namespace DataAccess_EF.Repositories
             return await context.Set<T>().AsNoTracking().AnyAsync(criteria);
         }
 
+        public async Task<int> CountAsync()
+        {
+            return await context.Set<T>().AsNoTracking().AsQueryable().CountAsync();
+        }
+
         public async Task<bool> AddAsync(T entity)
         {
             try

@@ -100,11 +100,8 @@
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/model" ? "current-menu-item" : "")">
                                             <a href="model.html">Diseases Detection</a>
                                         </li>
-                                        <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/hardware" ? "current-menu-item" : "")">
-                                            <a href="#">Measuring box</a>
-                                        </li>
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/tips" ? "current-menu-item" : "")">
-                                            <a href="tips.html">
+                                            <a asp-controller="Advice" asp-action="Index">
                                                 Medical Advices
                                             </a>
                                         </li>

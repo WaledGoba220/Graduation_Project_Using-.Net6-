@@ -1268,26 +1268,28 @@ Blog
   overflow: hidden;
   margin-bottom: 0;
   position: relative;
+  height: 273px;
 }
 
 .pq-blog-post .pq-post-media img {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-  width: 100%;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  -webkit-border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 0;
-  -moz-border-radius-bottomright: 0;
-  -moz-border-radius-bottomleft: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    width: 100%;
+    min-height: 273px !important;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .pq-blog-post:hover .pq-post-media img {
@@ -1511,7 +1513,7 @@ Pagination
 
 .advices .search_box .box input {
   height: 80px !important;
-  background-color: transparent;
+  background-color: transparent !important;
   color: var(--primary-dark-color) !important;
   text-align: center;
   width: 100%;

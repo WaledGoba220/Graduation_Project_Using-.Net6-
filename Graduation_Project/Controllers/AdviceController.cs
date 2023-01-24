@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Utility.Consts;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Service.Advice_Service;
+using System.Drawing.Printing;
 
 namespace Graduation_Project.Controllers
 {
@@ -13,29 +16,58 @@ namespace Graduation_Project.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private IUnitOfWork _unitOfWork;
+        private IAdviceService _adviceService;
         public AdviceController(UserManager<ApplicationUser> userManager,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IAdviceService adviceService)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+            _adviceService = adviceService;
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 6)
         {
-            return View();
+            ViewData["itemsCount"] = await _unitOfWork.TbAdvices.CountAsync();
+            int ExcludeRecords = (pageSize * pageNumber) - pageSize;
+
+            var currentUser = await GetCurrentUser();
+            ViewBag.LstDiseaseTypes = await _unitOfWork.TbDiseaseTypes.GetAllAsync();
+            ViewBag.UserName = currentUser.UserName;
+            ViewBag.UserPhoto = currentUser.Photo;
+
+            AdvicesVM model = new();
+            model.LstAdvices = await _unitOfWork.TbAdvices.GetAdvicesAsync(pageSize, ExcludeRecords);
+            model.Pagination = new PagePagination()
+            {
+                pageNumber = pageNumber,
+                pageSize = pageSize
+            };
+
+            return View(model);
         }
 
         [Authorize(Roles = Roles.Doctor)]
-        public async Task<IActionResult> MyAdvices()
+        public async Task<IActionResult> MyAdvices(int pageNumber = 1, int pageSize = 6)
         {
+            ViewData["itemsCount"] = await _unitOfWork.TbAdvices.CountAsync();
+            int ExcludeRecords = (pageSize * pageNumber) - pageSize;
+
             var currentUser = await GetCurrentUser();
             int doctorId = await _unitOfWork.TbDoctors.GetIdByUserIdAsync(currentUser.Id);
             ViewBag.doctorId = doctorId;
             ViewBag.LstDiseaseTypes = await _unitOfWork.TbDiseaseTypes.GetAllAsync();
+            ViewBag.UserName = currentUser.UserName;
+            ViewBag.UserPhoto = currentUser.Photo;
 
             MyAdviceVM model = new();
-            model.LstAdvices = await _unitOfWork.TbAdvices.GetWhereAsync(a => a.DoctorId == doctorId);
+            model.LstAdvices = await _unitOfWork.TbAdvices.GetMyAdvicesAsync(doctorId, pageSize, ExcludeRecords);
+            model.Pagination = new PagePagination()
+            {
+                pageNumber = pageNumber,
+                pageSize = pageSize
+            };
 
             return View(model);
         }
@@ -45,55 +77,53 @@ namespace Graduation_Project.Controllers
         public async Task<IActionResult> SaveAdvice(MyAdviceVM model, IFormFile file)
         {
             if (!ModelState.IsValid)
-            {
+            { 
+                ViewData["itemsCount"] = await _unitOfWork.TbAdvices.CountAsync();
+                int pageNumber = 1, pageSize = 6;
+                int ExcludeRecords = (pageSize * pageNumber) - pageSize;
+
                 var currentUser = await GetCurrentUser();
                 int doctorId = await _unitOfWork.TbDoctors.GetIdByUserIdAsync(currentUser.Id);
                 ViewBag.doctorId = doctorId;
                 ViewBag.LstDiseaseTypes = await _unitOfWork.TbDiseaseTypes.GetAllAsync();
+                ViewBag.UserName = currentUser.UserName;
+                ViewBag.UserPhoto = currentUser.Photo;
 
-                TempData["Error"] = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).FirstOrDefault();
+                model.LstAdvices = await _unitOfWork.TbAdvices.GetMyAdvicesAsync(doctorId, pageSize, ExcludeRecords);
+                model.Pagination = new PagePagination()
+                {
+                    pageNumber = pageNumber,
+                    pageSize = pageSize
+                };
+
+                if (file.Length == 0)
+                {
+                    TempData["Error"] = "Please Upload Image";
+                }else
+                {
+                    TempData["Error"] = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).FirstOrDefault();
+                }
+
                 return View("MyAdvices", model);
             }
-
-            if (file.Length == 0)
-            {
-                TempData["Error"] = "Please Upload Image";
-                return RedirectToAction("Index");
-            }
-
-            // Convert Photo from IFormFile to byte[]
-            using var dataStream = new MemoryStream();
-            await file.CopyToAsync(dataStream);
 
             if (model.AdviceVM is null || model.AdviceVM.Id == 0)
             {
                 // Add
-                TbAdvice dt = new()
-                {
-                    Image = dataStream.ToArray(),
-                    Title = model.AdviceVM.Title,
-                    Content = model.AdviceVM.Content,
-                    DoctorId = model.AdviceVM.DoctorId,
-                    DiseaseId = model.AdviceVM.DiseaseId,
-                    DiseaseTypeId = model.AdviceVM.DiseaseTypeId
-                };
-
-                await _unitOfWork.TbAdvices.AddAsync(dt);
-                TempData["Success"] = "Add New Advice Successfully!";
+                var addAdvice = await _adviceService.AddAsync(model.AdviceVM, file);
+                if (addAdvice.Success)
+                    TempData["Success"] = addAdvice.Message;
+                else
+                    TempData["Error"] = addAdvice.Message;
             }
             else
             {
                 // Edit
-                var advice = await _unitOfWork.TbAdvices.GetFirstOrDefaultAsync(x => x.Id == model.AdviceVM.Id);
-                advice.Title = model.AdviceVM.Title;
-                advice.Content = model.AdviceVM.Content;
-                advice.Image = dataStream.ToArray();
-                advice.DoctorId = model.AdviceVM.DoctorId;
-                advice.DiseaseId = model.AdviceVM.DiseaseId;
-                advice.DiseaseTypeId = model.AdviceVM.DiseaseTypeId;
-
-                _unitOfWork.TbAdvices.Update(advice);
-                TempData["Success"] = "Update Advice Successfully!";
+                var updateAdvice = await _adviceService.UpdateAsync(model.AdviceVM, file);
+                if (updateAdvice.Success)
+                    TempData["Success"] = updateAdvice.Message;
+                else
+                    TempData["Error"] = updateAdvice.Message;
             }
 
             await _unitOfWork.Complete();
@@ -109,7 +139,29 @@ namespace Graduation_Project.Controllers
             return Ok(diseases);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Search(AdvicesVM model)
+        {
+            int pageNumber = 1, pageSize = 6;
+            int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
+            var currentUser = await GetCurrentUser();
+            ViewBag.LstDiseaseTypes = await _unitOfWork.TbDiseaseTypes.GetAllAsync();
+            ViewBag.UserName = currentUser.UserName;
+            ViewBag.UserPhoto = currentUser.Photo;
+
+            model.LstAdvices = await _unitOfWork.TbAdvices.GetAdvicesBySearchFormAsync(model.SearchAdvice, pageSize, ExcludeRecords);
+            ViewData["itemsCount"] = model.LstAdvices.Count();
+            model.Pagination = new PagePagination()
+            {
+                pageNumber = pageNumber,
+                pageSize = pageSize
+            };
+
+            TempData["TitlePage"] = "Search";
+
+            return View("Index", model);
+        }
 
 
 

@@ -14,7 +14,7 @@ namespace Domain.ViewModels
         public int Id { get; set; }
 
         [Required(ErrorMessage ="Please Enter Your Title")]
-        [MaxLength(200 ,ErrorMessage = "The Title must be less than 200 characters")]
+        [MaxLength(100 ,ErrorMessage = "The Title must be less than 100 characters")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Please Enter Your Content")]

@@ -1,0 +1,157 @@
+﻿@model AdvicesVM
+
+@{
+    ViewData["Title"] = "Advices";
+    int number = Convert.ToInt32(ViewData["itemsCount"]);
+}
+
+<!--============= breadcrumb start ===============-->
+<div class="pq-breadcrumb" style="background-image: url('../rev/assets/page-title4.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <div class="pq-breadcrumb-title">
+                        <h2>Medical Advices</h2>
+                    </div>
+                    <div class="pq-breadcrumb-container mt-2">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home mr-2"></i>Home
+                                </a>
+                            </li>
+                            @if (TempData["TitlePage"] is not null)
+                            {
+                                <li class="breadcrumb-item">
+                                    <a asp-action="Index">
+                                        <i class="fas fa-file-signature"></i>Medical Advices
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active">Search</li>
+                            }
+                            else {
+                                <li class="breadcrumb-item active">Medical Advices</li>
+                            }
+                        </ol>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-4">
+                <div class="pq-breadcrumb-img text-right wow fadeInRight animated" style="visibility: visible;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============= breadcrumb End ===============-->
+
+<!--============= Advices Start ===============-->
+<section class="3-colume-grid advices pb-5 pt-0">
+    <div class="container">
+
+        <form asp-action="Search" role="form" method="post">
+            <div class="search_box row justify-content-center align-items-center mb-5">
+                <div class="box col-3">
+                    <select class="round w-100" id="DiseaseTypeId" asp-for="SearchAdvice.DiseaseTypeId" asp-items="@(new SelectList(ViewBag.LstDiseaseTypes, "Id","Name_EN"))">
+                    </select>
+                    <div class="title">Type of disease</div>
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <div class="box col-3">
+                    <select class="round w-100" id="DiseaseId" asp-for="SearchAdvice.DiseaseId">
+                    </select>
+                    <div class="title">Disease</div>
+                    <i class="fas fa-disease"></i>
+                </div>
+                <div class="box col-4">
+                    <input type="text" asp-for="SearchAdvice.Title" class="w-100 text-center" placeholder="Search By Title Of Advice">
+                </div>
+                <div class="box col-2">
+                    <button type="submit" class="w-100">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            @if (Model.LstAdvices is not null)
+            {
+                @foreach (var item in Model.LstAdvices)
+                {
+                    <div class="col-lg-4">
+                        <partial name="_Advice" model="item" />
+                    </div>
+                }
+            }
+        </div>
+
+        <!-- Start Pagination -->
+        <div class="m-auto d-flex justify-content-center">
+            <cs-pager cs-paging-pagenumber="(int)Model.Pagination.pageNumber"
+                      cs-paging-totalitems="number"
+                      cs-paging-pagesize="(int)Model.Pagination.pageSize"
+                      cs-pagenumber-param="pagenumber"
+                      cs-pager-li-current-class="page-item active"
+                      cs-pager-li-other-class="page-item"
+                      cs-pager-li-non-active-class="page-item disabled"
+                      cs-pager-link-current-class="page-link"
+                      cs-pager-link-other-class="page-link"
+                      asp-controller="Advice"
+                      asp-action="Index"></cs-pager>
+        </div>
+        <!-- ENd Pagination -->
+    </div>
+</section>
+<!--============= Advices End ===============-->
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_Notification");
+    }
+    <script>
+        $(document).ready(function () {
+
+            var diseaseTypeId = $("#DiseaseTypeId").val();
+            var diseaseId = $("#DiseaseId");
+
+            if (diseaseTypeId != '') {
+                $.ajax({
+                    url: '/Advice/GetDiseasesByDiseaseTypeId?diseaseTypeId=' + diseaseTypeId,
+                    type: 'GET',
+                    success: function (data) {
+                        $.each(data, function (i, val) {
+                            diseaseId.append($('<option></option>').attr('value', val.id).text(val.name_EN));
+                        });
+                    },
+                    error: function () {
+                        alert("Somthing went wrong!");
+                    }
+                });
+            }
+
+            $("#DiseaseTypeId").on('change', function () {
+                diseaseTypeId = $(this).val();
+                diseaseId = $("#DiseaseId");
+
+                diseaseId.empty();
+
+                if (diseaseTypeId != '') {
+                    $.ajax({
+                        url: '/Advice/GetDiseasesByDiseaseTypeId?diseaseTypeId=' + diseaseTypeId,
+                        type: 'GET',
+                        success: function (data) {
+                            $.each(data, function (i, val) {
+                                diseaseId.append($('<option></option>').attr('value', val.id).text(val.name_EN));
+                            });
+                        },
+                        error: function () {
+                            alert("Somthing went wrong!");
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
+}

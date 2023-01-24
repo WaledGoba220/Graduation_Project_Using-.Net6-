@@ -23,6 +23,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Views/Advice/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2aWNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Asp.net Projects/Graduation_Project/Graduation_Project/Views/Advice/MyAdvices.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2aWNlXE15QWR2aWNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -33,6 +37,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/Asp.net Projects/Graduation_Project/Graduation_Project/Views/Profile/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Views/Shared/_Advice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZHZpY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Asp.net Projects/Graduation_Project/Graduation_Project/Views/Shared/_Notification.cshtml]

@@ -276,3 +276,6 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\runti
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.MvcApplicationPartsAssemblyInfo.cs
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\cloudscribe.Pagination.Models.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\cloudscribe.Web.Pagination.dll
