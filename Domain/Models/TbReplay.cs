@@ -11,7 +11,7 @@ namespace Domain.Models
     {
         public int Id { get; set; }
         public string Replay { get; set; }
-        public DateTime? CreationDateTime { get; set; } = DateTime.UtcNow;
+        public DateTime CreationDateTime { get; set; } = DateTime.Now;
 
         // Forign Key
         [ForeignKey("Comment")]

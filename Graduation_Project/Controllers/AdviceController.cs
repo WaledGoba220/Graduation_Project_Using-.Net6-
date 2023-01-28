@@ -27,6 +27,8 @@ namespace Graduation_Project.Controllers
         }
 
 
+        // ***** [HttpGet] ***** //
+
         public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 6)
         {
             ViewData["itemsCount"] = await _unitOfWork.TbAdvices.CountAsync();
@@ -135,7 +137,11 @@ namespace Graduation_Project.Controllers
             TempData["TitlePage"] = "Search";
             return View("Index", model);
         }
-        
+
+        /// ///////////////////////////////////////////////
+
+        // ***** [HttpPost] ***** //
+
         [Authorize(Roles = Roles.Doctor)]
         [HttpPost]
         public async Task<IActionResult> SaveAdvice(MyAdviceVM model, IFormFile file)
@@ -204,18 +210,26 @@ namespace Graduation_Project.Controllers
             }
             else
             {
-                try
+                if(model.Comment.Id == 0)
                 {
+                    // Add
                     await _unitOfWork.TbComments.AddAsync(model.Comment);
-                    await _unitOfWork.Complete();
-
                     TempData["Success"] = "Add Comment Successfully!";
                 }
-                catch (Exception ex)
+                else
                 {
-                    TempData["Error"] = ex.Message;
+                    // Edit
+                    var comment = await _unitOfWork.TbComments.GetFirstOrDefaultAsync(a => a.Id == model.Comment.Id);
+                    comment.Comment = model.Comment.Comment;
+                    comment.AppUserId = model.Comment.AppUserId;
+                    comment.AdviceId = model.Comment.AdviceId;
+
+                    _unitOfWork.TbComments.Update(comment);
+                    TempData["Success"] = "Update Comment Successfully!";
                 }
             }
+
+            await _unitOfWork.Complete();
 
             return Redirect("~/Advice/AdviceDetails/" + model.Comment.AdviceId);
         }
@@ -230,48 +244,98 @@ namespace Graduation_Project.Controllers
             }
             else
             {
-                try
+                if (model.Replay.Id == 0)
                 {
+                    // Add
                     await _unitOfWork.TbReplays.AddAsync(model.Replay);
-                    await _unitOfWork.Complete();
 
                     TempData["Success"] = "Add Replay Successfully!";
                 }
-                catch (Exception ex)
+                else
                 {
-                    TempData["Error"] = ex.Message;
+                    // Edit
+                    var replay = await _unitOfWork.TbReplays.GetFirstOrDefaultAsync(a => a.Id == model.Replay.Id);
+                    replay.Replay = model.Replay.Replay;
+                    replay.AppUserId = model.Replay.AppUserId;
+                    replay.AdviceId = model.Replay.AdviceId;
+                    replay.CommentId = model.Replay.CommentId;
+
+                    _unitOfWork.TbReplays.Update(replay);
+                    TempData["Success"] = "Update Replay Successfully!";
                 }
             }
+
+            await _unitOfWork.Complete();
 
             return Redirect("~/Advice/AdviceDetails/" + model.Replay.AdviceId);
         }
 
         [Authorize(Roles =Roles.Doctor)]
-        public async Task<IActionResult> DeleteAdvice(int id)
+        [HttpPost]
+        public async Task<IActionResult> DeleteAdvice(string id)
         {
-            try
-            {
-                var getAdviceById = await _unitOfWork.TbAdvices.GetFirstOrDefaultAsync(a => a.Id == id);
-                if(getAdviceById is not null)
-                {
-                    _unitOfWork.TbAdvices.Delete(getAdviceById);
-                    await _unitOfWork.Complete();
+            var arr = id.Split("--");
+            int adviceId = Convert.ToInt32(arr[0]);
+            int doctorId = Convert.ToInt32(arr[1]);
 
-                    TempData["Success"] = "Delete Advice Successfully!";
-                }
-                else
-                {
-                    TempData["Error"] = @"Not Found Advice By ID: {id}";
-                }
-            }
-            catch (Exception ex)
+            var getAdviceById = await _unitOfWork.TbAdvices.GetFirstOrDefaultAsync(a => a.Id == adviceId && a.DoctorId == doctorId);
+            if (getAdviceById is not null)
             {
-                TempData["Error"] = ex.Message;
+                _unitOfWork.TbAdvices.Delete(getAdviceById);
+                await _unitOfWork.Complete();
+                TempData["Success"] = "Delete Advice Successfully!";
+
+                return Json(new { success = true });
             }
 
-            return RedirectToAction("MyAdvices");
+            return Json(new { success = false, message = "There is no Advice to delete it, try again" });
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeleteComment(string id)
+        {
+            var arr = id.Split("--");
+            int commentId = Convert.ToInt32(arr[0]);
+            string userId = arr[1];
+
+            var getCommentById = await _unitOfWork.TbComments.GetFirstOrDefaultAsync(a => a.Id == commentId && a.AppUserId == userId);
+            if (getCommentById is not null)
+            {
+                _unitOfWork.TbComments.Delete(getCommentById);
+                await _unitOfWork.Complete();
+                TempData["Success"] = "Delete Comment Successfully!";
+
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false, message = "There is no Comment to delete it, try again" });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeleteReplay(string id)
+        {
+            var arr = id.Split("--");
+            int replayId = Convert.ToInt32(arr[0]);
+            string userId = arr[1];
+
+            var getReplayById = await _unitOfWork.TbReplays.GetFirstOrDefaultAsync(a => a.Id == replayId && a.AppUserId == userId);
+            if (getReplayById is not null)
+            {
+                _unitOfWork.TbReplays.Delete(getReplayById);
+                await _unitOfWork.Complete();
+                TempData["Success"] = "Delete Replay Successfully!";
+
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false, message = "There is no Replay to delete it, try again" });
+        }
+
+        /// ///////////////////////////////////////////////
+
+        // ***** Actions ***** //
 
         [Authorize(Roles = Roles.Doctor)]
         public async Task<IActionResult> GetDiseasesByDiseaseTypeId(int diseaseTypeId)

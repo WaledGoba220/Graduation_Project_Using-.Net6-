@@ -133,7 +133,7 @@
                                                                 <a href="#">@comment.AppUser.UserName</a>
                                                             }
                                                         </h5>
-                                                        <p class="dateTime mb-2">@comment.CreationDateTime.ToString()</p>
+                                                        <p class="dateTime mb-2 moment-date">@comment.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</p>
                                                         <div class="pq-comment-metadata"> </div>
                                                         <!-- .comment-metadata -->
                                                         <div class="comment-content">
@@ -141,10 +141,26 @@
                                                         </div>
                                                         <!-- .comment-content -->
                                                         <!-- .reply -->
-                                                        <a class="replay mt-3 openModelReplay">
-                                                            Replay
-                                                            <input type="hidden" value="@comment.Id" />
-                                                        </a>
+                                                        <div class="d-flex mt-3 justify-content-between align-items-center">
+                                                            <div>
+                                                                <a class="replay openModelReplay">
+                                                                    Replay
+                                                                    <input type="hidden" value="@comment.Id" />
+                                                                </a>
+                                                            </div>
+                                                            @if (ViewBag.UserId == comment.AppUserId) {
+                                                                <div>
+                                                                    <a onClick=Delete("/Advice/DeleteComment/@comment.Id--@ViewBag.UserId") class="deleteAdvice">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </a>
+                                                                    <a class="openModelComment editComment">
+                                                                        <i class="fas fa-edit"></i>
+                                                                        <input class="id" type="hidden" value="@comment.Id" />
+                                                                        <input class="comment" type="hidden" value="@comment.Comment" />
+                                                                    </a>
+                                                                </div>
+                                                            }
+                                                        </div>
 
                                                     </div>
                                                     <!-- .comment-author -->
@@ -181,14 +197,31 @@
                                                                             {
                                                                                 <a href="#">@replay.AppUser.UserName</a>
                                                                             }
-                                                                        </h5>                                                               
-                                                                        <p class="dateTime mb-2">@replay.CreationDateTime.ToString()</p>
+                                                                        </h5>
+                                                                        <p class="dateTime mb-2 moment-date">@replay.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</p>
                                                                         <div class="pq-comment-metadata"> </div>
                                                                         <!-- .comment-metadata -->
-                                                                        <div class="comment-content">
-                                                                            <p>@replay.Replay</p>
+                                                                        <div class="d-flex justify-content-between align-items-center">
+                                                                            <div class="comment-content">
+                                                                                <p>@replay.Replay</p>
+                                                                            </div>
+                                                                            <!-- .comment-content -->
+                                                                            @if (ViewBag.UserId == replay.AppUserId)
+                                                                            {
+                                                                                <div>
+                                                                                    <a onClick=DeleteReplay("/Advice/DeleteReplay/@replay.Id--@ViewBag.UserId") class="deleteAdvice">
+                                                                                        <i class="fas fa-trash-alt"></i>
+                                                                                    </a>
+                                                                                    <a class="openModelReplay editReplay">
+                                                                                        <i class="fas fa-edit"></i>
+                                                                                        <input class="id" type="hidden" value="@replay.Id" />
+                                                                                        <input class="commentId" type="hidden" value="@comment.Id" />
+                                                                                        <input class="replay" type="hidden" value="@replay.Replay" />
+                                                                                    </a>
+                                                                                </div>
+                                                                            }
                                                                         </div>
-                                                                        <!-- .comment-content -->
+
                                                                     </div>
                                                                     <!-- .comment-author -->
                                                                 </div>
@@ -215,10 +248,13 @@
                     <div id="modelComment" class="modal model">
                         <!-- Modal content -->
                         <div class="modal-content">
-                            <h4 class="modal-title">Add Comment</h4>
+                            <h4 class="modal-title">Comment</h4>
                             <span class="close3">&times;</span>
                             <hr class="mt-3 mb-3">
                             <form asp-action="SaveComment" role="form" method="post">
+
+                                @*Id*@
+                                <input class="id" type="hidden" asp-for="Comment.Id" value="0" />
 
                                 @*User Id*@
                                 <input type="hidden" asp-for="Comment.AppUserId" value="@ViewBag.UserId" />
@@ -230,7 +266,7 @@
                                 <label for="content">Comment</label>
                                 <div class="form-group mb-3">
                                     <i class="far fa-newspaper"></i>
-                                    <textarea asp-for="Comment.Comment" id="content" class="form-control"></textarea>
+                                    <textarea asp-for="Comment.Comment" id="content" class="comment form-control"></textarea>
                                 </div>
 
                                 <button class="submit btn bt-success" type="submit">Send</button>
@@ -242,10 +278,13 @@
                     <div id="modelReplay" class="modal model">
                         <!-- Modal content -->
                         <div class="modal-content">
-                            <h4 class="modal-title">Add Replay</h4>
+                            <h4 class="modal-title">Replay</h4>
                             <span class="close">&times;</span>
                             <hr class="mt-3 mb-3">
                             <form asp-action="SaveReplay" role="form" method="post">
+
+                                @*Id*@
+                                <input class="id" type="hidden" asp-for="Replay.Id" value="0" />
 
                                 @*User Id*@
                                 <input type="hidden" asp-for="Replay.AppUserId" value="@ViewBag.UserId" />
@@ -254,13 +293,13 @@
                                 <input type="hidden" asp-for="Replay.AdviceId" value="@ViewBag.AdviceId" />
 
                                 @*comment Id*@
-                                <input id="commentId" type="hidden" asp-for="Replay.CommentId" />
+                                <input class="commentId" id="commentId" type="hidden" asp-for="Replay.CommentId" />
 
                                 @*Comment*@
                                 <label for="content">Replay</label>
                                 <div class="form-group mb-3">
                                     <i class="far fa-newspaper"></i>
-                                    <textarea asp-for="Replay.Replay" id="content" class="form-control"></textarea>
+                                    <textarea asp-for="Replay.Replay" id="content" class="replay form-control"></textarea>
                                 </div>
 
                                 <button class="submit btn bt-success" type="submit">Send</button>
@@ -352,4 +391,78 @@
     }
     <script src="~/js/comment.js"></script>
     <script src="~/js/replay.js"></script>
+    <script src="~/ajax/DeleteComment.js"></script>
+    <script src="~/ajax/DeleteReplay.js"></script>
+    <script>
+        $(".editComment").on('click', function () {
+            var modal = document.getElementById("modelComment");
+
+            var commentId = $(this).children('input.id').val();
+            var comment = $(this).children('input.comment').val();
+
+            $("#modelComment form input.id").val(commentId);
+            $("#modelComment form textarea.comment").val(comment);
+
+            // When the user clicks on <span> (x), close the modal
+            $(".close3").on('click', function () {
+                $("#modelComment form input.id").val('');
+                $("#modelComment form textarea").val('');
+
+                $("#modelComment").css('display', 'none');
+                $("#modelComment .modal-content").animate({
+                    top: '-300px'
+                }, 300);
+            });
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    $("#modelComment form input.id").val('');
+                    $("#modelComment form textarea").val('');
+
+                    $("#modelComment").css('display', 'none');
+                    $("#modelComment .modal-content").animate({
+                        top: '-300px'
+                    }, 300);
+                }
+            }
+        });
+        $(".editReplay").on('click', function () {
+            var modal = document.getElementById("modelReplay");
+
+            var replayId = $(this).children('input.id').val();
+            var commentId = $(this).children('input.commentId').val();
+            var replay = $(this).children('input.replay').val();
+
+            $("#modelReplay form input.id").val(replayId);
+            $("#modelReplay form input.commentId").val(commentId);
+            $("#modelReplay form textarea.replay").val(replay);
+
+            // When the user clicks on <span> (x), close the modal
+            $(".close").on('click', function () {
+                $("#modelReplay form input.id").val('');
+                $("#modelReplay form input.commentId").val('');
+                $("#modelReplay form textarea.replay").val('');
+
+                $("#modelReplay").css('display', 'none');
+                $("#modelReplay .modal-content").animate({
+                    top: '-300px'
+                }, 300);
+            });
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    $("#modelReplay form input.id").val('');
+                    $("#modelReplay form input.commentId").val('');
+                    $("#modelReplay form textarea.replay").val('');
+
+                    $("#modelReplay").css('display', 'none');
+                    $("#modelReplay .modal-content").animate({
+                        top: '-300px'
+                    }, 300);
+                }
+            }
+        });
+    </script>
 }

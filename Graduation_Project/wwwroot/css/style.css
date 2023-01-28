@@ -5716,7 +5716,7 @@ Comments Box
 }
 
 .commentlist .comment {
-  margin-top: 30px;
+  margin-top: 0;
   margin-bottom: 0;
   vertical-align: top;
   padding: 0;
@@ -7381,9 +7381,18 @@ option {
 .advices .deleteAdvice {
   color: #dd0000;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .advices .edit_advice {
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-left: 7px;
+}
+
+.editComment,
+.editReplay {
     cursor: pointer;
     color: var(--primary-color);
     font-size: 20px;

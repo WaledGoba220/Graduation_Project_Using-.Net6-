@@ -74,7 +74,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a asp-controller="Advice" asp-action="DeleteAdvice" asp-route-id="@Model.Id" class="deleteAdvice">
+                                <a onClick=Delete("/Advice/DeleteAdvice/@Model.Id--@ViewBag.doctorId") class="deleteAdvice">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                                 <a id="@Model.Id" class="edit_advice">

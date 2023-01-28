@@ -17,7 +17,7 @@ namespace Domain.Models
 
         public int Id { get; set; }
         public string Comment { get; set; }
-        public DateTime? CreationDateTime { get; set; } = DateTime.UtcNow;
+        public DateTime CreationDateTime { get; set; } = DateTime.Now;
 
         // Forign Key
         [ForeignKey("AppUser")]
