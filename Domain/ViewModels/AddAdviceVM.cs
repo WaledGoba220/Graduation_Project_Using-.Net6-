@@ -20,16 +20,14 @@ namespace Domain.ViewModels
         [Required(ErrorMessage = "Please Enter Your Content")]
         [MinLength(200, ErrorMessage = "Content must be written more than 200 characters")]
         public string Content { get; set; }
-        public DateTime? CreationDateTime { get; set; } = DateTime.Now;
+        public DateTime? CreationDateTime { get; set; } = DateTime.UtcNow;
 
         // Forign Key
         [Required(ErrorMessage = "Please Choose Your Type Of Disease")]
-        [ForeignKey("DiseaseType")]
         public int DiseaseTypeId { get; set; }
-        [ForeignKey("Disease")]
-        public int? DiseaseId { get; set; }
-        [ForeignKey("Doctor")]
-        public int? DoctorId { get; set; }
+        public int DiseaseId { get; set; }
+        public int DoctorId { get; set; }
+        public string UserId { get; set; }
 
     }
 }

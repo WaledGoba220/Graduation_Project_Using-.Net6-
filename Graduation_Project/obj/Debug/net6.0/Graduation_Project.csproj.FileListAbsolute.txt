@@ -55,9 +55,7 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\DataA
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\Domain.pdb
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\staticwebassets.build.json
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\staticwebassets.development.json
-E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\scopedcss\bundle\Graduation_Project.styles.css
-E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\scopedcss\projectbundle\Graduation_Project.bundle.scp.css
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.csproj.CopyComplete
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\refint\Graduation_Project.dll

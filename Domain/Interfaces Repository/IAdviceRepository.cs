@@ -12,8 +12,9 @@ namespace Domain.Interfaces_Repository
     public interface IAdviceRepository : IBaseRepository<TbAdvice>
     {
         Task<List<AdviceVM>> GetMyAdvicesAsync(int doctorId, int pageSize, int ExcludeRecords);
-
         Task<List<AdviceVM>> GetAdvicesAsync(int pageSize, int ExcludeRecords);
         Task<List<AdviceVM>> GetAdvicesBySearchFormAsync(SearchAdviceVM searchForm, int pageSize, int ExcludeRecords);
+        Task<List<AdviceVM>> GetAdvicesByDiseaseTypeAndDisease(int diseaseTypeId, int diseaseId, int pageSize, int ExcludeRecords);
+        Task<List<AdviceVM>> GetAdvicesByTitle(string title, int pageSize, int ExcludeRecords);
     }
 }

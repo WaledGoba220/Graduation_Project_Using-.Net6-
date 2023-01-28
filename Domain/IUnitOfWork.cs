@@ -17,6 +17,8 @@ namespace Domain
         IDiseaseTypeRepository TbDiseaseTypes { get; }
         IDiseaseRepository TbDiseases { get; }
         IAdviceRepository TbAdvices { get; }
+        ICommentRepository TbComments { get; }
+        IReplayRepository TbReplays { get; }
 
 
         Task<int> Complete();

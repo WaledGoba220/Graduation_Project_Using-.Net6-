@@ -28,7 +28,7 @@
                                         <i class="fas fa-file-signature"></i>Medical Advices
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item active">Search</li>
+                                <li class="breadcrumb-item active">@TempData["TitlePage"]</li>
                             }
                             else {
                                 <li class="breadcrumb-item active">Medical Advices</li>
@@ -50,19 +50,20 @@
 <section class="3-colume-grid advices pb-5 pt-0">
     <div class="container">
 
-        <form asp-action="Search" role="form" method="post">
+        <form asp-action="Search" role="form" method="get">
             <div class="search_box row justify-content-center align-items-center mb-5">
                 <div class="box col-3">
                     <select class="round w-100" id="DiseaseTypeId" asp-for="SearchAdvice.DiseaseTypeId" asp-items="@(new SelectList(ViewBag.LstDiseaseTypes, "Id","Name_EN"))">
+                        <option value=""></option>
                     </select>
                     <div class="title">Type of disease</div>
                     <i class="fas fa-stethoscope"></i>
                 </div>
                 <div class="box col-3">
-                    <select class="round w-100" id="DiseaseId" asp-for="SearchAdvice.DiseaseId">
+                    <select class="round w-100" id="DiseaseId" asp-for="SearchAdvice.DiseaseId" asp-items="@(new SelectList(Model.SearchAdvice.Diseases, "Id","Name_EN"))">
                     </select>
                     <div class="title">Disease</div>
-                    <i class="fas fa-disease"></i>
+                    <i class="fas fa-disease"></i>  
                 </div>
                 <div class="box col-4">
                     <input type="text" asp-for="SearchAdvice.Title" class="w-100 text-center" placeholder="Search By Title Of Advice">
@@ -72,6 +73,12 @@
                 </div>
             </div>
         </form>
+
+        <div class="header mb-4 mt-0 d-flex justify-content-between align-items-center">
+            <div class="title">
+                <h6>We Found <span>@number</span> Advices for you!</h6>
+            </div>
+        </div>
 
         <div class="row">
             @if (Model.LstAdvices is not null)
@@ -114,21 +121,6 @@
 
             var diseaseTypeId = $("#DiseaseTypeId").val();
             var diseaseId = $("#DiseaseId");
-
-            if (diseaseTypeId != '') {
-                $.ajax({
-                    url: '/Advice/GetDiseasesByDiseaseTypeId?diseaseTypeId=' + diseaseTypeId,
-                    type: 'GET',
-                    success: function (data) {
-                        $.each(data, function (i, val) {
-                            diseaseId.append($('<option></option>').attr('value', val.id).text(val.name_EN));
-                        });
-                    },
-                    error: function () {
-                        alert("Somthing went wrong!");
-                    }
-                });
-            }
 
             $("#DiseaseTypeId").on('change', function () {
                 diseaseTypeId = $(this).val();

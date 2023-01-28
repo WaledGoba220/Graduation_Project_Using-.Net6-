@@ -1272,29 +1272,24 @@ Blog
 }
 
 .pq-blog-post .pq-post-media img {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transition: 0.5s ease-in-out;
-    transition: 0.5s ease-in-out;
-    width: 100%;
-    min-height: 273px !important;
-    -webkit-border-top-left-radius: 3px;
-    -webkit-border-top-right-radius: 3px;
-    -moz-border-radius-topleft: 3px;
-    -moz-border-radius-topright: 3px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-    -moz-border-radius-bottomright: 0;
-    -moz-border-radius-bottomleft: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.pq-blog-post:hover .pq-post-media img {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  width: 100%;
+  min-height: 273px !important;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .pq-blog-post .pq-post-media .pq-post-date {
@@ -5754,7 +5749,34 @@ Comments Box
 }
 
 .commentlist .pq-comment-avatar img {
-  width: 70px;
+  width: 60px;
+  height: 60px;
+}
+
+.commentlist .pq-comment-box .replay {
+  border: 1px dashed #ded9d9;
+  color: var(--dark-color);
+  display: inline-block;
+  padding: 5px 25px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--white-color);
+  cursor: pointer;
+}
+.commentlist .pq-comment-box .replay:hover {
+  color: var(--white-color);
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+
+.commentlist .even {
+  border-bottom: 2px dashed #eeeeee;
+  padding: 35px 0;
+}
+
+.commentlist .even:first-child {
+  padding: 0 0 35px 0;
 }
 
 .commentlist .pq-comment-box {
@@ -7251,4 +7273,119 @@ option {
   overflow: hidden;
   margin-right: 7px;
   border: 1px solid var(--primary-dark-color);
+}
+
+.advice_details {
+  background-color: transparent !important;
+}
+
+.advice_details .pq-blog-post .pq-post-media img,
+.advice_details .pq-blog-post .pq-post-media {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.pq-blog-post:hover .pq-post-media img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.advice_details .doctor_profile,
+.advice_details .posts {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.advice_details .doctor_profile .photo {
+  width: 100%;
+  height: auto;
+}
+
+.advice_details .doctor_profile .info {
+  padding: 15px 25px 25px 25px;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+  background-color: #f9f9f9;
+}
+
+.advice_details .doctor_profile .info h3 {
+  font-size: 23px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.advice_details .doctor_profile .info .specialization {
+  background-color: #dadada;
+  border-radius: 3px;
+  padding: 3px 12px;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.advice_details .doctor_profile .info .share-link a {
+  width: 35px;
+  height: 35px;
+  margin: 0 4px;
+  line-height: 37px;
+  border-radius: 50px;
+  display: inline-block;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+
+.advice_details .doctor_profile .info .share-link a:hover {
+  background-color: var(--primary-dark-color);
+}
+
+.advice_details .posts h3 {
+  margin-bottom: 20px;
+  position: relative;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.advices .header .title span {
+  color: var(--primary-dark-color);
+  font-weight: bold;
+}
+
+.advice_details .posts .post .image {
+  width: 70px;
+  height: 70px;
+  margin-right: 15px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.advice_details .posts .post .image img {
+  width: 100%;
+  min-height: 100%;
+}
+
+.advice_details .posts .post .title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.advice_details .posts .post .title a {
+  color: var(--dark-color) !important;
+  transition: all .3s;
+}
+.advice_details .posts .post .title a:hover {
+  color: var(--primary-color) !important;
+}
+
+.advices .deleteAdvice {
+  color: #dd0000;
+  font-size: 20px;
+}
+
+.advices .edit_advice {
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-left: 7px;
 }

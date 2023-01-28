@@ -20,6 +20,8 @@ namespace DataAccess_EF
         public IDiseaseTypeRepository TbDiseaseTypes { get; private set; }
         public IDiseaseRepository TbDiseases { get; private set; }
         public IAdviceRepository TbAdvices { get; private set; }
+        public ICommentRepository TbComments { get; private set; }
+        public IReplayRepository TbReplays { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -32,6 +34,8 @@ namespace DataAccess_EF
             TbDiseaseTypes = new DiseaseTypeRepository(context);
             TbDiseases = new DiseaseRepository(context);
             TbAdvices = new AdviceRepository(context);
+            TbComments = new CommentRepository(context);
+            TbReplays = new ReplayRepository(context);
         }
 
         public async Task<int> Complete()

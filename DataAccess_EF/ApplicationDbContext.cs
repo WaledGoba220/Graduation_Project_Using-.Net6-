@@ -22,6 +22,8 @@ namespace DataAccess_EF
         public DbSet<TbDiseaseType> TbDiseaseTypes { get; set; }
         public DbSet<TbDisease> TbDiseases { get; set; }
         public DbSet<TbAdvice> TbAdvices { get; set; }
+        public DbSet<TbComment> TbComments { get; set; }
+        public DbSet<TbReplay> TbReplays { get; set; }
 
 
     }

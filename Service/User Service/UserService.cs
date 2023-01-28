@@ -187,6 +187,6 @@ namespace Domain.Services
                 return OperationResult.Error(ex.Message);
             }
         }
-    
+
     }
 }

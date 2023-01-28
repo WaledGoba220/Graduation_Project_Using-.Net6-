@@ -1,0 +1,355 @@
+﻿@model AdviceDetailsVM
+
+@{
+    ViewData["Title"] = "Advice Details";
+}
+
+<!--============= breadcrumb start ===============-->
+<div class="pq-breadcrumb" style="background-image: url('../../rev/assets/page-title4.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <div class="pq-breadcrumb-title">
+                        <h2>ADvice Details</h2>
+                    </div>
+                    <div class="pq-breadcrumb-container mt-2">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a asp-controller="Home" asp-action="Index">
+                                    <i class="fas fa-home mr-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a asp-action="Index">
+                                    <i class="fas fa-file-signature"></i>Medical Advices
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">Advice Details</li>
+                        </ol>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-4">
+                <div class="pq-breadcrumb-img text-right wow fadeInRight animated" style="visibility: visible;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============= breadcrumb End ===============-->
+
+<!--============= AdviceDetails Start ===============-->
+<div class="advice_details advices">
+    <div class="blog-single pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12">
+                    <div class="pq-blog-post">
+                        <div class="pq-post-media">
+                            <img data-src="data:image/*;base64,@(Convert.ToBase64String(Model.Advice.Image))" class="lazy img-fluid" alt="medicate">
+                            <div class="pq-post-date">
+                                <a href="#"> <span class="moment-date">@Model.Advice.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span> </a>
+                            </div>
+                        </div>
+                        <div class="pq-blog-contain">
+                            <div class="pq-post-meta">
+                                <ul class="d-flex align-items-center justify-content-between">
+                                    <li class="pq-post-author">
+                                        <a href="doctor.html">
+                                            <div class="d-flex align-items-center">
+                                                <div class="doctorImage">
+                                                    @if (Model.Advice.AppUser.Photo is null)
+                                                    {
+                                                        <img data-src="~/images/person.png" class="lazy w-100 h-100" alt="">
+                                                    }
+                                                    else {
+                                                        <img data-src="data:image/*;base64,@(Convert.ToBase64String(Model.Advice.AppUser.Photo))" class="lazy w-100 h-100" alt="">
+                                                    }
+                                                </div>
+                                                <div class="name">@Model.Advice.AppUser.FullName</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="pq-post-comment">
+                                        <a>
+                                            <i class="fa fa-comments"></i>
+                                            @Model.Advice.Comments.Count() Comments
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pq-post-meta">
+                                <ul class="d-flex align-items-center justify-content-between">
+                                    <li class="pq-post-author">
+                                        <i class="fas fa-stethoscope"></i>
+                                        @Model.Advice.DiseaseType.Name_EN
+                                    </li>
+                                    <li class="pq-post-comment">
+                                        <i class="fas fa-disease"></i>
+                                        @Model.Advice.Disease.Name_EN
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3 class="mb-3">@Model.Advice.Title</h3>
+                            <p>
+                                @Model.Advice.Content
+                            </p>
+                        </div>
+                    </div>
+                    <div id="comments" class="pq-comment-area">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="comments-title pt-0">@Model.Advice.Comments.Count() Comment </h3>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary add_advice openModelComment">
+                                    Add Comment <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <ol class="commentlist">
+                            @if (Model.LstComments is not null) {
+                                @foreach (var comment in Model.LstComments)
+                                {
+                                    <li class="comment even thread-even depth-1">
+                                        <div class="comment-body">
+                                            <div class="pq-comment-info">
+                                                <div class="pq-comment-wrap">
+                                                    <div class="pq-comment-avatar"> 
+                                                        @if(comment.AppUser.Photo is null) {
+                                                            <img class="lazy" data-src="~/images/person.png"> 
+                                                        } 
+                                                        else {
+                                                            <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(comment.AppUser.Photo))">
+                                                        }
+                                                    </div>
+                                                    <div class="pq-comment-box">
+                                                        <h5 class="title">
+                                                            @if (!String.IsNullOrEmpty(comment.AppUser.FullName)) {
+                                                                <a href="#">@comment.AppUser.FullName</a>
+                                                            }
+                                                            else {
+                                                                <a href="#">@comment.AppUser.UserName</a>
+                                                            }
+                                                        </h5>
+                                                        <p class="dateTime mb-2">@comment.CreationDateTime.ToString()</p>
+                                                        <div class="pq-comment-metadata"> </div>
+                                                        <!-- .comment-metadata -->
+                                                        <div class="comment-content">
+                                                            <p>@comment.Comment</p>
+                                                        </div>
+                                                        <!-- .comment-content -->
+                                                        <!-- .reply -->
+                                                        <a class="replay mt-3 openModelReplay">
+                                                            Replay
+                                                            <input type="hidden" value="@comment.Id" />
+                                                        </a>
+
+                                                    </div>
+                                                    <!-- .comment-author -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .comment-body -->
+
+                                        @if (Model.LstReplays is not null) {
+                                            @foreach (var replay in Model.LstReplays.Where(a=>a.CommentId == comment.Id))
+                                            {
+                                                <ol class="children">
+                                                    <li class="comment mt-3 byuser comment-author-admin bypostauthor odd alt depth-2">
+                                                        <div class="comment-body">
+                                                            <div class="pq-comment-info">
+                                                                <div class="pq-comment-wrap">
+                                                                    <div class="pq-comment-avatar">
+                                                                        @if (replay.AppUser.Photo is null)
+                                                                        {
+                                                                            <img class="lazy" data-src="~/images/person.png">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(replay.AppUser.Photo))">
+                                                                        }
+                                                                    </div>
+                                                                    <div class="pq-comment-box">
+                                                                        <h5 class="title">
+                                                                            @if (!String.IsNullOrEmpty(replay.AppUser.FullName))
+                                                                            {
+                                                                                <a href="#">@replay.AppUser.FullName</a>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <a href="#">@replay.AppUser.UserName</a>
+                                                                            }
+                                                                        </h5>                                                               
+                                                                        <p class="dateTime mb-2">@replay.CreationDateTime.ToString()</p>
+                                                                        <div class="pq-comment-metadata"> </div>
+                                                                        <!-- .comment-metadata -->
+                                                                        <div class="comment-content">
+                                                                            <p>@replay.Replay</p>
+                                                                        </div>
+                                                                        <!-- .comment-content -->
+                                                                    </div>
+                                                                    <!-- .comment-author -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- .comment-body -->
+                                                    </li>
+                                                    <!-- #comment-## -->
+                                                </ol>
+                                            }
+                                        }
+                                    <!-- .children -->
+                                    </li>
+                                }
+                            }
+                            <!-- #comment-## -->
+                        </ol>
+                        <!-- .commentlist -->
+                    </div>
+                    <!-- #comments -->
+
+
+                    <!-- Model Form Comment -->
+                    <div id="modelComment" class="modal model">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <h4 class="modal-title">Add Comment</h4>
+                            <span class="close3">&times;</span>
+                            <hr class="mt-3 mb-3">
+                            <form asp-action="SaveComment" role="form" method="post">
+
+                                @*User Id*@
+                                <input type="hidden" asp-for="Comment.AppUserId" value="@ViewBag.UserId" />
+
+                                @*Advice Id*@
+                                <input type="hidden" asp-for="Comment.AdviceId" value="@ViewBag.AdviceId" />
+
+                                @*Comment*@
+                                <label for="content">Comment</label>
+                                <div class="form-group mb-3">
+                                    <i class="far fa-newspaper"></i>
+                                    <textarea asp-for="Comment.Comment" id="content" class="form-control"></textarea>
+                                </div>
+
+                                <button class="submit btn bt-success" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Model Form Replay -->
+                    <div id="modelReplay" class="modal model">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <h4 class="modal-title">Add Replay</h4>
+                            <span class="close">&times;</span>
+                            <hr class="mt-3 mb-3">
+                            <form asp-action="SaveReplay" role="form" method="post">
+
+                                @*User Id*@
+                                <input type="hidden" asp-for="Replay.AppUserId" value="@ViewBag.UserId" />
+
+                                @*Advice Id*@
+                                <input type="hidden" asp-for="Replay.AdviceId" value="@ViewBag.AdviceId" />
+
+                                @*comment Id*@
+                                <input id="commentId" type="hidden" asp-for="Replay.CommentId" />
+
+                                @*Comment*@
+                                <label for="content">Replay</label>
+                                <div class="form-group mb-3">
+                                    <i class="far fa-newspaper"></i>
+                                    <textarea asp-for="Replay.Replay" id="content" class="form-control"></textarea>
+                                </div>
+
+                                <button class="submit btn bt-success" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 mt-lg-0 mt-5">
+                    <div class="Sidebar-style-2">
+                        <div class="doctor_profile">
+                            @if (Model.Advice.AppUser.Photo is null)
+                            {
+                                <img class="lazy photo" data-src="~/images/person.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="lazy photo" data-src="data:image/*;base64,@(Convert.ToBase64String(Model.Advice.AppUser.Photo))" alt="">
+                            }
+                            <div class="info">
+                                <h3>@Model.Advice.AppUser.FullName</h3>
+                                <div class="specialization">@ViewBag.Specialization</div>
+                                <p class="mb-2">
+                                    @Model.Advice.Doctor.Brief
+                                </p>
+                                <div class="share-link">
+                                    <a href="https://www.facebook.com/" target="_blank">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://twitter.com/?lang=en" target="_blank">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/" target="_blank">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/" target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="posts">
+                            <h3>Recent posts</h3>
+                            <div class="post mb-4 d-flex align-items-center">
+                                <div class="image">
+                                    <img class="lazy" data-src="./images/clinic/1.jpg" alt="">
+                                </div>
+                                <div class="info">
+                                    <div class="dateTime mb-1">Nov 27, 2022</div>
+                                    <div class="title">
+                                        <a href="#">Regular Dental care make Your Smile Brighter</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post mb-4 d-flex align-items-center">
+                                <div class="image">
+                                    <img class="lazy" data-src="./images/clinic/1.jpg" alt="">
+                                </div>
+                                <div class="info">
+                                    <div class="dateTime mb-1">Nov 27, 2022</div>
+                                    <div class="title">
+                                        <a href="#">Regular Dental care make Your Smile Brighter</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post mb-4 d-flex align-items-center">
+                                <div class="image">
+                                    <img class="lazy" data-src="./images/clinic/1.jpg" alt="">
+                                </div>
+                                <div class="info">
+                                    <div class="dateTime mb-1">Nov 27, 2022</div>
+                                    <div class="title">
+                                        <a href="#">Regular Dental care make Your Smile Brighter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============= AdviceDetails End ===============-->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_Notification");
+    }
+    <script src="~/js/comment.js"></script>
+    <script src="~/js/replay.js"></script>
+}

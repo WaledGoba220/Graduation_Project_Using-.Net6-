@@ -34,7 +34,8 @@ namespace Service.Advice_Service
                     Content = model.Content,
                     DoctorId = model.DoctorId,
                     DiseaseId = model.DiseaseId,
-                    DiseaseTypeId = model.DiseaseTypeId
+                    DiseaseTypeId = model.DiseaseTypeId,
+                    AppUserId = model.UserId
                 };
 
                 await _unitOfWork.TbAdvices.AddAsync(dt);
@@ -62,6 +63,7 @@ namespace Service.Advice_Service
                 advice.DoctorId = model.DoctorId;
                 advice.DiseaseId = model.DiseaseId;
                 advice.DiseaseTypeId = model.DiseaseTypeId;
+                advice.AppUserId = model.UserId;
 
                 _unitOfWork.TbAdvices.Update(advice);
                 return OperationResult.Succeeded("Update Advice Successfully!");

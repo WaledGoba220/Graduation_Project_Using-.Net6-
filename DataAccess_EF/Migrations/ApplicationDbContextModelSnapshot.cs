@@ -101,6 +101,10 @@ namespace DataAccess_EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -108,13 +112,13 @@ namespace DataAccess_EF.Migrations
                     b.Property<DateTime?>("CreationDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DiseaseId")
+                    b.Property<int>("DiseaseId")
                         .HasColumnType("int");
 
                     b.Property<int>("DiseaseTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DoctorId")
+                    b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Image")
@@ -126,6 +130,8 @@ namespace DataAccess_EF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("DiseaseId");
 
@@ -156,6 +162,37 @@ namespace DataAccess_EF.Migrations
                     b.HasIndex("DoctorId");
 
                     b.ToTable("TbClinicImages");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdviceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdviceId");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("TbComments");
                 });
 
             modelBuilder.Entity("Domain.Models.TbContact", b =>
@@ -269,6 +306,42 @@ namespace DataAccess_EF.Migrations
                     b.HasIndex("SpecializationId");
 
                     b.ToTable("TbDoctors");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbReplay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdviceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CommentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Replay")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdviceId");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CommentId");
+
+                    b.ToTable("TbReplays");
                 });
 
             modelBuilder.Entity("Domain.Models.TbSpecialization", b =>
@@ -427,9 +500,17 @@ namespace DataAccess_EF.Migrations
 
             modelBuilder.Entity("Domain.Models.TbAdvice", b =>
                 {
+                    b.HasOne("Domain.Models.ApplicationUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Models.TbDisease", "Disease")
                         .WithMany("Advices")
-                        .HasForeignKey("DiseaseId");
+                        .HasForeignKey("DiseaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Models.TbDiseaseType", "DiseaseType")
                         .WithMany("Advices")
@@ -439,7 +520,11 @@ namespace DataAccess_EF.Migrations
 
                     b.HasOne("Domain.Models.TbDoctor", "Doctor")
                         .WithMany("Advices")
-                        .HasForeignKey("DoctorId");
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Disease");
 
@@ -457,6 +542,25 @@ namespace DataAccess_EF.Migrations
                         .IsRequired();
 
                     b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbComment", b =>
+                {
+                    b.HasOne("Domain.Models.TbAdvice", "Advice")
+                        .WithMany("Comments")
+                        .HasForeignKey("AdviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.ApplicationUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advice");
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Domain.Models.TbDisease", b =>
@@ -487,6 +591,33 @@ namespace DataAccess_EF.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Specialization");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbReplay", b =>
+                {
+                    b.HasOne("Domain.Models.TbAdvice", "Advice")
+                        .WithMany()
+                        .HasForeignKey("AdviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.ApplicationUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.TbComment", "Comment")
+                        .WithMany()
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advice");
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Comment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -538,6 +669,11 @@ namespace DataAccess_EF.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.TbAdvice", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Domain.Models.TbDisease", b =>

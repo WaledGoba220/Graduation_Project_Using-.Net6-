@@ -101,6 +101,11 @@ $(".account .tabs .hardware").click(function () {
   $(".account .pages .page").removeClass("active");
   $(".account .pages .hardware").addClass("active");
 });
+// My Advices
+$(".account .tabs .my_advices").click(function () {
+  $(".account .pages .page").removeClass("active");
+  $(".account .pages .my_advices").addClass("active");
+});
 
 //////////////////////////////////////////////////////////////////////////
 

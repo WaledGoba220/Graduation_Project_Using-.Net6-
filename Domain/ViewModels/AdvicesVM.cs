@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Domain.ViewModels
     {
         public List<AdviceVM>? LstAdvices { get; set; }
         public PagePagination? Pagination { get; set; }
-        public SearchAdviceVM? SearchAdvice { get; set; }
+        public SearchAdviceVM? SearchAdvice { get; set; } = new();
     }
 }
