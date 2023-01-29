@@ -106,13 +106,18 @@
                                                 Contact Us
                                             </a>
                                         </li>
-                                        @if (currentUser != null)
+                                        <li class="menu-item">
+                                            <a class="favorite" asp-controller="Favorite" asp-action="Index">
+                                                @await Component.InvokeAsync("Favorite")
+                                            </a>
+                                        </li>
+                                        @if (currentUser is not null)
                                         {
                                             <li class="menu-item nav_profile">
                                                 <a class="img_cover" asp-controller="Profile" asp-action="Index">
                                                     @if (currentUser.Photo != null)
                                                     {
-                                                        <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(currentUser.Photo))" alt="">
+                                                        <img src="data:image/*;base64,@(Convert.ToBase64String(currentUser.Photo))" alt="">
                                                     }
                                                     else
                                                     {

@@ -61,7 +61,7 @@ namespace Graduation_Project.Controllers
             else
                 TempData["Error"] = updatePhoto.Message;
 
-            return RedirectToAction("Index");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [HttpPost]
@@ -75,7 +75,7 @@ namespace Graduation_Project.Controllers
             else
                 TempData["Error"] = updatePatientInfo.Message;
 
-            return RedirectToAction("Index");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [Authorize(Roles =Roles.Doctor)]
@@ -118,7 +118,7 @@ namespace Graduation_Project.Controllers
 
             await _unitOfWork.Complete();
 
-            return RedirectToAction("Index");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [Authorize(Roles = Roles.Doctor)]
@@ -139,7 +139,7 @@ namespace Graduation_Project.Controllers
             await _unitOfWork.Complete();
             TempData["Success"] = "Add New Clinic Photo Successfully!";
 
-            return RedirectToAction("Index");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [Authorize(Roles = Roles.Doctor)]

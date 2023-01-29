@@ -116,6 +116,30 @@
     @{
         await Html.RenderPartialAsync("_Notification");
     }
+
+    <script>
+        $(function () {
+            $("a.add_fav").click(function (e) {
+                e.preventDefault();
+
+                let id = $(this).data("id");
+                let ajaxDiv = $(this).parent().parent().parent().find("div.ajaxbg");
+                ajaxDiv.removeClass("d-none");
+
+                $.get('/Favorite/AddToFavorite/' + id, {}, function (data) {
+                    $(".favorite").html(data);
+                    ajaxDiv.find("img").addClass("d-none");
+                    setTimeout(() => {
+                        ajaxDiv.animate({ opacity: 0 }, function () {
+                            $(this).addClass("d-none").fadeTo(.1, 1);
+                            $(this).find("img").removeClass("d-none");
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
 
@@ -146,4 +170,5 @@
             });
         });
     </script>
+
 }

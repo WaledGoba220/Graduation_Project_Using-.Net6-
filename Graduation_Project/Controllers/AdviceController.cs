@@ -9,6 +9,7 @@ using Utility.Consts;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Service.Advice_Service;
 using System.Drawing.Printing;
+using Microsoft.AspNetCore.Http;
 
 namespace Graduation_Project.Controllers
 {
@@ -53,11 +54,14 @@ namespace Graduation_Project.Controllers
             if (findAdviceById == true)
             {
                 var currentUser = await GetCurrentUser();
-                ViewBag.UserId = currentUser.Id;
+                if(currentUser is not null)
+                {
+                    ViewBag.UserId = currentUser!.Id;
+                }
                 ViewBag.AdviceId = id;
 
                 AdviceDetailsVM model = new();
-                model.Advice = await _unitOfWork.TbAdvices.GetFirstOrDefaultAsync(a => a.Id == id, new[] { "DiseaseType", "Disease", "Doctor", "Comments" });
+                model.Advice = await _unitOfWork.TbAdvices.GetFirstOrDefaultAsync(a => a.Id == id, new[] { "DiseaseType", "Disease", "Doctor", "AppUser", "Comments" });
                 model.LstReplays = await _unitOfWork.TbReplays.GetWhereAsync(a => a.AdviceId == id, new[] { "AppUser" });
                 model.LstComments = await _unitOfWork.TbComments.GetWhereAsync(a => a.AdviceId == id, new[] { "AppUser" });
 
@@ -197,7 +201,7 @@ namespace Graduation_Project.Controllers
 
             await _unitOfWork.Complete();
 
-            return RedirectToAction("MyAdvices");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [Authorize]
@@ -231,7 +235,7 @@ namespace Graduation_Project.Controllers
 
             await _unitOfWork.Complete();
 
-            return Redirect("~/Advice/AdviceDetails/" + model.Comment.AdviceId);
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [Authorize]
@@ -267,7 +271,7 @@ namespace Graduation_Project.Controllers
 
             await _unitOfWork.Complete();
 
-            return Redirect("~/Advice/AdviceDetails/" + model.Replay.AdviceId);
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [Authorize(Roles =Roles.Doctor)]
@@ -337,7 +341,6 @@ namespace Graduation_Project.Controllers
 
         // ***** Actions ***** //
 
-        [Authorize(Roles = Roles.Doctor)]
         public async Task<IActionResult> GetDiseasesByDiseaseTypeId(int diseaseTypeId)
         {
             var diseases = await _unitOfWork.TbDiseases.GetWhereAsync(a => a.DiseaseTypeId == diseaseTypeId);

@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <nav aria-label="breadcrumb">
                     <div class="pq-breadcrumb-title">
-                        <h2>ADvice Details</h2>
+                        <h2>Advice Details</h2>
                     </div>
                     <div class="pq-breadcrumb-container mt-2">
                         <ol class="breadcrumb">
@@ -46,7 +46,15 @@
             <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-12">
                     <div class="pq-blog-post">
+                        <div class="ajaxbg d-none">
+                            <img src="~/images/giphy.gif" />
+                        </div>
                         <div class="pq-post-media">
+                            <a class="add_fav" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-Id="@Model.Advice.Id" data-id="@Model.Advice.Id">
+                                <div class="fav_box">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </a>
                             <img data-src="data:image/*;base64,@(Convert.ToBase64String(Model.Advice.Image))" class="lazy img-fluid" alt="medicate">
                             <div class="pq-post-date">
                                 <a href="#"> <span class="moment-date">@Model.Advice.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span> </a>
@@ -59,7 +67,7 @@
                                         <a href="doctor.html">
                                             <div class="d-flex align-items-center">
                                                 <div class="doctorImage">
-                                                    @if (Model.Advice.AppUser.Photo is null)
+                                                    @if (Model.Advice.AppUser!.Photo is null)
                                                     {
                                                         <img data-src="~/images/person.png" class="lazy w-100 h-100" alt="">
                                                     }
@@ -98,14 +106,16 @@
                         </div>
                     </div>
                     <div id="comments" class="pq-comment-area">
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
                             <div>
                                 <h3 class="comments-title pt-0">@Model.Advice.Comments.Count() Comment </h3>
                             </div>
                             <div>
-                                <button class="btn btn-primary add_advice openModelComment">
-                                    Add Comment <i class="fas fa-plus"></i>
-                                </button>
+                                @if (ViewBag.UserId is not null) {
+                                    <button class="btn btn-primary add_advice openModelComment">
+                                        Add Comment <i class="fas fa-plus"></i>
+                                    </button>
+                                }
                             </div>
                         </div>
                         <ol class="commentlist">
@@ -141,26 +151,28 @@
                                                         </div>
                                                         <!-- .comment-content -->
                                                         <!-- .reply -->
-                                                        <div class="d-flex mt-3 justify-content-between align-items-center">
-                                                            <div>
-                                                                <a class="replay openModelReplay">
-                                                                    Replay
-                                                                    <input type="hidden" value="@comment.Id" />
-                                                                </a>
-                                                            </div>
-                                                            @if (ViewBag.UserId == comment.AppUserId) {
+                                                        @if (ViewBag.UserId is not null) {
+                                                            <div class="d-flex mt-3 justify-content-between align-items-center">
                                                                 <div>
-                                                                    <a onClick=Delete("/Advice/DeleteComment/@comment.Id--@ViewBag.UserId") class="deleteAdvice">
-                                                                        <i class="fas fa-trash-alt"></i>
-                                                                    </a>
-                                                                    <a class="openModelComment editComment">
-                                                                        <i class="fas fa-edit"></i>
-                                                                        <input class="id" type="hidden" value="@comment.Id" />
-                                                                        <input class="comment" type="hidden" value="@comment.Comment" />
+                                                                    <a class="replay openModelReplay">
+                                                                        Replay
+                                                                        <input type="hidden" value="@comment.Id" />
                                                                     </a>
                                                                 </div>
-                                                            }
-                                                        </div>
+                                                                @if (ViewBag.UserId == comment.AppUserId) {
+                                                                    <div>
+                                                                        <a onClick=Delete("/Advice/DeleteComment/@comment.Id--@ViewBag.UserId") class="deleteAdvice">
+                                                                            <i class="fas fa-trash-alt"></i>
+                                                                        </a>
+                                                                        <a class="openModelComment editComment">
+                                                                            <i class="fas fa-edit"></i>
+                                                                            <input class="id" type="hidden" value="@comment.Id" />
+                                                                            <input class="comment" type="hidden" value="@comment.Comment" />
+                                                                        </a>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        }
 
                                                     </div>
                                                     <!-- .comment-author -->
@@ -463,6 +475,27 @@
                     }, 300);
                 }
             }
+        });
+    
+        $(function () {
+            $("a.add_fav").click(function (e) {
+                e.preventDefault();
+
+                let id = $(this).data("id");
+                let ajaxDiv = $(this).parent().parent().parent().find("div.ajaxbg");
+                ajaxDiv.removeClass("d-none");
+
+                $.get('/Favorite/AddToFavorite/' + id, {}, function (data) {
+                    $(".favorite").html(data);
+                    ajaxDiv.find("img").addClass("d-none");
+                    setTimeout(() => {
+                        ajaxDiv.animate({ opacity: 0 }, function () {
+                            $(this).addClass("d-none").fadeTo(.1, 1);
+                            $(this).find("img").removeClass("d-none");
+                        });
+                    });
+                });
+            });
         });
     </script>
 }
