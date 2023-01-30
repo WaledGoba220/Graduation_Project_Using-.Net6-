@@ -42,6 +42,7 @@ namespace Graduation_Project.Controllers
                 if(doctor == true)
                 {
                     model.Doctor = await _unitOfWork.TbDoctors.GetFirstOrDefaultAsync(a=>a.AppUserId == currentUser.Id, new[] { "Specialization", "ClinicImages" });
+                    model.ViewsCount = await _unitOfWork.TbDoctorViewsCounts.GetFirstOrDefaultAsync(a => a.DoctorId == model.Doctor.Id);
                 }
 
                 ViewBag.LstSpecialization = await _unitOfWork.TbSpecialization.GetAllAsync();
@@ -88,6 +89,7 @@ namespace Graduation_Project.Controllers
                 var currentUser = await GetCurrentUser();
                 model.User = currentUser;
                 model.Doctor = await _unitOfWork.TbDoctors.GetFirstOrDefaultAsync(a => a.AppUserId == currentUser.Id, new[] { "Specialization", "ClinicImages" });
+                model.ViewsCount = await _unitOfWork.TbDoctorViewsCounts.GetFirstOrDefaultAsync(a => a.DoctorId == model.Doctor.Id);
 
                 TempData["Error"] = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).FirstOrDefault();
                 ViewBag.LstSpecialization = await _unitOfWork.TbSpecialization.GetAllAsync();
@@ -167,6 +169,5 @@ namespace Graduation_Project.Controllers
         {
             return await _userManager.GetUserAsync(User);
         }
-
     }
 }

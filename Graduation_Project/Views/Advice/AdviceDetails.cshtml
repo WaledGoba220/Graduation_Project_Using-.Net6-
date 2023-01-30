@@ -64,7 +64,7 @@
                             <div class="pq-post-meta">
                                 <ul class="d-flex align-items-center justify-content-between">
                                     <li class="pq-post-author">
-                                        <a href="doctor.html">
+                                        <a asp-controller="User" asp-action="Index" asp-route-userName="@Model.Advice.AppUser.UserName">
                                             <div class="d-flex align-items-center">
                                                 <div class="doctorImage">
                                                     @if (Model.Advice.AppUser!.Photo is null)
@@ -126,25 +126,26 @@
                                         <div class="comment-body">
                                             <div class="pq-comment-info">
                                                 <div class="pq-comment-wrap">
-                                                    <div class="pq-comment-avatar"> 
-                                                        @if(comment.AppUser.Photo is null) {
-                                                            <img class="lazy" data-src="~/images/person.png"> 
-                                                        } 
-                                                        else {
-                                                            <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(comment.AppUser.Photo))">
-                                                        }
-                                                    </div>
+                                                    <a asp-controller="User" asp-action="Index" asp-route-userName="@comment.AppUser.UserName">
+                                                          <div class="pq-comment-avatar"> 
+                                                            @if(comment.AppUser.Photo is null) {
+                                                                <img src="~/images/person.png"> 
+                                                            } 
+                                                            else {
+                                                                <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(comment.AppUser.Photo))">
+                                                            }
+                                                        </div>
+                                                    </a>
                                                     <div class="pq-comment-box">
                                                         <h5 class="title">
                                                             @if (!String.IsNullOrEmpty(comment.AppUser.FullName)) {
-                                                                <a href="#">@comment.AppUser.FullName</a>
+                                                                <a asp-controller="User" asp-action="Index" asp-route-userName="@comment.AppUser.UserName">@comment.AppUser.FullName</a>
                                                             }
                                                             else {
-                                                                <a href="#">@comment.AppUser.UserName</a>
+                                                                <a asp-controller="User" asp-action="Index" asp-route-userName="@comment.AppUser.UserName">@comment.AppUser.UserName</a>
                                                             }
                                                         </h5>
                                                         <p class="dateTime mb-2 moment-date">@comment.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</p>
-                                                        <div class="pq-comment-metadata"> </div>
                                                         <!-- .comment-metadata -->
                                                         <div class="comment-content">
                                                             <p>@comment.Comment</p>
@@ -189,25 +190,27 @@
                                                         <div class="comment-body">
                                                             <div class="pq-comment-info">
                                                                 <div class="pq-comment-wrap">
-                                                                    <div class="pq-comment-avatar">
-                                                                        @if (replay.AppUser.Photo is null)
-                                                                        {
-                                                                            <img class="lazy" data-src="~/images/person.png">
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(replay.AppUser.Photo))">
-                                                                        }
-                                                                    </div>
+                                                                    <a asp-controller="User" asp-action="Index" asp-route-userName="@replay.AppUser.UserName">
+                                                                        <div class="pq-comment-avatar">
+                                                                            @if (replay.AppUser.Photo is null)
+                                                                            {
+                                                                                <img class="lazy" data-src="~/images/person.png">
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(replay.AppUser.Photo))">
+                                                                            }
+                                                                        </div>
+                                                                    </a>
                                                                     <div class="pq-comment-box">
                                                                         <h5 class="title">
                                                                             @if (!String.IsNullOrEmpty(replay.AppUser.FullName))
                                                                             {
-                                                                                <a href="#">@replay.AppUser.FullName</a>
+                                                                                <a asp-controller="User" asp-action="Index" asp-route-userName="@replay.AppUser.UserName">@replay.AppUser.FullName</a>
                                                                             }
                                                                             else
                                                                             {
-                                                                                <a href="#">@replay.AppUser.UserName</a>
+                                                                                <a asp-controller="User" asp-action="Index" asp-route-userName="@replay.AppUser.UserName">@replay.AppUser.UserName</a>
                                                                             }
                                                                         </h5>
                                                                         <p class="dateTime mb-2 moment-date">@replay.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</p>
@@ -325,7 +328,7 @@
                         <div class="doctor_profile">
                             @if (Model.Advice.AppUser.Photo is null)
                             {
-                                <img class="lazy photo" data-src="~/images/person.png" alt="">
+                                <img class="photo" src="~/images/person.png" alt="">
                             }
                             else
                             {
@@ -354,40 +357,25 @@
                             </div>
                         </div>
                         <div class="posts">
-                            <h3>Recent posts</h3>
-                            <div class="post mb-4 d-flex align-items-center">
-                                <div class="image">
-                                    <img class="lazy" data-src="./images/clinic/1.jpg" alt="">
-                                </div>
-                                <div class="info">
-                                    <div class="dateTime mb-1">Nov 27, 2022</div>
-                                    <div class="title">
-                                        <a href="#">Regular Dental care make Your Smile Brighter</a>
+                            <h3>Latest Advices</h3>
+                            @foreach (var item in Model.LatestAdvices!)
+                            {
+                                <div class="post mb-4 d-flex align-items-center">
+                                    <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
+                                        <div class="image">
+                                            <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(item.Image))" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="info">
+                                        <div class="dateTime moment-date mb-1">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</div>
+                                        <div class="title">
+                                            <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
+                                                @item.Title.Substring(0, 20)...
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="post mb-4 d-flex align-items-center">
-                                <div class="image">
-                                    <img class="lazy" data-src="./images/clinic/1.jpg" alt="">
-                                </div>
-                                <div class="info">
-                                    <div class="dateTime mb-1">Nov 27, 2022</div>
-                                    <div class="title">
-                                        <a href="#">Regular Dental care make Your Smile Brighter</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post mb-4 d-flex align-items-center">
-                                <div class="image">
-                                    <img class="lazy" data-src="./images/clinic/1.jpg" alt="">
-                                </div>
-                                <div class="info">
-                                    <div class="dateTime mb-1">Nov 27, 2022</div>
-                                    <div class="title">
-                                        <a href="#">Regular Dental care make Your Smile Brighter</a>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>

@@ -16,5 +16,8 @@ namespace Domain.Interfaces_Repository
         Task<List<AdviceVM>> GetAdvicesBySearchFormAsync(SearchAdviceVM searchForm, int pageSize, int ExcludeRecords);
         Task<List<AdviceVM>> GetAdvicesByDiseaseTypeAndDisease(int diseaseTypeId, int diseaseId, int pageSize, int ExcludeRecords);
         Task<List<AdviceVM>> GetAdvicesByTitle(string title, int pageSize, int ExcludeRecords);
+        Task<List<AdviceVM>> GetAdvicesByDocitorIdAsync(int doctorId);
+        Task<List<AdviceVM>> GetLatestAdvicesByDoctorId(int doctorId);
+        Task<List<AdviceVM>> GetLatestAdvices();
     }
 }

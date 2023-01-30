@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomePageVM
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -472,122 +474,87 @@
                <div class="owl-carousel owl-theme" data-dots="false" data-nav="false" data-desk_num="3" data-lap_num="2"
                   data-tab_num="2" data-mob_num="1" data-mob_sm="1" data-autoplay="true" data-loop="true"
                   data-margin="30">
-                  <div class="item">
-                     <div class="pq-blog-post pq-style-1">
-                        <div class="pq-post-media"> <img src="images/blog/1.jpg" class="img-fluid" alt="images">
-                           <div class="pq-post-date">
-                              <a href="get-the-exercise-limited-mobility.html"> <span>December 5, 2021</span></a>
-                           </div>
+                    @foreach (var item in Model.LatestAdvices!)
+                    {
+                        <div class="item">
+                            <div class="pq-blog-post">
+                                <div class="ajaxbg d-none">
+                                    <img src="~/images/giphy.gif" />
+                                </div>
+                                <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
+                                    <div class="pq-post-media">
+                                        <a class="add_fav" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-Id="@item.Id" data-id="@item.Id">
+                                            <div class="fav_box">
+                                                <i class="far fa-heart"></i>
+                                            </div>
+                                        </a>
+                                        <img src="data:image/*;base64,@(Convert.ToBase64String(item.Image))" class="img-fluid" alt="">
+                                        <div class="pq-post-date">
+                                            <a> <span class="moment-date">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span></a>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="pq-blog-contain">
+                                    <div class="pq-post-meta">
+                                        <ul class="d-flex align-items-center justify-content-between">
+                                            <li class="pq-post-author">
+                                                <a asp-controller="User" asp-action="Index" asp-route-userName="@item.User.UserName">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="doctorImage">
+                                                            @if (item.User.Photo is not null)
+                                                            {
+                                                                <img src="data:image/*;base64,@(Convert.ToBase64String(item.User.Photo))" class="w-100 h-100" alt="">
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="~/images/person.png" class="w-100 h-100" alt="">
+                                                            }
+                                                        </div>
+                                                        <div class="name">@item.User.FullName</div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="pq-post-comment">
+                                                <a>
+                                                    <i class="fa fa-comments"></i>
+                                                    @item.CommentsCount Comments
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="pq-post-meta">
+                                        <ul class="d-flex align-items-center justify-content-between">
+                                            <li class="pq-post-author">
+                                                <i class="fas fa-stethoscope"></i>
+                                                @item.DiseaseTypeName_EN
+                                            </li>
+                                            <li class="pq-post-comment">
+                                                <i class="fas fa-disease"></i>
+                                                @item.DiseaseName_EN
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h5 class="pq-blog-title">
+                                        <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
+                                            @item.Title.Substring(0, 20)....
+                                        </a>
+                                    </h5>
+                                    <div class="pq-blog-info">
+                                        <p>
+                                            @item.Content.Substring(0, 100)....
+                                        </p>
+                                    </div>
+                                    <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id"
+                                   class="pq-button pq-button-flat">
+                                        <div class="pq-button-block">
+                                            <span class="pq-button-text">Read More</span>
+                                            <i class="ion ion-plus-round"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pq-blog-contain">
-                           <div class="pq-post-meta">
-                              <ul>
-                                 <li class="pq-post-author"><i class="fa fa-user"></i>admin</li>
-                                 <li class="pq-post-comment"> <a href="get-the-exercise-limited-mobility.html"><i
-                                          class="fa fa-comments"></i>
-                                       0 Comments</a> </li>
-                              </ul>
-                           </div>
-                           <h5 class="pq-blog-title"><a href="get-the-exercise-limited-mobility.html">Get the Exercise
-                                 Limited Mobility</a></h5>
-                           <div class="pq-blog-info">
-                              <p>It is a long established fact that a reader will be distracted by the readable content
-                                 of a page when looking at its layout.</p>
-                           </div>
-                           <a href="get-the-exercise-limited-mobility.html" class="pq-button pq-button-link">
-                              <div class="pq-button-block"> <span class="pq-button-text">Read More</span> <i
-                                    class="ion ion-plus-round"></i> </div>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="pq-blog-post pq-style-1">
-                        <div class="pq-post-media"> <img src="images/blog/2.jpg" class="img-fluid" alt="images">
-                           <div class="pq-post-date">
-                              <a href="get-the-exercise-limited-mobility.html"> <span>December 5, 2021</span></a>
-                           </div>
-                        </div>
-                        <div class="pq-blog-contain">
-                           <div class="pq-post-meta">
-                              <ul>
-                                 <li class="pq-post-author"><i class="fa fa-user"></i>admin</li>
-                                 <li class="pq-post-comment"> <a href="get-the-exercise-limited-mobility.html"><i
-                                          class="fa fa-comments"></i>
-                                       0 Comments</a> </li>
-                              </ul>
-                           </div>
-                           <h5 class="pq-blog-title"><a href="get-the-exercise-limited-mobility.html">Transfusion
-                                 strategy and heart surgery</a></h5>
-                           <div class="pq-blog-info">
-                              <p>It is a long established fact that a reader will be distracted by the readable content
-                                 of a page when looking at its layout.</p>
-                           </div>
-                           <a href="get-the-exercise-limited-mobility.html" class="pq-button pq-button-link">
-                              <div class="pq-button-block"> <span class="pq-button-text">Read More</span> <i
-                                    class="ion ion-plus-round"></i> </div>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="pq-blog-post pq-style-1">
-                        <div class="pq-post-media"> <img src="images/blog/3.jpg" class="img-fluid" alt="images">
-                           <div class="pq-post-date">
-                              <a href="get-the-exercise-limited-mobility.html"> <span>December 5, 2021</span></a>
-                           </div>
-                        </div>
-                        <div class="pq-blog-contain">
-                           <div class="pq-post-meta">
-                              <ul>
-                                 <li class="pq-post-author"><i class="fa fa-user"></i>admin</li>
-                                 <li class="pq-post-comment"> <a href="get-the-exercise-limited-mobility.html"><i
-                                          class="fa fa-comments"></i>
-                                       0 Comments</a> </li>
-                              </ul>
-                           </div>
-                           <h5 class="pq-blog-title"><a href="get-the-exercise-limited-mobility.html">Latest Equipment
-                                 for the Heart Treatment</a></h5>
-                           <div class="pq-blog-info">
-                              <p>It is a long established fact that a reader will be distracted by the readable content
-                                 of a page when looking at its layout.</p>
-                           </div>
-                           <a href="get-the-exercise-limited-mobility.html" class="pq-button pq-button-link">
-                              <div class="pq-button-block"> <span class="pq-button-text">Read More</span> <i
-                                    class="ion ion-plus-round"></i> </div>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="pq-blog-post pq-style-1">
-                        <div class="pq-post-media"> <img src="images/blog/4.jpg" class="img-fluid" alt="images">
-                           <div class="pq-post-date">
-                              <a href="get-the-exercise-limited-mobility.html"> <span>December 5, 2021</span></a>
-                           </div>
-                        </div>
-                        <div class="pq-blog-contain">
-                           <div class="pq-post-meta">
-                              <ul>
-                                 <li class="pq-post-author"><i class="fa fa-user"></i>admin</li>
-                                 <li class="pq-post-comment"> <a href="get-the-exercise-limited-mobility.html"><i
-                                          class="fa fa-comments"></i>
-                                       0 Comments</a> </li>
-                              </ul>
-                           </div>
-                           <h5 class="pq-blog-title"><a href="get-the-exercise-limited-mobility.html">What is Future of
-                                 Blood Pressure Monitoring?</a></h5>
-                           <div class="pq-blog-info">
-                              <p>It is a long established fact that a reader will be distracted by the readable content
-                                 of a page when looking at its layout.</p>
-                           </div>
-                           <a href="get-the-exercise-limited-mobility.html" class="pq-button pq-button-link">
-                              <div class="pq-button-block"> <span class="pq-button-text">Read More</span> <i
-                                    class="ion ion-plus-round"></i> </div>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
+                    }
                </div>
             </div>
          </div>
@@ -599,4 +566,26 @@
     @{
         await Html.RenderPartialAsync("_Notification");
     }
+    <script>
+        $(function () {
+            $("a.add_fav").click(function (e) {
+                e.preventDefault();
+
+                let id = $(this).data("id");
+                let ajaxDiv = $(this).parent().parent().parent().find("div.ajaxbg");
+                ajaxDiv.removeClass("d-none");
+
+                $.get('/Favorite/AddToFavorite/' + id, {}, function (data) {
+                    $(".favorite").html(data);
+                    ajaxDiv.find("img").addClass("d-none");
+                    setTimeout(() => {
+                        ajaxDiv.animate({ opacity: 0 }, function () {
+                            $(this).addClass("d-none").fadeTo(.1, 1);
+                            $(this).find("img").removeClass("d-none");
+                        });
+                    });
+                });
+            });
+        });
+    </script>
 }

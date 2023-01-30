@@ -73,7 +73,7 @@
                                                 <div class="pq-post-meta">
                                                     <ul class="d-flex align-items-center justify-content-between">
                                                         <li class="pq-post-author">
-                                                            <a href="doctor.html">
+                                                        <a asp-controller="User" asp-action="Index" asp-route-userName="@item.User.UserName">
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="doctorImage">
                                                                         @if (item.User.Photo is not null)

@@ -24,14 +24,14 @@
                     <div class="pq-post-meta">
                         <ul class="d-flex align-items-center justify-content-between">
                             <li class="pq-post-author">
-                                <a href="doctor.html">
+                                <a asp-controller="User" asp-action="Index" asp-route-userName="@Model.User.UserName">
                                     <div class="d-flex align-items-center">
                                         <div class="doctorImage">
-                                            @if (Model.User.Photo is not null) {
+                                            @if (Model.User!.Photo is not null) {
                                                 <img data-src="data:image/*;base64,@(Convert.ToBase64String(Model.User.Photo))" class="lazy w-100 h-100" alt="">
                                             }
                                             else {
-                                                <img data-src="~/images/person.png" class="lazy w-100 h-100" alt="">
+                                                <img src="~/images/person.png" class="w-100 h-100" alt="">
                                             }
                                         </div>
                                         <div class="name">@Model.User.FullName</div>

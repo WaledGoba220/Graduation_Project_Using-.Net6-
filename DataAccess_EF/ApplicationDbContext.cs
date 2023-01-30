@@ -24,6 +24,7 @@ namespace DataAccess_EF
         public DbSet<TbAdvice> TbAdvices { get; set; }
         public DbSet<TbComment> TbComments { get; set; }
         public DbSet<TbReplay> TbReplays { get; set; }
+        public DbSet<TbDoctorViewsCount> TbDoctorViewsCounts { get; set; }
 
 
     }

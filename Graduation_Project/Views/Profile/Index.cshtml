@@ -287,6 +287,17 @@
                                         <li>
                                             <i class="fas fa-phone"></i> @Model.Doctor.Phone
                                         </li>
+                                        @if(Model.ViewsCount is not null) {
+                                            <li>
+                                                <i class="fas fa-eye"></i> <span class="view">@Model.ViewsCount!.Count</span> Views
+                                            </li>
+                                        }
+                                        else {
+                                            <li>
+                                                <i class="fas fa-eye"></i> <span class="view">0</span> Views
+                                            </li>
+                                        }
+                                      
                                     </ul>
                                     <div class="special">
                                         <h6><i class="fas fa-tag"></i> Specialization:</h6>

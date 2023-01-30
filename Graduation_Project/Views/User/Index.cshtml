@@ -1,0 +1,298 @@
+﻿@model UserProfileVM
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<!--============= breadcrumb start ===============-->
+<div class="pq-breadcrumb" style="background-image: url('../rev/assets/page-title4.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <div class="pq-breadcrumb-title">
+                        <h2>Profile (@Model.User!.UserName)</h2>
+                    </div>
+                    <div class="pq-breadcrumb-container mt-2">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fas fa-home mr-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">@Model.User.UserName</li>
+                        </ol>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-4">
+                <div class="pq-breadcrumb-img text-right wow fadeInRight animated" style="visibility: visible;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============= breadcrumb End ===============-->
+
+<section class="single-team pb-3 pt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-4">
+                <div class="pq-patient-img"> 
+                    @if (Model.User.Photo is not null) {
+                        <img src="data:image/*;base64,@(Convert.ToBase64String(Model.User.Photo))" class="img-fluid" alt="">
+                    }
+                    else {
+                        <img src="~/images/single-team.jpg" class="img-fluid" alt=""> 
+                    }
+                </div>
+            </div>
+            <div class="col-xl-8 mt-xl-0 mt-4 ps-xl-5">
+                <div class="pq-section pq-style-1 text-left">
+                    @if(Model.Doctor is not null) {
+                        <span class="pq-section-sub-title">
+                            Doctor
+                        </span>
+                    }
+                    else {
+                        <span class="pq-section-sub-title">
+                            User
+                        </span>
+                    }
+                    @if (!String.IsNullOrEmpty(Model.User.FullName)) {
+                        <h5 class="pq-section-title">@Model.User.FullName</h5>
+                    }
+                    else {
+                        <h5 class="pq-section-title">@Model.User.UserName</h5>
+                    }
+
+                    @if (Model.Doctor is not null && !String.IsNullOrEmpty(Model.Doctor!.Location)) {
+                        <p class="mt-2">
+                            <span class="mr-2"><i class="fas fa-map-marker-alt"></i></span> @Model.Doctor.Location
+                        </p>
+                    }
+               
+                </div>
+
+                @if (Model.Doctor is not null) {
+                    <div class="pq-icon-box-3  d-lg-flex d-md-flex  mb-2">
+                        <div class="pq-icon-box-icon-3"> <i class="fas fa-notes-medical"></i> </div>
+                        <div class="pq-icon-box-content-3">
+                            <h3 class="pq-icon-box-title-3">
+                                <span>
+                                    Clinic: @Model.Doctor.Clinic
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="pq-icon-box-3  d-lg-flex d-md-flex  mb-2">
+                        <div class="pq-icon-box-icon-3"> <i aria-hidden="true" class="ion ion-ios-telephone"></i> </div>
+                        <div class="pq-icon-box-content-3">
+                            <h3 class="pq-icon-box-title-3">
+                                <span>
+                                    @Model.Doctor.Phone
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+                }
+
+                <div class="pq-icon-box-3 d-lg-flex d-md-flex mb-2 mt-2">
+                    <div class="pq-icon-box-icon-3 "> <i aria-hidden="true" class="ion ion-ios-email"></i> </div>
+                    <div class="pq-icon-box-content-3 ">
+                        <h3 class="pq-icon-box-title-3">
+                            <span>
+                                @Model.User.Email
+                            </span>
+                        </h3>
+                    </div>
+                </div>
+                            
+                @if (Model.Doctor is not null && !String.IsNullOrEmpty(Model.Doctor!.Country)) {
+                    <div class="pq-icon-box-3 d-lg-flex d-md-flex mb-2 ">
+                        <div class="pq-icon-box-icon-3 "> <i class="fas fa-globe"></i> </div>
+                        <div class="pq-icon-box-content-3 ">
+                            <h3 class="pq-icon-box-title-3 ">
+                                <span>
+                                    @Model.Doctor.Country - @Model.Doctor.City
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="pq-icon-box-3 d-lg-flex d-md-flex mb-2 ">
+                        <div class="pq-icon-box-icon-3 "> <i class="fas fa-tag"></i> </div>
+                        <div class="pq-icon-box-content-3 ">
+                            <h3 class="pq-icon-box-title-3 ">
+                                Specialization:
+                                <span class="special mt-0">
+                                    @Model.Doctor.Specialization!.Name_EN
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+                }
+
+                <div class="pq-title-text mt-4 ">
+                    <h5>Follow Me:</h5>
+                </div>
+                <div class="pq-social-icon ">
+                    <ul class="d-flex ">
+                        <li><a href="about-us.html"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="our-services.html"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="our-process.html"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="our-plan.html"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="about-us.html"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@if (Model.Doctor is not null) {
+    <section class="pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-container pb-2">
+                        <h2 class="">Personal Information</h2>
+                    </div>
+                </div>
+                <p>
+                    @Model.Doctor.Brief
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--Section blog Start-->
+    <section class="pq-blog pq-bg-grey pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pq-section pq-style-1 text-center">
+                        <span class="pq-section-sub-title">Advices</span>
+                        <h5 class="pq-section-title">Medical Advices</h5>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="owl-carousel owl-theme" data-dots="false" data-nav="false" data-desk_num="3"
+                         data-lap_num="2" data-tab_num="2" data-mob_num="1" data-mob_sm="1" data-autoplay="true"
+                         data-loop="true" data-margin="30">
+                        @foreach (var item in Model.LstAdvices!)
+                        {
+                            <div class="item">
+                                <div class="pq-blog-post">
+                                    <div class="ajaxbg d-none">
+                                        <img src="~/images/giphy.gif" />
+                                    </div>
+                                    <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
+                                        <div class="pq-post-media">
+                                            <a class="add_fav" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-Id="@item.Id" data-id="@item.Id">
+                                                <div class="fav_box">
+                                                    <i class="far fa-heart"></i>
+                                                </div>
+                                            </a>
+                                            <img src="data:image/*;base64,@(Convert.ToBase64String(item.Image))" class="img-fluid" alt="">
+                                            <div class="pq-post-date">
+                                                <a> <span class="moment-date">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span></a>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="pq-blog-contain">
+                                        <div class="pq-post-meta">
+                                            <ul class="d-flex align-items-center justify-content-between">
+                                                <li class="pq-post-author">
+                                                    <a asp-controller="User" asp-action="Index" asp-route-userName="@Model.User.UserName">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="doctorImage">
+                                                                @if (Model.User.Photo is not null)
+                                                                {
+                                                                    <img src="data:image/*;base64,@(Convert.ToBase64String(Model.User.Photo))" class="w-100 h-100" alt="">
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img src="~/images/person.png" class="w-100 h-100" alt="">
+                                                                }
+                                                            </div>
+                                                            <div class="name">@Model.User.FullName</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="pq-post-comment">
+                                                    <a>
+                                                        <i class="fa fa-comments"></i>
+                                                        @item.CommentsCount Comments
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="pq-post-meta">
+                                            <ul class="d-flex align-items-center justify-content-between">
+                                                <li class="pq-post-author">
+                                                    <i class="fas fa-stethoscope"></i>
+                                                    @item.DiseaseTypeName_EN
+                                                </li>
+                                                <li class="pq-post-comment">
+                                                    <i class="fas fa-disease"></i>
+                                                    @item.DiseaseName_EN
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h5 class="pq-blog-title">
+                                            <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
+                                                @item.Title.Substring(0, 20)....
+                                            </a>
+                                        </h5>
+                                        <div class="pq-blog-info">
+                                            <p>
+                                                @item.Content.Substring(0, 100)....
+                                            </p>
+                                        </div>
+                                        <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id"
+                                            class="pq-button pq-button-flat">
+                                            <div class="pq-button-block">
+                                                <span class="pq-button-text">Read More</span>
+                                                <i class="ion ion-plus-round"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Section blog End-->
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_Notification");
+    }
+    <script>
+        $(function () {
+            $("a.add_fav").click(function (e) {
+                e.preventDefault();
+
+                let id = $(this).data("id");
+                let ajaxDiv = $(this).parent().parent().parent().find("div.ajaxbg");
+                ajaxDiv.removeClass("d-none");
+
+                $.get('/Favorite/AddToFavorite/' + id, {}, function (data) {
+                    $(".favorite").html(data);
+                    ajaxDiv.find("img").addClass("d-none");
+                    setTimeout(() => {
+                        ajaxDiv.animate({ opacity: 0 }, function () {
+                            $(this).addClass("d-none").fadeTo(.1, 1);
+                            $(this).find("img").removeClass("d-none");
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+}

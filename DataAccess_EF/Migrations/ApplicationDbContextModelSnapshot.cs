@@ -109,7 +109,7 @@ namespace DataAccess_EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreationDateTime")
+                    b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DiseaseId")
@@ -183,7 +183,7 @@ namespace DataAccess_EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreationDateTime")
+                    b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -308,6 +308,27 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("TbDoctors");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbDoctorViewsCount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("TbDoctorViewsCounts");
+                });
+
             modelBuilder.Entity("Domain.Models.TbReplay", b =>
                 {
                     b.Property<int>("Id")
@@ -326,7 +347,7 @@ namespace DataAccess_EF.Migrations
                     b.Property<int>("CommentId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDateTime")
+                    b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Replay")
@@ -593,6 +614,17 @@ namespace DataAccess_EF.Migrations
                     b.Navigation("Specialization");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbDoctorViewsCount", b =>
+                {
+                    b.HasOne("Domain.Models.TbDoctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("Domain.Models.TbReplay", b =>
                 {
                     b.HasOne("Domain.Models.TbAdvice", "Advice")
@@ -608,7 +640,7 @@ namespace DataAccess_EF.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Models.TbComment", "Comment")
-                        .WithMany()
+                        .WithMany("Replays")
                         .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -674,6 +706,11 @@ namespace DataAccess_EF.Migrations
             modelBuilder.Entity("Domain.Models.TbAdvice", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbComment", b =>
+                {
+                    b.Navigation("Replays");
                 });
 
             modelBuilder.Entity("Domain.Models.TbDisease", b =>

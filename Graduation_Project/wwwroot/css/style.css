@@ -6698,13 +6698,14 @@ a {
   margin-right: 8px;
 }
 
-.account .pages .dashboard .info .right .box .special span {
-  background-color: #dadada;
-  border-radius: 3px;
-  padding: 3px 12px;
-  font-size: 14px;
-  margin-top: 9px;
-  display: inline-block;
+.account .pages .dashboard .info .right .box .special span,
+.single-team .special {
+    background-color: #dadada;
+    border-radius: 3px;
+    padding: 3px 12px;
+    font-size: 14px;
+    margin-top: 9px;
+    display: inline-block;
 }
 
 .modal {
@@ -7298,13 +7299,14 @@ option {
 /* End Model */
 /* ============================================================ */
 
-.advices .doctorImage {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 7px;
-  border: 1px solid var(--primary-dark-color);
+.advices .doctorImage,
+.item .doctorImage{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 7px;
+    border: 1px solid var(--primary-dark-color);
 }
 
 .advice_details {
@@ -7481,4 +7483,9 @@ option {
   left: 0;
   width: 100% !important;
   z-index: 23;
+}
+
+.view {
+    color: var(--primary-color);
+    font-weight: 700;
 }

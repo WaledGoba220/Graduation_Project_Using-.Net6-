@@ -177,9 +177,12 @@ namespace Domain.Services
                     {
                         user.FullName = fullName;
                     }
-                    await _userManager.UpdateAsync(user);
-
-                    return OperationResult.Succeeded("Update Information Successfully!");
+                    
+                    var result = await _userManager.UpdateAsync(user);
+                    if(result.Succeeded)
+                        return OperationResult.Succeeded("Update Information Successfully!");
+                    else
+                        return OperationResult.Error(result.Errors.FirstOrDefault()!.Description);
                 }
             }
             catch (Exception ex)

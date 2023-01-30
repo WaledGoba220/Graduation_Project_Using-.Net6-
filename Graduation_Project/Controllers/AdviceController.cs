@@ -64,6 +64,7 @@ namespace Graduation_Project.Controllers
                 model.Advice = await _unitOfWork.TbAdvices.GetFirstOrDefaultAsync(a => a.Id == id, new[] { "DiseaseType", "Disease", "Doctor", "AppUser", "Comments" });
                 model.LstReplays = await _unitOfWork.TbReplays.GetWhereAsync(a => a.AdviceId == id, new[] { "AppUser" });
                 model.LstComments = await _unitOfWork.TbComments.GetWhereAsync(a => a.AdviceId == id, new[] { "AppUser" });
+                model.LatestAdvices = await _unitOfWork.TbAdvices.GetLatestAdvicesByDoctorId(model.Advice.DoctorId);
 
                 var getSpecializationById = await _unitOfWork.TbSpecialization.GetFirstOrDefaultAsync(a => a.Id == model.Advice.Doctor.SpecializationId);
 
