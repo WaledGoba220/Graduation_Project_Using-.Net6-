@@ -329,6 +329,33 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("TbDoctorViewsCounts");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("Rate")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TbRatings");
+                });
+
             modelBuilder.Entity("Domain.Models.TbReplay", b =>
                 {
                     b.Property<int>("Id")
@@ -625,6 +652,25 @@ namespace DataAccess_EF.Migrations
                     b.Navigation("Doctor");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbRating", b =>
+                {
+                    b.HasOne("Domain.Models.TbDoctor", "Doctor")
+                        .WithMany("Ratings")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Models.TbReplay", b =>
                 {
                     b.HasOne("Domain.Models.TbAdvice", "Advice")
@@ -730,6 +776,8 @@ namespace DataAccess_EF.Migrations
                     b.Navigation("Advices");
 
                     b.Navigation("ClinicImages");
+
+                    b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("Domain.Models.TbSpecialization", b =>

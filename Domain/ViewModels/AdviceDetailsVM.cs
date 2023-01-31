@@ -15,5 +15,6 @@ namespace Domain.ViewModels
         public IEnumerable<TbReplay>? LstReplays { get; set; }
         public IEnumerable<TbComment>? LstComments { get; set; }
         public List<AdviceVM>? LatestAdvices { get; set; }
+        public int CalculateRating { get; set; } = 0;
     }
 }

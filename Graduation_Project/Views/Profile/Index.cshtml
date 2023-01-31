@@ -279,32 +279,40 @@
                             @if (User.IsInRole(Roles.Doctor))
                             {
                                 <div class="right col-lg-4">
-                                <div class="box">
-                                    <ul>
-                                        <li>
-                                            <i class="fas fa-map-marker-alt"></i> @Model.Doctor.City, @Model.Doctor.Country
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-phone"></i> @Model.Doctor.Phone
-                                        </li>
-                                        @if(Model.ViewsCount is not null) {
+                                    <div class="mb-3 stars">
+                                        <span class="mr-2">(@ViewBag.RatingCount)</span>
+                                        <i class="fa-solid fa-star @(Model.CalculateRating >= 1 ? "star_active": "")"></i>
+                                        <i class="fa-solid fa-star @(Model.CalculateRating >= 2 ? "star_active": "")"></i>
+                                        <i class="fa-solid fa-star @(Model.CalculateRating >= 3 ? "star_active": "")"></i>
+                                        <i class="fa-solid fa-star @(Model.CalculateRating >= 4 ? "star_active": "")"></i>
+                                        <i class="fa-solid fa-star @(Model.CalculateRating == 5 ? "star_active": "")"></i>
+                                    </div>
+                                    <div class="box">
+                                        <ul>
                                             <li>
-                                                <i class="fas fa-eye"></i> <span class="view">@Model.ViewsCount!.Count</span> Views
+                                                <i class="fas fa-map-marker-alt"></i> @Model.Doctor.City, @Model.Doctor.Country
                                             </li>
-                                        }
-                                        else {
                                             <li>
-                                                <i class="fas fa-eye"></i> <span class="view">0</span> Views
+                                                <i class="fas fa-phone"></i> @Model.Doctor.Phone
                                             </li>
-                                        }
+                                            @if(Model.ViewsCount is not null) {
+                                                <li>
+                                                    <i class="fas fa-eye"></i> <span class="view">@Model.ViewsCount!.Count</span> Views
+                                                </li>
+                                            }
+                                            else {
+                                                <li>
+                                                    <i class="fas fa-eye"></i> <span class="view">0</span> Views
+                                                </li>
+                                            }
                                       
-                                    </ul>
-                                    <div class="special">
-                                        <h6><i class="fas fa-tag"></i> Specialization:</h6>
-                                        <span>@Model.Doctor.Specialization?.Name_EN</span>
+                                        </ul>
+                                        <div class="special">
+                                            <h6><i class="fas fa-tag"></i> Specialization:</h6>
+                                            <span>@Model.Doctor.Specialization?.Name_EN</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             }
                         </div>
                     </div>

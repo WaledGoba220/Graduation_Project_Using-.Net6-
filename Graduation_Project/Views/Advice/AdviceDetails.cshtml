@@ -337,9 +337,23 @@
                             <div class="info">
                                 <h3>@Model.Advice.AppUser.FullName</h3>
                                 <div class="specialization">@ViewBag.Specialization</div>
-                                <p class="mb-2">
-                                    @Model.Advice.Doctor.Brief
-                                </p>
+                                <li>
+                                    <i class="fas fa-notes-medical"></i> Clinic: @Model.Advice.Doctor!.Clinic
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone"></i> @Model.Advice.Doctor!.Phone
+                                </li>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i> @Model.Advice.Doctor!.City - @Model.Advice.Doctor!.Country
+                                </li>
+                                <div class="mb-2 stars">
+                                    <span class="mr-2">(@ViewBag.RatingCount)</span>
+                                    <i class="fa-solid fa-star @(Model.CalculateRating >= 1 ? "active": "")"></i>
+                                    <i class="fa-solid fa-star @(Model.CalculateRating >= 2 ? "active": "")"></i>
+                                    <i class="fa-solid fa-star @(Model.CalculateRating >= 3 ? "active": "")"></i>
+                                    <i class="fa-solid fa-star @(Model.CalculateRating >= 4 ? "active": "")"></i>
+                                    <i class="fa-solid fa-star @(Model.CalculateRating == 5 ? "active": "")"></i>
+                                </div>
                                 <div class="share-link">
                                     <a href="https://www.facebook.com/" target="_blank">
                                         <i class="fab fa-facebook-f"></i>
@@ -356,6 +370,24 @@
                                 </div>
                             </div>
                         </div>
+                        @if (ViewBag.UserId is not null) {
+                            <div class="posts d-flex justify-content-between align-items-center pb-3">
+                                <div>
+                                    <h3 class="mb-0">Add Rating</h3>
+                                </div>
+                                <div id="rating">
+                                    <fieldset class="rating">
+                                        <input class="rate" type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                        <input class="rate" type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                        <input class="rate" type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                        <input class="rate" type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                        <input class="rate" type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                    </fieldset>
+                                    <input class="userId" type="hidden" value="@ViewBag.UserId" />
+                                    <input class="doctorId" type="hidden" value="@Model.Advice.DoctorId" />
+                                </div>
+                            </div>
+                        }
                         <div class="posts">
                             <h3>Latest Advices</h3>
                             @foreach (var item in Model.LatestAdvices!)
@@ -464,7 +496,6 @@
                 }
             }
         });
-    
         $(function () {
             $("a.add_fav").click(function (e) {
                 e.preventDefault();
@@ -482,6 +513,25 @@
                             $(this).find("img").removeClass("d-none");
                         });
                     });
+                });
+            });
+        });
+        $(function () {
+            $("#rating input.rate").change(function () {
+
+                var rate = $(this).val();
+                var userId = $("#rating .userId").val();
+                var doctorId = $("#rating .doctorId").val();
+
+                $.ajax({
+                    url: '/Advice/AddRating?data=' + rate+ '--'+userId+'--'+doctorId,
+                    type: 'GET',
+                    success: function (data) {
+                        toastr.success(data);
+                    },
+                    error: function () {
+                        alert("Somthing went wrong!");
+                    }
                 });
             });
         });

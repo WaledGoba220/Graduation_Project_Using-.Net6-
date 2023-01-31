@@ -65,6 +65,14 @@ namespace Graduation_Project.Controllers
                 model.LstReplays = await _unitOfWork.TbReplays.GetWhereAsync(a => a.AdviceId == id, new[] { "AppUser" });
                 model.LstComments = await _unitOfWork.TbComments.GetWhereAsync(a => a.AdviceId == id, new[] { "AppUser" });
                 model.LatestAdvices = await _unitOfWork.TbAdvices.GetLatestAdvicesByDoctorId(model.Advice.DoctorId);
+                
+                var getRatingByDoctorId = await _unitOfWork.TbRatings.GetWhereAsync(a => a.DoctorId == model.Advice.DoctorId);
+                if (getRatingByDoctorId is not null)
+                {
+                    int ratingCount = getRatingByDoctorId.Count();
+                    model.CalculateRating = getRatingByDoctorId.Sum(a => a.Rate) / ratingCount;
+                    ViewBag.RatingCount = ratingCount;
+                }
 
                 var getSpecializationById = await _unitOfWork.TbSpecialization.GetFirstOrDefaultAsync(a => a.Id == model.Advice.Doctor.SpecializationId);
 
@@ -341,6 +349,41 @@ namespace Graduation_Project.Controllers
         /// ///////////////////////////////////////////////
 
         // ***** Actions ***** //
+
+        public async Task<IActionResult> AddRating(string data)
+        {
+            var arr = data.Split("--");
+            byte rate = Convert.ToByte(arr[0]);
+            string userId = arr[1];
+            int doctorId = Convert.ToInt32(arr[2]);
+            string message;
+
+            var getRatingById = await _unitOfWork.TbRatings.GetFirstOrDefaultAsync(a => a.UserId == userId && a.DoctorId == doctorId);
+            if(getRatingById is null)
+            {
+                // Add
+                TbRating model = new()
+                {
+                    UserId = userId,
+                    DoctorId = doctorId,
+                    Rate = rate
+                };
+
+                await _unitOfWork.TbRatings.AddAsync(model);
+                message = "Add Rating Successfully!";
+            }
+            else
+            {
+                // Update
+                getRatingById.Rate = rate;
+                _unitOfWork.TbRatings.Update(getRatingById);
+                message = "Update Your Rating Successfully!";
+            }
+
+            await _unitOfWork.Complete();
+
+            return Ok(message);
+        }
 
         public async Task<IActionResult> GetDiseasesByDiseaseTypeId(int diseaseTypeId)
         {

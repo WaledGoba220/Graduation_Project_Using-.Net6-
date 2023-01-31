@@ -13,5 +13,6 @@ namespace Domain.ViewModels
         public TbDoctor? Doctor { get; set; }
         public TbDoctorViewsCount? DoctorViewsCount { get; set; }
         public List<AdviceVM>? LstAdvices { get; set; } = new List<AdviceVM>();
+        public int CalculateRating { get; set; } = 0;
     }
 }

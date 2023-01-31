@@ -71,7 +71,6 @@
                             <span class="mr-2"><i class="fas fa-map-marker-alt"></i></span> @Model.Doctor.Location
                         </p>
                     }
-               
                 </div>
 
                 @if (Model.Doctor is not null) {
@@ -129,6 +128,14 @@
                                 </span>
                             </h3>
                         </div>
+                    </div>
+                    <div class="mb-2 stars">
+                        <span class="mr-2">(@ViewBag.RatingCount)</span>
+                        <i class="fa-solid fa-star @(Model.CalculateRating >= 1 ? "active": "")"></i>
+                        <i class="fa-solid fa-star @(Model.CalculateRating >= 2 ? "active": "")"></i>
+                        <i class="fa-solid fa-star @(Model.CalculateRating >= 3 ? "active": "")"></i>
+                        <i class="fa-solid fa-star @(Model.CalculateRating >= 4 ? "active": "")"></i>
+                        <i class="fa-solid fa-star @(Model.CalculateRating == 5 ? "active": "")"></i>
                     </div>
                 }
 

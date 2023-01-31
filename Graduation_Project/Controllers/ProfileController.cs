@@ -43,6 +43,15 @@ namespace Graduation_Project.Controllers
                 {
                     model.Doctor = await _unitOfWork.TbDoctors.GetFirstOrDefaultAsync(a=>a.AppUserId == currentUser.Id, new[] { "Specialization", "ClinicImages" });
                     model.ViewsCount = await _unitOfWork.TbDoctorViewsCounts.GetFirstOrDefaultAsync(a => a.DoctorId == model.Doctor.Id);
+
+                    var getRatingByDoctorId = await _unitOfWork.TbRatings.GetWhereAsync(a => a.DoctorId == model.Doctor.Id);
+                    if (getRatingByDoctorId is not null)
+                    {
+                        int ratingCount = getRatingByDoctorId.Count();
+                        model.CalculateRating = getRatingByDoctorId.Sum(a => a.Rate) / ratingCount;
+                        ViewBag.RatingCount = ratingCount;
+                    }
+
                 }
 
                 ViewBag.LstSpecialization = await _unitOfWork.TbSpecialization.GetAllAsync();

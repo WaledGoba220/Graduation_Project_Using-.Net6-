@@ -12,6 +12,7 @@ namespace Domain.ViewModels
         public ApplicationUser? User { get; set; }
         public TbDoctor? Doctor { get; set; }
         public TbDoctorViewsCount? ViewsCount { get; set; }
+        public int CalculateRating { get; set; } = 0;
 
     }
 }

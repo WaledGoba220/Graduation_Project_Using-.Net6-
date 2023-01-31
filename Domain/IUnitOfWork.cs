@@ -20,6 +20,7 @@ namespace Domain
         ICommentRepository TbComments { get; }
         IReplayRepository TbReplays { get; }
         IDoctorViewsCountRepository TbDoctorViewsCounts { get; }
+        IRatingRepository TbRatings { get; }
 
 
         Task<int> Complete();
