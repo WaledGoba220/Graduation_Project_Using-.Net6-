@@ -350,6 +350,7 @@ namespace Graduation_Project.Controllers
 
         // ***** Actions ***** //
 
+        [Authorize]
         public async Task<IActionResult> AddRating(string data)
         {
             var arr = data.Split("--");

@@ -549,7 +549,7 @@ namespace DataAccess_EF.Migrations
             modelBuilder.Entity("Domain.Models.TbAdvice", b =>
                 {
                     b.HasOne("Domain.Models.ApplicationUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Advices")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -747,6 +747,11 @@ namespace DataAccess_EF.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Advices");
                 });
 
             modelBuilder.Entity("Domain.Models.TbAdvice", b =>

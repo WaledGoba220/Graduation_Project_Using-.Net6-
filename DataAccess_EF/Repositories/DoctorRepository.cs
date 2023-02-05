@@ -27,5 +27,12 @@ namespace DataAccess_EF.Repositories
 
             return doctorId;
         }
+
+        public IQueryable<TbDoctor> GetUserIdFromAllAsync()
+        {
+            IQueryable<TbDoctor> doctors = _context.TbDoctors;
+
+            return doctors;
+        }
     }
 }

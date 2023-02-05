@@ -106,6 +106,13 @@
                                                 Contact Us
                                             </a>
                                         </li>
+                                        @if (User.IsInRole(Roles.Admin)) {
+                                            <li class="menu-item">
+                                                <a asp-area="Admin" asp-controller="Home">
+                                                    Dashboard
+                                                </a>
+                                            </li>
+                                        }
                                         <li class="menu-item">
                                             <a class="favorite" asp-controller="Favorite" asp-action="Index">
                                                 @await Component.InvokeAsync("Favorite")

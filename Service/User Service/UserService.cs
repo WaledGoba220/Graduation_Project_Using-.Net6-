@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using DataAccess_EF;
+using System.Security.Cryptography;
 
 namespace Domain.Services
 {
@@ -18,10 +20,13 @@ namespace Domain.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationDbContext _context;
         public UserService(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            ApplicationDbContext context)
         {
+            _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
@@ -191,5 +196,94 @@ namespace Domain.Services
             }
         }
 
+        public IQueryable<UsersPageVM> GetAllUsers()
+        {
+            IQueryable<UsersPageVM> users = 
+                (from user in _context.Users
+                join userRole in _context.UserRoles 
+                on user.Id equals userRole.UserId into gj
+                from x in gj.DefaultIfEmpty()
+                join role in _context.Roles
+                on x.RoleId equals role.Id into jj
+                from y in jj.DefaultIfEmpty()
+                select new UsersPageVM()
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    EmailConfirmed = user.EmailConfirmed,
+                    LockoutEnabled = user.LockoutEnabled,
+                    Photo = user.Photo,
+                    FullName = user.FullName,
+                    RoleName = y.Name
+                });
+
+            return users;
+        }
+
+        public IQueryable<UsersPageVM> GetBlockedUsers()
+        {
+            IQueryable<UsersPageVM> users =
+                (from user in _context.Users
+                 join userRole in _context.UserRoles
+                 on user.Id equals userRole.UserId into gj
+                 from x in gj.DefaultIfEmpty()
+                 join role in _context.Roles
+                 on x.RoleId equals role.Id into jj
+                 from y in jj.DefaultIfEmpty()
+                 select new UsersPageVM()
+                 {
+                     UserId = user.Id,
+                     UserName = user.UserName,
+                     Email = user.Email,
+                     EmailConfirmed = user.EmailConfirmed,
+                     LockoutEnabled = user.LockoutEnabled,
+                     Photo = user.Photo,
+                     FullName = user.FullName,
+                     RoleName = y.Name
+                 })
+                 .Where(a => a.LockoutEnabled == false);
+
+            return users;
+        }
+
+        public async Task<int> UserRegistrationCount()
+        {
+            return await _context.Users.AsQueryable().CountAsync();
+        }
+
+        public async Task<OperationResult> ToggleBlockUserAsync(string userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+                return OperationResult.Error("User Not Found");
+
+            user.LockoutEnabled = !user.LockoutEnabled;
+
+            if (user.LockoutEnabled == false)
+                // LogOut User Who is Blocked
+                await _userManager.UpdateSecurityStampAsync(user);
+
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+
+            return OperationResult.Succeeded("Update User Successfully!");
+        }
+
+        public async Task<OperationResult> DeleteUserAsync(string userId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == userId);
+            if(user is not null)
+            {
+                await _userManager.DeleteAsync(user);
+                await _context.SaveChangesAsync();
+                
+                return OperationResult.Succeeded("Delete User Successfully!");
+            }
+            else
+            {
+                return OperationResult.Error("Not Found User To Delete it");
+            }
+        }
     }
 }

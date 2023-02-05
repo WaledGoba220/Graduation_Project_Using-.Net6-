@@ -18,5 +18,10 @@ namespace Domain.Services
         Task<OperationResult> ConfirmEmailAsync(ConfirmEmailVM model);
         Task<OperationResult> UpdateUserPhotoAsync(ApplicationUser user, IFormFile myFile);
         Task<OperationResult> UpdateUserInfoAsync(string userName, string fullName, ApplicationUser user);
+        IQueryable<UsersPageVM> GetAllUsers();
+        IQueryable<UsersPageVM> GetBlockedUsers();
+        Task<int> UserRegistrationCount();
+        Task<OperationResult> ToggleBlockUserAsync(string userId);
+        Task<OperationResult> DeleteUserAsync(string userId);
     }
 }
