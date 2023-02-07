@@ -10,5 +10,8 @@ namespace Domain.ViewModels
     {
         public int[]? RegistrationCountArray { get; set; }
         public double? Average { get; set; }
+        public int TotalRegistrations { get; set; }
+        public double? DoctorAverage { get; set; }
+        public double? PatientAverage { get; set; }
     }
 }

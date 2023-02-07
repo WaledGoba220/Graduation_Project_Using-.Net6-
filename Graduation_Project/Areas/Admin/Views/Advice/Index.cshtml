@@ -72,23 +72,25 @@
 
                                                     <td>@item.Title.Substring(0, 10) ...</td>
                                                     <td>@item.User!.UserName</td>
-                                                    <td>@item.DiseaseTypeName_EN - @item.DiseaseTypeName_AR</td>
-                                                    <td>@item.DiseaseName_EN - @item.DiseaseName_AR</td>
+                                                    <td><span class="active bg-olive">@item.DiseaseTypeName_EN - @item.DiseaseTypeName_AR</span></td>
+                                                    <td><span class="active bg-info">@item.DiseaseName_EN - @item.DiseaseName_AR</span></td>
 
                                                     <td>@item.Content.Substring(0, 15) ...</td>
                                                         
                                                     <td>
-                                                        <span class="active bg-olive">@item.CommentsCount</span>
+                                                        <span class="active bg-secondary">@item.CommentsCount</span>
                                                     </td>
                                                     <td>
                                                         @item.CreationDateTime.ToShortDateString()
                                                     </td>
 
                                                     <td>
-                                                        <button asp-action="Index" class="btn btn-primary">
-                                                            Details
+                                                        <a href="/Advice/AdviceDetails/@item.Id" class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                        <button onclick=Delete("/Admin/Advice/DeleteAdvice/@item.Id") class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-trash-alt"></i>
                                                         </button>
-                                                        <button onclick=Delete("/Admin/User/Delete/@item.Id")  class="btn btn-danger">Delete</button>
                                                     </td>
                                                 </tr>
                                             }
@@ -110,7 +112,7 @@
 </section>
 
 @section Scripts {
-    <script src="~/ajax/User.js"></script>
+    <script src="~/ajax/DeleteAdvice.js"></script>
     @{
         await Html.RenderPartialAsync("_Notification");
     }

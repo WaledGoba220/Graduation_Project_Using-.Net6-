@@ -23,7 +23,7 @@ namespace Domain
         IDoctorViewsCountRepository TbDoctorViewsCounts { get; }
         IRatingRepository TbRatings { get; }
         IRegistrationRequestsRepository TdRegistrationRequests { get; }
-
+        IAdviceRequestRepository TbAdviceRequests { get; }
 
         Task<int> Complete();
     }

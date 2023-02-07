@@ -61,14 +61,16 @@
                                                     <td>@item.Name_EN</td>
                                                     <td>@item.Name_AR</td>
                                                     <td>
-                                                        <span class="active bg-olive">@item.Doctors!.Count()</span>
+                                                        <span class="active bg-secondary">@item.Doctors!.Count()</span>
                                                     </td>
 
                                                     <td>
-                                                        <a asp-controller="Specialization" asp-action="EditSpecialization" asp-route-Id="@item.Id" class="btn btn-primary">
-                                                            Edit
+                                                        <a asp-controller="Specialization" asp-action="EditSpecialization" asp-route-Id="@item.Id" class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-edit"></i>
                                                         </a>
-                                                        <button onclick=Delete("/Admin/Specialization/DeleteSpecialization/@item.Id") class="btn btn-danger">Delete</button>
+                                                        <button onclick=Delete("/Admin/Specialization/DeleteSpecialization/@item.Id") class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             }

@@ -61,14 +61,16 @@
                                                     <td>@item.Name_EN</td>
                                                     <td>@item.Name_AR</td>
                                                     <td>
-                                                        <span class="active bg-olive">@item.DiseaseType!.Name_EN - @item.DiseaseType!.Name_AR</span>
+                                                        <span class="active bg-secondary">@item.DiseaseType!.Name_EN - @item.DiseaseType!.Name_AR</span>
                                                     </td>
 
                                                     <td>
-                                                        <a asp-controller="Disease" asp-action="EditDisease" asp-route-Id="@item.Id" class="btn btn-primary">
-                                                            Edit
+                                                        <a asp-controller="Disease" asp-action="EditDisease" asp-route-Id="@item.Id" class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-edit"></i>
                                                         </a>
-                                                        <button onclick=Delete("/Admin/Disease/DeleteDisease/@item.Id") class="btn btn-danger">Delete</button>
+                                                        <button onclick=Delete("/Admin/Disease/DeleteDisease/@item.Id") class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             }

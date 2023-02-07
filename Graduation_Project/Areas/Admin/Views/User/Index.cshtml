@@ -87,7 +87,9 @@
                                                         <button onclick=Block("/Admin/User/ToggleBlockUser/@user.UserId") class="btn @(user.LockoutEnabled? "btn-secondary" : "btn-success") ">
                                                             @(user.LockoutEnabled? "Block" : "Un Block")
                                                         </button>
-                                                        <button onclick=Delete("/Admin/User/Delete/@user.UserId")  class="btn btn-danger">Delete</button>
+                                                        <button onclick=Delete("/Admin/User/Delete/@user.UserId")  class="btn btn-danger">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             }

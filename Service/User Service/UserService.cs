@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DataAccess_EF;
+using Hangfire;
 
 namespace Domain.Services
 {
