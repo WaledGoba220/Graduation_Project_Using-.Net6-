@@ -34,6 +34,9 @@ namespace DataAccess_EF.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -413,6 +416,25 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("TbSpecialization");
                 });
 
+            modelBuilder.Entity("Domain.Models.TdRegistrationRequests", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TotalRegistrations")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TdRegistrationRequests");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -549,7 +571,7 @@ namespace DataAccess_EF.Migrations
             modelBuilder.Entity("Domain.Models.TbAdvice", b =>
                 {
                     b.HasOne("Domain.Models.ApplicationUser", "AppUser")
-                        .WithMany("Advices")
+                        .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -747,11 +769,6 @@ namespace DataAccess_EF.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Advices");
                 });
 
             modelBuilder.Entity("Domain.Models.TbAdvice", b =>

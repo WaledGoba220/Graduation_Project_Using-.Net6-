@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Interfaces_Repository;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Domain
         IReplayRepository TbReplays { get; }
         IDoctorViewsCountRepository TbDoctorViewsCounts { get; }
         IRatingRepository TbRatings { get; }
+        IRegistrationRequestsRepository TdRegistrationRequests { get; }
 
 
         Task<int> Complete();

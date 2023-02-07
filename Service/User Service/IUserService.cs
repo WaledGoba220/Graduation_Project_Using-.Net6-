@@ -23,5 +23,6 @@ namespace Domain.Services
         Task<int> UserRegistrationCount();
         Task<OperationResult> ToggleBlockUserAsync(string userId);
         Task<OperationResult> DeleteUserAsync(string userId);
+        Task<int> SaveTotlaRegistrationsEveryDay();
     }
 }

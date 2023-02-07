@@ -7,6 +7,7 @@ using E_Exam.Utility.EmailSender;
 using Domain.ViewModels;
 using Utility.Consts;
 using E_Exam.Core.ViewModels;
+using Hangfire;
 
 namespace Graduation_Project.Controllers
 {
@@ -29,6 +30,9 @@ namespace Graduation_Project.Controllers
 
         public IActionResult Register()
         {
+            // Hangfire
+            RecurringJob.AddOrUpdate(() => _userService.SaveTotlaRegistrationsEveryDay(), Cron.Daily);
+
             if (_signInManager.IsSignedIn(User)) //verify if it's logged
             {
                 return LocalRedirect("~/");

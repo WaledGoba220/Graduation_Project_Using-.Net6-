@@ -11,5 +11,7 @@ namespace Domain.Models
     {
         public string? FullName { get; set; }
         public byte[]? Photo { get; set; }
+
+        public DateTime Date { get; set; } = DateTime.Now;
     }
 }

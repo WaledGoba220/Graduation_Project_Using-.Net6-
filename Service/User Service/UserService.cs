@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DataAccess_EF;
-using System.Security.Cryptography;
 
 namespace Domain.Services
 {
@@ -249,7 +248,7 @@ namespace Domain.Services
 
         public async Task<int> UserRegistrationCount()
         {
-            return await _context.Users.AsQueryable().CountAsync();
+            return await _context.Users.AsNoTracking().AsQueryable().CountAsync();
         }
 
         public async Task<OperationResult> ToggleBlockUserAsync(string userId)
@@ -285,5 +284,21 @@ namespace Domain.Services
                 return OperationResult.Error("Not Found User To Delete it");
             }
         }
+    
+        public async Task<int> SaveTotlaRegistrationsEveryDay()
+        {
+            int count = await _context.Users.AsQueryable().CountAsync();
+
+            TdRegistrationRequests model = new()
+            {
+                TotalRegistrations = count,
+            };
+
+            await _context.TdRegistrationRequests.AddAsync(model);
+            _context.SaveChanges();
+
+            return count;
+        }
+    
     }
 }

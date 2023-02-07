@@ -11,9 +11,29 @@ build_property.RootNamespace = Graduation_Project
 build_property.ProjectDir = E:\Asp.net Projects\Graduation_Project\Graduation_Project\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = E:\Asp.net Projects\Graduation_Project\Graduation_Project
 build_property._RazorSourceGeneratorDebug = 
+
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Advice/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWR2aWNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Disease/DiseaseType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGlzZWFzZVxEaXNlYXNlVHlwZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Disease/EditDisease.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGlzZWFzZVxFZGl0RGlzZWFzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Disease/EditDiseaseType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGlzZWFzZVxFZGl0RGlzZWFzZVR5cGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Disease/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGlzZWFzZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
@@ -29,6 +49,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Specialization/EditSpecialization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3BlY2lhbGl6YXRpb25cRWRpdFNwZWNpYWxpemF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/Specialization/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3BlY2lhbGl6YXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Asp.net Projects/Graduation_Project/Graduation_Project/Areas/Admin/Views/User/Index.cshtml]

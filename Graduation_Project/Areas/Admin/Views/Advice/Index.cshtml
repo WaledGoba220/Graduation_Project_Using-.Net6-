@@ -1,0 +1,117 @@
+﻿@model List<AdviceVM>
+
+@{
+    ViewData["Title"] = "Advices";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                    Image
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                    Title
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                    Doctor
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                    Type of Disease
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                    Disease
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                    Content
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                    Comments
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                    Date
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                                                    Actions
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr class="odd">
+                                                    <td>
+                                                        <img style="border-radius: 2px;" width="50" height="50" src="data:image/*;base64,@(Convert.ToBase64String(item.Image))" />
+                                                    </td>
+
+                                                    <td>@item.Title.Substring(0, 10) ...</td>
+                                                    <td>@item.User!.UserName</td>
+                                                    <td>@item.DiseaseTypeName_EN - @item.DiseaseTypeName_AR</td>
+                                                    <td>@item.DiseaseName_EN - @item.DiseaseName_AR</td>
+
+                                                    <td>@item.Content.Substring(0, 15) ...</td>
+                                                        
+                                                    <td>
+                                                        <span class="active bg-olive">@item.CommentsCount</span>
+                                                    </td>
+                                                    <td>
+                                                        @item.CreationDateTime.ToShortDateString()
+                                                    </td>
+
+                                                    <td>
+                                                        <button asp-action="Index" class="btn btn-primary">
+                                                            Details
+                                                        </button>
+                                                        <button onclick=Delete("/Admin/User/Delete/@item.Id")  class="btn btn-danger">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+@section Scripts {
+    <script src="~/ajax/User.js"></script>
+    @{
+        await Html.RenderPartialAsync("_Notification");
+    }
+}

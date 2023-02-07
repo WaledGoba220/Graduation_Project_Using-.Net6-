@@ -19,12 +19,38 @@ namespace DataAccess_EF.Repositories
         }
 
 
+        public async Task<List<AdviceVM>> GetAllAdvicesAsync()
+        {
+            var items = await _context.TbAdvices
+                .Include(a => a.DiseaseType)
+                .Include(a => a.Disease)
+                .Include(a => a.AppUser)
+                .Include(a => a.Comments)
+                .AsNoTracking()
+                .Select(a => new AdviceVM
+                {
+                    Id = a.Id,
+                    Image = a.Image,
+                    Title = a.Title,
+                    Content = a.Content,
+                    CreationDateTime = a.CreationDateTime,
+                    DiseaseTypeName_AR = a.DiseaseType.Name_AR,
+                    DiseaseTypeName_EN = a.DiseaseType.Name_EN,
+                    DiseaseName_EN = a.Disease.Name_EN,
+                    DiseaseName_AR = a.Disease.Name_AR,
+                    User = a.AppUser,
+                    CommentsCount = a.Comments.AsQueryable().Count()
+                })
+                .OrderByDescending(a=>a.CreationDateTime)
+                .ToListAsync();
+
+            return items;
+        }
         public async Task<List<AdviceVM>> GetMyAdvicesAsync(int doctorId, int pageSize, int ExcludeRecords)
         {
             var items = await _context.TbAdvices
                 .Include(a=>a.DiseaseType)
                 .Include(a=>a.Disease)
-                .Include(a=>a.Doctor)
                 .Include(a=>a.AppUser)
                 .Include(a=>a.Comments)
                 .AsNoTracking()
@@ -54,7 +80,6 @@ namespace DataAccess_EF.Repositories
             var items = await _context.TbAdvices
                 .Include(a => a.DiseaseType)
                 .Include(a => a.Disease)
-                .Include(a => a.Doctor)
                 .Include(a => a.AppUser)
                 .Include(a=>a.Comments)
                 .AsNoTracking()
@@ -84,7 +109,6 @@ namespace DataAccess_EF.Repositories
             var items = await _context.TbAdvices
                 .Include(a => a.DiseaseType)
                 .Include(a => a.Disease)
-                .Include(a => a.Doctor)
                 .Include(a => a.AppUser)
                 .Include(a=>a.Comments)
                 .AsNoTracking()
@@ -118,7 +142,6 @@ namespace DataAccess_EF.Repositories
             var items = await _context.TbAdvices
                 .Include(a => a.DiseaseType)
                 .Include(a => a.Disease)
-                .Include(a => a.Doctor)
                 .Include(a => a.AppUser)
                 .Include(a=>a.Comments)
                 .AsNoTracking()
@@ -151,7 +174,6 @@ namespace DataAccess_EF.Repositories
             var items = await _context.TbAdvices
                 .Include(a => a.DiseaseType)
                 .Include(a => a.Disease)
-                .Include(a => a.Doctor)
                 .Include(a => a.AppUser)
                 .Include(a=>a.Comments)
                 .AsNoTracking()
@@ -227,7 +249,6 @@ namespace DataAccess_EF.Repositories
             var items = await _context.TbAdvices
                 .Include(a => a.DiseaseType)
                 .Include(a => a.Disease)
-                .Include(a => a.Doctor)
                 .Include(a => a.AppUser)
                 .Include(a => a.Comments)
                 .AsNoTracking()

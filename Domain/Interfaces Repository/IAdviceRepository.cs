@@ -11,6 +11,7 @@ namespace Domain.Interfaces_Repository
 {
     public interface IAdviceRepository : IBaseRepository<TbAdvice>
     {
+        Task<List<AdviceVM>> GetAllAdvicesAsync();
         Task<List<AdviceVM>> GetMyAdvicesAsync(int doctorId, int pageSize, int ExcludeRecords);
         Task<List<AdviceVM>> GetAdvicesAsync(int pageSize, int ExcludeRecords);
         Task<List<AdviceVM>> GetAdvicesBySearchFormAsync(SearchAdviceVM searchForm, int pageSize, int ExcludeRecords);

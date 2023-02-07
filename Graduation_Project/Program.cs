@@ -3,6 +3,7 @@ using Domain;
 using Domain.Models;
 using Domain.Services;
 using E_Exam.Utility.EmailSender;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,10 @@ builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddControllersWithViews();
+
+// Add Hangfire
+builder.Services.AddHangfire(x => x.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddHangfireServer();
 
 // Connection With Database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -87,6 +92,7 @@ app.UseStaticFiles();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseHangfireDashboard("/Hangfire");
 
 app.UseEndpoints(endpoints =>
 {

@@ -24,6 +24,7 @@ namespace DataAccess_EF
         public IReplayRepository TbReplays { get; private set; }
         public IDoctorViewsCountRepository TbDoctorViewsCounts { get; private set; }
         public IRatingRepository TbRatings { get; private set; }
+        public IRegistrationRequestsRepository TdRegistrationRequests { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -40,6 +41,7 @@ namespace DataAccess_EF
             TbReplays = new ReplayRepository(context);
             TbDoctorViewsCounts = new DoctorViewsCountRepository(context);
             TbRatings = new RatingRepository(context);
+            TdRegistrationRequests = new RegistrationRequestsRepository(context);
         }
 
         public async Task<int> Complete()

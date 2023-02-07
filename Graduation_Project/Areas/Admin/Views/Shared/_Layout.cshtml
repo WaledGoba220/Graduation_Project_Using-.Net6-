@@ -41,7 +41,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a asp-controller="Home" class="nav-link">Dashboard</a>
+                    <a asp-controller="Home" asp-action="Index" class="nav-link">Dashboard</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="/" class="nav-link">Website</a>
@@ -173,7 +173,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a asp-controller="Home" class="brand-link">
+            <a asp-controller="Home" asp-action="Index" class="brand-link">
                 <img src="~/Admin/dist/img/logo_nav.png" alt="GOBA LOGO" class="brand-image" style="opacity: .8">
             </a>
 
@@ -207,13 +207,11 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                    Users
+                                    Manage Users
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -232,12 +230,50 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a asp-controller="Contact" asp-action="Index" class="nav-link">
+                        <li class="nav-item menu-close">
+                            <a href="#" class="nav-link active">
+                                <i class="fas fa-viruses mr-1"></i>
                                 <p>
-                                    <i class="fas fa-headphones mr-1 nav-icon"></i>
-                                    Contact Us
+                                    Manage Diseases
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="Disease" asp-action="DiseaseType" class="nav-link  pl-4">
+                                        <i class="fas fa-capsules mr-1"></i>
+                                        <p>Type of Diseases</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Disease" asp-action="Index" class="nav-link  pl-4">
+                                        <i class="fas fa-disease mr-1"></i>
+                                        <p>Diseases</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-close">
+                            <a href="#" class="nav-link active">
+                                <i class="fas fa-viruses mr-1"></i>
+                                <p>
+                                    Manage Advices
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="Advice" asp-action="Index" class="nav-link  pl-4">
+                                        <i class="fas fa-capsules mr-1"></i>
+                                        <p>Advices</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Specialization" asp-action="Index" class="nav-link pl-4">
+                                <i class="fas fa-notes-medical mr-1"></i>
+                                <p>All Specializations</p>
                             </a>
                         </li>
                     </ul>
@@ -284,8 +320,6 @@
     <script src="~/Admin/chart/sparkline/sparkline.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Admin/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="~/Admin/dist/js/pages/dashboard.js"></script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

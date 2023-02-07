@@ -36,6 +36,12 @@
   box-sizing: border-box;
 }
 
+td span.active {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 3px;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -53040,7 +53046,7 @@ a.text-muted:hover {
 .cards .value-graph h4 {
     color: #313131;
     font-weight: 600;
-    font-size: 23px;
+    font-size: 22px;
 }
 
 .font-primary {
