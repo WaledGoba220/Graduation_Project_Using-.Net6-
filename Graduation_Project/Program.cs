@@ -53,7 +53,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie.Name = "Cookie";
     options.Cookie.HttpOnly = true;
     options.ExpireTimeSpan = TimeSpan.FromHours(24);
-    options.LoginPath = "/Users/LogIn";
+    options.LoginPath = "/Account/Login";
     options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
     options.SlidingExpiration = true;
 });

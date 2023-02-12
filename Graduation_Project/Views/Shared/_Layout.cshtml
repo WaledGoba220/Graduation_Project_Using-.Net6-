@@ -91,7 +91,7 @@
                                             <a asp-controller="Home" asp-action="Index">Home</a>
                                         </li>
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/model" ? "current-menu-item" : "")">
-                                            <a href="model.html">Diseases Detection</a>
+                                            <a asp-controller="Model" asp-action="Index">Diseases Detection</a>
                                         </li>
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/advice" ? "current-menu-item" : "")">
                                             <a asp-controller="Advice" asp-action="Index">

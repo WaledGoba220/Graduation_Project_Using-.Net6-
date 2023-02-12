@@ -215,6 +215,10 @@
               "target": "Package",
               "version": "[6.0.11, )"
             },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[108.0.3, )"
+            },
             "cloudscribe.Pagination.Models": {
               "target": "Package",
               "version": "[1.1.0, )"

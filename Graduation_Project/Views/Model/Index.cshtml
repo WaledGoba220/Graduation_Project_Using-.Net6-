@@ -1,0 +1,327 @@
+﻿@{
+    ViewData["Title"] = "Diseases Detection";
+}
+
+@section Styles {
+    <style>
+        .ajaxbg img {
+            top: 30% !important;
+        }
+        .pages {
+            position: relative !important;
+        }
+    </style>
+}
+
+<!-- ============ Model Start ============= -->
+<div class="model account mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+
+            <!-- Start Tabs -->
+            <div class="col-lg-3 col-md-4 mb-lg-0 mb-md-0 mb-4">
+                <div class="tabs">
+                    <li class="active model_1">
+                        Pneumonia
+                    </li>
+                    <li class="model_2">
+                        Tuberculosis
+                    </li>
+                    <li class="model_3">
+                        Model 3
+                    </li>
+                </div>
+            </div>
+            <!-- End Tabs -->
+            <!-- Start Pages -->
+            <div class="col-lg-9 col-md-8">
+                <div class="pages">
+                    <div class="ajaxbg d-none">
+                        <img src="~/images/giphy.gif" />
+                    </div>
+                    <!-- Strat Model_1 -->
+                    <div class="page model_1 active">
+                        <form id="pneumonia">
+                            <div class="drop-zone">
+                                <span class="drop-zone__prompt mr-3">
+                                    Drop image here or click to upload
+                                </span>
+                                <i class="fas fa-upload"></i>
+                                <input type="file" name="file" class="drop-zone__input">
+                            </div>
+                            <a class="btn btn-success upload">Upload <i class="fas fa-upload"></i></a>
+                        </form>
+                    </div>
+                    <!-- End Model_1 -->
+                    <!--=================================================================================-->
+                    <!-- Start Model_2 -->
+                    <div class="Modle model_2 page">
+                        <form id="tuberculosis">
+                            <div class="drop-zone">
+                                <span class="drop-zone__prompt mr-3">
+                                    Drop image here or click to upload
+                                </span>
+                                <i class="fas fa-upload"></i>
+                                <input type="file" name="file" class="drop-zone__input">
+                            </div>
+                            <a class="btn btn-success upload">Upload <i class="fas fa-upload"></i></a>
+                        </form>
+                    </div>
+                    <!-- End Model_2 -->
+                    <!--==================================================================================-->
+                    <!-- Start Model_3 -->
+                    <div class="hardware model_3 page">
+                        <div class="card">
+                            <div class="card-header">
+                                Model 3
+                            </div>
+                            <div class="card-body">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl" for="gender">Gender</label>
+                                            <select class="round" name="" id="gender">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl" for="age">Age</label>
+                                            <input type="number" min="1" max="110">
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Smoking</label>
+                                            <label for="r1" class="radio">
+                                                <input type="radio" name="Smoking" id="r1" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r2" class="radio">
+                                                <input type="radio" name="Smoking" id="r2" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Yellow Fingers</label>
+                                            <label for="r3" class="radio">
+                                                <input type="radio" name="Yellow" id="r3" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r4" class="radio">
+                                                <input type="radio" name="Yellow" id="r4" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Anxiety</label>
+                                            <label for="r28" class="radio">
+                                                <input type="radio" name="Anxiety" id="r28" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r5" class="radio">
+                                                <input type="radio" name="Anxiety" id="r5" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Peer Pressure</label>
+                                            <label for="r6" class="radio">
+                                                <input type="radio" name="Peer" id="r6" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r7" class="radio">
+                                                <input type="radio" name="Peer" id="r7" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Chronic Disease</label>
+                                            <label for="r8" class="radio">
+                                                <input type="radio" name="Chronic" id="r8" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r9" class="radio">
+                                                <input type="radio" name="Chronic" id="r9" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Fatigue</label>
+                                            <label for="r10" class="radio">
+                                                <input type="radio" name="Fatigue" id="r10" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r11" class="radio">
+                                                <input type="radio" name="Fatigue" id="r11" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Allergy</label>
+                                            <label for="r25" class="radio">
+                                                <input type="radio" name="Allergy" id="r25" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r12" class="radio">
+                                                <input type="radio" name="Allergy" id="r12" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Wheezing</label>
+                                            <label for="r13" class="radio">
+                                                <input type="radio" name="Wheezing" id="r13" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r14" class="radio">
+                                                <input type="radio" name="Wheezing" id="r14" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Alcohol</label>
+                                            <label for="r15" class="radio">
+                                                <input type="radio" name="Alcohol" id="r15" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r16" class="radio">
+                                                <input type="radio" name="Alcohol" id="r16" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Coughing</label>
+                                            <label for="r17" class="radio">
+                                                <input type="radio" name="Coughing" id="r17" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r18" class="radio">
+                                                <input type="radio" name="Coughing" id="r18" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Shortness</label>
+                                            <label for="r19" class="radio">
+                                                <input type="radio" name="Shortness" id="r19" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r20" class="radio">
+                                                <input type="radio" name="Shortness" id="r20" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Swallowing Difficulty</label>
+                                            <label for="r21" class="radio">
+                                                <input type="radio" name="Swallowing" id="r21" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r22" class="radio">
+                                                <input type="radio" name="Swallowing" id="r22" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Chest Pain</label>
+                                            <label for="r23" class="radio">
+                                                <input type="radio" name="Chest" id="r23" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r24" class="radio">
+                                                <input type="radio" name="Chest" id="r24" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-2 col-lg-6">
+                                            <label class="lbl">Lung Cancer</label>
+                                            <label for="r30" class="radio">
+                                                <input type="radio" name="Lung" id="r30" class="hidden" />
+                                                <span class="label"></span>Yes
+                                            </label>
+                                            <label for="r31" class="radio">
+                                                <input type="radio" name="Lung" id="r31" class="hidden" />
+                                                <span class="label"></span>No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="submit mt-2">Send <i class="fas fa-paper-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Model_3 -->
+
+                </div>
+            </div>
+            <!-- End Pages -->
+
+        </div>
+    </div>
+
+</div>
+<!-- ============ Model End ============= -->
+
+@section Scripts {
+    <script>
+        $("a.upload").click(function (e) {
+            e.preventDefault();
+
+            var formData = new FormData();
+            formData.append('file', $(this).parent().find("input.drop-zone__input")[0].files[0]); // myFile is the input type="file" control
+
+            let ajaxDiv = $(this).parent().parent().parent().find("div.ajaxbg");
+            ajaxDiv.removeClass("d-none");
+
+            let _url;
+            if ($(this).parent().attr('id') == "pneumonia") {
+                _url = '/Model/Pneumonia';
+            }
+            else if ($(this).parent().attr('id') == "tuberculosis") {
+                _url = '/Model/Tuberculosis';
+            }
+
+            $.ajax({
+                url: _url,
+                type: 'POST',
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    ajaxDiv.find("img").addClass("d-none");
+                    setTimeout(() => {
+                        ajaxDiv.animate({ opacity: 0 }, function () {
+                            $(this).addClass("d-none").fadeTo(.1, 1);
+                            $(this).find("img").removeClass("d-none");
+                        });
+                    });
+
+                    if (data.success) {
+                        Swal.fire({
+                            title: data.message,
+                            icon: 'info',
+                            showCancelButton: true,
+                            confirmButtonText: 'Save',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire('Saved!', '', 'success')
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire({
+                            title: data.message,
+                            icon: 'error',
+                            showCancelButton: true,
+                        });
+                    }
+                }
+            })
+        });
+
+    </script>
+    @{
+        await Html.RenderPartialAsync("_Notification");
+    }
+}

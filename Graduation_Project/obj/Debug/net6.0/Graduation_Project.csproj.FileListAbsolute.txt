@@ -586,3 +586,4 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\refs\
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\RestSharp.dll
