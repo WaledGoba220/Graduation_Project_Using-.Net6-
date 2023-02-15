@@ -24,6 +24,8 @@ namespace Domain
         IRatingRepository TbRatings { get; }
         IRegistrationRequestsRepository TdRegistrationRequests { get; }
         IAdviceRequestRepository TbAdviceRequests { get; }
+        IPneumoniaRepository TbPneumonias { get; }
+
 
         Task<int> Complete();
     }
