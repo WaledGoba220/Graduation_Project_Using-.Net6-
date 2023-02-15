@@ -1,4 +1,6 @@
-﻿@{
+﻿@model LungCancerVM
+
+@{
     ViewData["Title"] = "Diseases Detection";
 }
 
@@ -28,7 +30,7 @@
                         Tuberculosis
                     </li>
                     <li class="model_3">
-                        Model 3
+                        Lung Cancer
                     </li>
                 </div>
             </div>
@@ -73,179 +75,257 @@
                     <div class="hardware model_3 page">
                         <div class="card">
                             <div class="card-header">
-                                Model 3
+                                Lung Cancer
                             </div>
                             <div class="card-body">
-                                <form action="">
+                                <form id="lungCancer" >
                                     <div class="row">
                                         <div class="form-group mb-2 col-lg-6">
                                             <label class="lbl" for="gender">Gender</label>
-                                            <select class="round" name="" id="gender">
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
+                                            <select class="round" name="" id="gender" asp-for="Gender">
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-2 col-lg-6">
                                             <label class="lbl" for="age">Age</label>
-                                            <input type="number" min="1" max="110">
+                                            <input id="age" type="number" asp-for="Age">
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Smoking</label>
-                                            <label for="r1" class="radio">
-                                                <input type="radio" name="Smoking" id="r1" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r2" class="radio">
-                                                <input type="radio" name="Smoking" id="r2" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">AirPollution</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement'>&ndash;</div>
+                                                <div class='ctrl__counter'>
+                                                    <input asp-for="AirPollution" id="airPollution" class='ctrl__counter-input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Yellow Fingers</label>
-                                            <label for="r3" class="radio">
-                                                <input type="radio" name="Yellow" id="r3" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r4" class="radio">
-                                                <input type="radio" name="Yellow" id="r4" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">DustAllergy</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement decrement_ctrl_2'>&ndash;</div>
+                                                <div class='ctrl__counter counter_ctrl_2'>
+                                                    <input asp-for="DustAllergy" id="dustAllergy" class='ctrl__counter-input input_ctrl_2 d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num num_ctrl_2'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment increment_ctrl_2'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Anxiety</label>
-                                            <label for="r28" class="radio">
-                                                <input type="radio" name="Anxiety" id="r28" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r5" class="radio">
-                                                <input type="radio" name="Anxiety" id="r5" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">OccuPationalHazards</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_3_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_3_counter'>
+                                                    <input asp-for="OccuPationalHazards" id="occuPationalHazards" class='ctrl__counter-input ctrl_3_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_3_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_3_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Peer Pressure</label>
-                                            <label for="r6" class="radio">
-                                                <input type="radio" name="Peer" id="r6" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r7" class="radio">
-                                                <input type="radio" name="Peer" id="r7" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">GeneticRisk</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_4_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_4_counter'>
+                                                    <input asp-for="GeneticRisk" id="geneticRisk" class='ctrl__counter-input ctrl_4_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_4_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_4_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Chronic Disease</label>
-                                            <label for="r8" class="radio">
-                                                <input type="radio" name="Chronic" id="r8" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r9" class="radio">
-                                                <input type="radio" name="Chronic" id="r9" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">ChronicLungDisease</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_5_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_5_counter'>
+                                                    <input asp-for="ChronicLungDisease" id="chronicLungDisease" class='ctrl__counter-input ctrl_5_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_5_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_5_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">BalancedDiet</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_6_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_6_counter'>
+                                                    <input asp-for="BalancedDiet" id="balancedDiet" class='ctrl__counter-input ctrl_6_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_6_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_6_increment'>+</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">Obesity</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_7_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_7_counter'>
+                                                    <input asp-for="Obesity" id="obesity" class='ctrl__counter-input ctrl_7_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_7_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_7_increment'>+</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">ChestPain</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_8_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_8_counter'>
+                                                    <input asp-for="ChestPain" id="chestPain" class='ctrl__counter-input ctrl_8_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_8_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_8_increment'>+</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">CoughingofBlood</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_9_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_9_counter'>
+                                                    <input asp-for="CoughingofBlood" id="coughingofBlood" class='ctrl__counter-input ctrl_9_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_9_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_9_increment'>+</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3 col-lg-3">
                                             <label class="lbl">Fatigue</label>
-                                            <label for="r10" class="radio">
-                                                <input type="radio" name="Fatigue" id="r10" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r11" class="radio">
-                                                <input type="radio" name="Fatigue" id="r11" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_10_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_10_counter'>
+                                                    <input asp-for="Fatigue" id="fatigue" class='ctrl__counter-input ctrl_10_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_10_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_10_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Allergy</label>
-                                            <label for="r25" class="radio">
-                                                <input type="radio" name="Allergy" id="r25" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r12" class="radio">
-                                                <input type="radio" name="Allergy" id="r12" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">WeightLoss</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_11_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_11_counter'>
+                                                    <input asp-for="WeightLoss" id="weightLoss" class='ctrl__counter-input ctrl_11_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_11_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_11_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">ShortnessofBreath</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_12_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_12_counter'>
+                                                    <input asp-for="ShortnessofBreath" id="shortnessofBreath" class='ctrl__counter-input ctrl_12_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_12_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_12_increment'>+</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3 col-lg-3">
                                             <label class="lbl">Wheezing</label>
-                                            <label for="r13" class="radio">
-                                                <input type="radio" name="Wheezing" id="r13" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r14" class="radio">
-                                                <input type="radio" name="Wheezing" id="r14" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_13_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_13_counter'>
+                                                    <input asp-for="Wheezing" id="wheezing" class='ctrl__counter-input ctrl_13_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_13_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_13_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Alcohol</label>
-                                            <label for="r15" class="radio">
-                                                <input type="radio" name="Alcohol" id="r15" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r16" class="radio">
-                                                <input type="radio" name="Alcohol" id="r16" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">SwallowingDifficulty</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_14_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_14_counter'>
+                                                    <input asp-for="SwallowingDifficulty" id="swallowingDifficulty" class='ctrl__counter-input ctrl_14_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_14_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_14_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Coughing</label>
-                                            <label for="r17" class="radio">
-                                                <input type="radio" name="Coughing" id="r17" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r18" class="radio">
-                                                <input type="radio" name="Coughing" id="r18" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">ClubbingofFingerNail</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_15_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_15_counter'>
+                                                    <input asp-for="ClubbingofFingerNail" id="clubbingofFingerNail" class='ctrl__counter-input ctrl_15_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_15_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_15_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Shortness</label>
-                                            <label for="r19" class="radio">
-                                                <input type="radio" name="Shortness" id="r19" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r20" class="radio">
-                                                <input type="radio" name="Shortness" id="r20" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">FrequentCold</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_16_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_16_counter'>
+                                                    <input asp-for="FrequentCold" id="frequentCold" class='ctrl__counter-input ctrl_16_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_16_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_16_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Swallowing Difficulty</label>
-                                            <label for="r21" class="radio">
-                                                <input type="radio" name="Swallowing" id="r21" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r22" class="radio">
-                                                <input type="radio" name="Swallowing" id="r22" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">DryCough</label>
+                                            <div class='ctrl'>
+                                                <div class='ctrl__button ctrl__button--decrement ctrl_17_decrement'>&ndash;</div>
+                                                <div class='ctrl__counter ctrl_17_counter'>
+                                                    <input asp-for="DryCough" id="dryCough" class='ctrl__counter-input ctrl_17_input d-none' maxlength='10' type='text' value='0'>
+                                                    <div class='ctrl__counter-num ctrl_17_num'>0</div>
+                                                </div>
+                                                <div class='ctrl__button ctrl__button--increment ctrl_17_increment'>+</div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Chest Pain</label>
-                                            <label for="r23" class="radio">
-                                                <input type="radio" name="Chest" id="r23" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r24" class="radio">
-                                                <input type="radio" name="Chest" id="r24" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">Alcoholuse</label>
+                                            <input type="radio" name="rdo" id="yes5" />
+                                            <input type="radio" name="rdo" id="no5" checked />
+                                            <input asp-for="Alcoholuse" id="alcoholuse" type="hidden" value="0" class="res">
+                                            <div class="switch sw_5">
+                                                <label class="yes yes5" for="yes5">Yes</label>
+                                                <span></span>
+                                                <label class="no no5" for="no5">No</label>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl">Lung Cancer</label>
-                                            <label for="r30" class="radio">
-                                                <input type="radio" name="Lung" id="r30" class="hidden" />
-                                                <span class="label"></span>Yes
-                                            </label>
-                                            <label for="r31" class="radio">
-                                                <input type="radio" name="Lung" id="r31" class="hidden" />
-                                                <span class="label"></span>No
-                                            </label>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">Smoking</label>
+                                            <input type="radio" name="rdo1" id="yes6" />
+                                            <input type="radio" name="rdo1" id="no6" checked />
+                                            <input asp-for="Smoking" id="smoking" type="hidden" value="0" class="res">
+                                            <div class="switch sw_6">
+                                                <label class="yes yes6" for="yes6">Yes</label>
+                                                <span></span>
+                                                <label class="no no6" for="no6">No</label>
+                                            </div>
                                         </div>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">PassiveSmoker</label>
+                                            <input type="radio" name="rdo2" id="yes2" />
+                                            <input type="radio" name="rdo2" id="no2" checked />
+                                            <input asp-for="PassiveSmoker" id="passiveSmoker" type="hidden" value="0" class="res">
+                                            <div class="switch sw_3">
+                                                <label class="yes yes2" for="yes2">Yes</label>
+                                                <span></span>
+                                                <label class="no no2" for="no2">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3 col-lg-3">
+                                            <label class="lbl">Snoring</label>
+                                            <input type="radio" name="rdo3" id="yes3" />
+                                            <input type="radio" name="rdo3" id="no3" checked />
+                                            <input asp-for="Snoring" id="snoring" type="hidden" value="0" class="res">
+                                            <div class="switch sw_4">
+                                                <label class="yes yes3" for="yes3">Yes</label>
+                                                <span></span>
+                                                <label class="no no3" for="no3">No</label>
+                                            </div>
+                                        </div>
+
                                     </div>
 
-                                    <button type="submit" class="submit mt-2">Send <i class="fas fa-paper-plane"></i></button>
+                                    <button type="submit" class="submit mt-3 w-100">Send <i class="fas fa-paper-plane"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -263,6 +343,94 @@
 <!-- ============ Model End ============= -->
 
 @section Scripts {
+    <script>
+        $("button.submit").click(function (e) {
+            e.preventDefault();
+
+            if ($("#age").val() < 1) {
+                Swal.fire({
+                    title: "Please Enter your age",
+                    icon: 'error',
+                    showCancelButton: true,
+                });
+            }
+            else if($("#age").val() > 110) {
+                Swal.fire({
+                    title: "Enter your age correctly",
+                    icon: 'error',
+                    showCancelButton: true,
+                });
+            }
+            else {
+                let model = {
+                    Age: $("#age").val(),
+                    Gender: $("#gender").val(),
+                    AirPollution: $("#airPollution").val(),
+                    Alcoholuse: $("#alcoholuse").val(),
+                    DustAllergy: $("#dustAllergy").val(),
+                    OccuPationalHazards: $("#occuPationalHazards").val(),
+                    GeneticRisk: $("#geneticRisk").val(),
+                    ChronicLungDisease: $("#chronicLungDisease").val(),
+                    BalancedDiet: $("#balancedDiet").val(),
+                    Obesity: $("#obesity").val(),
+                    Smoking: $("#smoking").val(),
+                    PassiveSmoker: $("#passiveSmoker").val(),
+                    ChestPain: $("#chestPain").val(),
+                    CoughingofBlood: $("#coughingofBlood").val(),
+                    Fatigue: $("#fatigue").val(),
+                    WeightLoss: $("#weightLoss").val(),
+                    ShortnessofBreath: $("#shortnessofBreath").val(),
+                    Wheezing: $("#wheezing").val(),
+                    SwallowingDifficulty: $("#swallowingDifficulty").val(),
+                    ClubbingofFingerNail: $("#clubbingofFingerNail").val(),
+                    FrequentCold: $("#frequentCold").val(),
+                    DryCough: $("#dryCough").val(),
+                    Snoring: $("#snoring").val(),
+                }
+                
+                let ajaxDiv = $(this).parent().parent().parent().parent().parent().find("div.ajaxbg");
+                ajaxDiv.removeClass("d-none");
+
+                $.ajax({
+                    url: '/Model/LungCancer',
+                    type: 'POST',
+                    data: model,    
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data.message);
+                        ajaxDiv.find("img").addClass("d-none");
+                        setTimeout(() => {
+                            ajaxDiv.animate({ opacity: 0 }, function () {
+                                $(this).addClass("d-none").fadeTo(.1, 1);
+                                $(this).find("img").removeClass("d-none");
+                            });
+                        });
+
+                        if (data.success) {
+                            Swal.fire({
+                                title: data.message,
+                                icon: 'info',
+                                showCancelButton: true,
+                                confirmButtonText: 'Save',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire('Saved!', '', 'success')
+                                }
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                title: data.message,
+                                icon: 'error',
+                                showCancelButton: true,
+                            });
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
     <script>
         $("a.upload").click(function (e) {
             e.preventDefault();
@@ -321,6 +489,7 @@
         });
 
     </script>
+    <script src="~/js/model.js"></script>
     @{
         await Html.RenderPartialAsync("_Notification");
     }
