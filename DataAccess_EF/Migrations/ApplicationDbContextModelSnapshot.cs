@@ -362,11 +362,11 @@ namespace DataAccess_EF.Migrations
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("ImageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageName")
+                    b.Property<string>("PatientName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -467,6 +467,40 @@ namespace DataAccess_EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TbSpecialization");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbTuberculosis", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TbTuberculosis");
                 });
 
             modelBuilder.Entity("Domain.Models.TdRegistrationRequests", b =>
@@ -782,6 +816,17 @@ namespace DataAccess_EF.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Comment");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbTuberculosis", b =>
+                {
+                    b.HasOne("Domain.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

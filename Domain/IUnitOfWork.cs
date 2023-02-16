@@ -25,6 +25,7 @@ namespace Domain
         IRegistrationRequestsRepository TdRegistrationRequests { get; }
         IAdviceRequestRepository TbAdviceRequests { get; }
         IPneumoniaRepository TbPneumonias { get; }
+        ITuberculosisRepository TbTuberculosis { get; }
 
 
         Task<int> Complete();

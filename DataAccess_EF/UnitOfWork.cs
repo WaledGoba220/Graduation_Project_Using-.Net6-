@@ -27,6 +27,7 @@ namespace DataAccess_EF
         public IRegistrationRequestsRepository TdRegistrationRequests { get; private set; }
         public IAdviceRequestRepository TbAdviceRequests { get; private set; }
         public IPneumoniaRepository TbPneumonias { get; private set; }
+        public ITuberculosisRepository TbTuberculosis { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -46,6 +47,7 @@ namespace DataAccess_EF
             TdRegistrationRequests = new RegistrationRequestsRepository(context);
             TbAdviceRequests = new AdviceRequestsRepository(context);
             TbPneumonias = new PneumoniaRepository(context);
+            TbTuberculosis = new TuberculosisRepository(context);
         }
 
         public async Task<int> Complete()

@@ -1,6 +1,8 @@
 ﻿using Domain;
+using Domain.Models;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
@@ -8,22 +10,29 @@ using Newtonsoft.Json;
 using RestSharp;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using Utility.Consts;
 
 namespace Graduation_Project.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = Roles.Doctor)]
     public class ModelController : Controller
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment _env;
+        private IUnitOfWork _unitOfWork;
         private const string BaseUrl = "https://goba.onrender.com"; 
-        public ModelController(IUnitOfWork unitOfWork, IWebHostEnvironment env)
+        public ModelController(IUnitOfWork unitOfWork, IWebHostEnvironment env, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _env = env;
+            _userManager = userManager;
         }
 
-        private async Task<string> GetPathFromFile(IFormFile file)
+        private async Task<ApplicationUser> GetCurrentUser()
+        {
+            return await _userManager.GetUserAsync(User);
+        }
+        private async Task<List<string>> GetPathAndNameFromFile(IFormFile file)
         {
             var _fileName = file.FileName;
             string newName = Guid.NewGuid().ToString();
@@ -37,7 +46,11 @@ namespace Graduation_Project.Controllers
                 await file.CopyToAsync(fs);
             }
 
-            return path;
+            var list = new List<string>();
+            list.Add(fileName);
+            list.Add(path);
+
+            return list;
         }
 
 
@@ -47,12 +60,14 @@ namespace Graduation_Project.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Pneumonia(IFormFile file)
+        public async Task<IActionResult> Pneumonia(ModelFileVm model)
         {
-            if(file is null)
+            if(model.File is null)
                 return Json(new { success = false, message = "Please Choose Image" });
             
-            string path = await GetPathFromFile(file);
+            List<string> list = await GetPathAndNameFromFile(model.File);
+
+            string path = list[1];
             var client = new RestClient(BaseUrl);
             var request = new RestRequest("/pneumonia/predict")
                 .AddParameter("Name", "de.json")
@@ -64,7 +79,7 @@ namespace Graduation_Project.Controllers
 
             double result = Convert.ToDouble(array[3]) * 100;
 
-            string message;
+            string message = String.Empty;
             if (result <= 30)
             {
                 message = "Normal";
@@ -79,16 +94,39 @@ namespace Graduation_Project.Controllers
                 message = "Positive Pneumonia";
             }
 
+            // Save Data
+            TbPneumonia tbPneumonia = new()
+            {
+                ImageName = list[0],
+                PatientName = model.PatientName,
+                Status = message,
+            };
+            await SavePneumonia(tbPneumonia);
+
             return Json(new { success = true, message = message });
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Tuberculosis(IFormFile file)
+        public async Task<IActionResult> SavePneumonia(TbPneumonia model)
         {
-            if (file is null)
+            var currentUser = await GetCurrentUser();
+            model.UserId = currentUser.Id;
+
+            await _unitOfWork.TbPneumonias.AddAsync(model);
+            await _unitOfWork.Complete();
+
+            return Json(new { success = true });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Tuberculosis(ModelFileVm model)
+        {
+            if (model.File is null)
                 return Json(new { success = false, message = "Please Choose Image" });
 
-            string path = await GetPathFromFile(file);
+            List<string> list = await GetPathAndNameFromFile(model.File);
+
+            string path = list[1];
             var client = new RestClient(BaseUrl);
             var request = new RestRequest("/tuberculosis/predict")
                 .AddParameter("Name", "de.json")
@@ -100,7 +138,7 @@ namespace Graduation_Project.Controllers
 
             double result = Convert.ToDouble(array[3]) * 100;
 
-            string message;
+            string message = String.Empty;
             if (result <= 30)
             {
                 message = "Normal";
@@ -115,8 +153,29 @@ namespace Graduation_Project.Controllers
                 message = "Positive Tuberculosis";
             }
 
+            // Save Data
+            TbTuberculosis tbTuberculosis = new()
+            {
+                ImageName = list[0],
+                PatientName = model.PatientName,
+                Status = message,
+            };
+            await SaveTuberculosis(tbTuberculosis);
+
             return Json(new { success = true, message = message });
         }
+
+        public async Task<IActionResult> SaveTuberculosis(TbTuberculosis model)
+        {
+            var currentUser = await GetCurrentUser();
+            model.UserId = currentUser.Id;
+
+            await _unitOfWork.TbTuberculosis.AddAsync(model);
+            await _unitOfWork.Complete();
+
+            return Json(new { success = true });
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> LungCancer(LungCancerVM model)

@@ -1,4 +1,4 @@
-﻿@model LungCancerVM
+﻿@model ModelPageVM
 
 @{
     ViewData["Title"] = "Diseases Detection";
@@ -49,7 +49,10 @@
                                     Drop image here or click to upload
                                 </span>
                                 <i class="fas fa-upload"></i>
-                                <input type="file" name="file" class="drop-zone__input">
+                                <input asp-for="ModelFile.File" type="file" name="file" class="drop-zone__input">
+                            </div>
+                            <div class="form-group mb-3 mt-4">
+                                <input placeholder="Enter Patient Name" class="PatientName" asp-for="ModelFile.PatientName" type="text" name="PatientName">
                             </div>
                             <a class="btn btn-success upload">Upload <i class="fas fa-upload"></i></a>
                         </form>
@@ -64,7 +67,10 @@
                                     Drop image here or click to upload
                                 </span>
                                 <i class="fas fa-upload"></i>
-                                <input type="file" name="file" class="drop-zone__input">
+                                <input asp-for="ModelFile.File" type="file" name="file" class="drop-zone__input">
+                            </div>
+                            <div class="form-group mb-3 mt-4">
+                                <input placeholder="Enter Patient Name" class="PatientName" asp-for="ModelFile.PatientName" type="text" name="PatientName">
                             </div>
                             <a class="btn btn-success upload">Upload <i class="fas fa-upload"></i></a>
                         </form>
@@ -80,23 +86,27 @@
                             <div class="card-body">
                                 <form id="lungCancer" >
                                     <div class="row">
+                                        <div class="form-group mb-2 col-lg-12">
+                                            <label class="lbl" for="PatientName">Patien tName</label>
+                                            <input id="PatientName" type="number" asp-for="LungCancer.PatientName">
+                                        </div>
                                         <div class="form-group mb-2 col-lg-6">
                                             <label class="lbl" for="gender">Gender</label>
-                                            <select class="round" name="" id="gender" asp-for="Gender">
+                                            <select class="round" name="" id="gender" asp-for="LungCancer.Gender">
                                                 <option value="1">Male</option>
                                                 <option value="2">Female</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-2 col-lg-6">
                                             <label class="lbl" for="age">Age</label>
-                                            <input id="age" type="number" asp-for="Age">
+                                            <input id="age" type="number" asp-for="LungCancer.Age">
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
                                             <label class="lbl">AirPollution</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement'>&ndash;</div>
                                                 <div class='ctrl__counter'>
-                                                    <input asp-for="AirPollution" id="airPollution" class='ctrl__counter-input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.AirPollution" id="airPollution" class='ctrl__counter-input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment'>+</div>
@@ -107,7 +117,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement decrement_ctrl_2'>&ndash;</div>
                                                 <div class='ctrl__counter counter_ctrl_2'>
-                                                    <input asp-for="DustAllergy" id="dustAllergy" class='ctrl__counter-input input_ctrl_2 d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.DustAllergy" id="dustAllergy" class='ctrl__counter-input input_ctrl_2 d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num num_ctrl_2'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment increment_ctrl_2'>+</div>
@@ -118,7 +128,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_3_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_3_counter'>
-                                                    <input asp-for="OccuPationalHazards" id="occuPationalHazards" class='ctrl__counter-input ctrl_3_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.OccuPationalHazards" id="occuPationalHazards" class='ctrl__counter-input ctrl_3_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_3_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_3_increment'>+</div>
@@ -129,7 +139,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_4_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_4_counter'>
-                                                    <input asp-for="GeneticRisk" id="geneticRisk" class='ctrl__counter-input ctrl_4_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.GeneticRisk" id="geneticRisk" class='ctrl__counter-input ctrl_4_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_4_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_4_increment'>+</div>
@@ -140,7 +150,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_5_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_5_counter'>
-                                                    <input asp-for="ChronicLungDisease" id="chronicLungDisease" class='ctrl__counter-input ctrl_5_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.ChronicLungDisease" id="chronicLungDisease" class='ctrl__counter-input ctrl_5_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_5_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_5_increment'>+</div>
@@ -151,7 +161,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_6_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_6_counter'>
-                                                    <input asp-for="BalancedDiet" id="balancedDiet" class='ctrl__counter-input ctrl_6_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.BalancedDiet" id="balancedDiet" class='ctrl__counter-input ctrl_6_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_6_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_6_increment'>+</div>
@@ -162,7 +172,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_7_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_7_counter'>
-                                                    <input asp-for="Obesity" id="obesity" class='ctrl__counter-input ctrl_7_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.Obesity" id="obesity" class='ctrl__counter-input ctrl_7_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_7_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_7_increment'>+</div>
@@ -173,7 +183,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_8_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_8_counter'>
-                                                    <input asp-for="ChestPain" id="chestPain" class='ctrl__counter-input ctrl_8_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.ChestPain" id="chestPain" class='ctrl__counter-input ctrl_8_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_8_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_8_increment'>+</div>
@@ -184,7 +194,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_9_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_9_counter'>
-                                                    <input asp-for="CoughingofBlood" id="coughingofBlood" class='ctrl__counter-input ctrl_9_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.CoughingofBlood" id="coughingofBlood" class='ctrl__counter-input ctrl_9_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_9_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_9_increment'>+</div>
@@ -195,7 +205,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_10_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_10_counter'>
-                                                    <input asp-for="Fatigue" id="fatigue" class='ctrl__counter-input ctrl_10_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.Fatigue" id="fatigue" class='ctrl__counter-input ctrl_10_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_10_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_10_increment'>+</div>
@@ -206,7 +216,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_11_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_11_counter'>
-                                                    <input asp-for="WeightLoss" id="weightLoss" class='ctrl__counter-input ctrl_11_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.WeightLoss" id="weightLoss" class='ctrl__counter-input ctrl_11_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_11_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_11_increment'>+</div>
@@ -217,7 +227,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_12_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_12_counter'>
-                                                    <input asp-for="ShortnessofBreath" id="shortnessofBreath" class='ctrl__counter-input ctrl_12_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.ShortnessofBreath" id="shortnessofBreath" class='ctrl__counter-input ctrl_12_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_12_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_12_increment'>+</div>
@@ -228,7 +238,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_13_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_13_counter'>
-                                                    <input asp-for="Wheezing" id="wheezing" class='ctrl__counter-input ctrl_13_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.Wheezing" id="wheezing" class='ctrl__counter-input ctrl_13_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_13_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_13_increment'>+</div>
@@ -239,7 +249,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_14_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_14_counter'>
-                                                    <input asp-for="SwallowingDifficulty" id="swallowingDifficulty" class='ctrl__counter-input ctrl_14_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.SwallowingDifficulty" id="swallowingDifficulty" class='ctrl__counter-input ctrl_14_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_14_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_14_increment'>+</div>
@@ -250,7 +260,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_15_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_15_counter'>
-                                                    <input asp-for="ClubbingofFingerNail" id="clubbingofFingerNail" class='ctrl__counter-input ctrl_15_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.ClubbingofFingerNail" id="clubbingofFingerNail" class='ctrl__counter-input ctrl_15_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_15_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_15_increment'>+</div>
@@ -261,7 +271,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_16_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_16_counter'>
-                                                    <input asp-for="FrequentCold" id="frequentCold" class='ctrl__counter-input ctrl_16_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.FrequentCold" id="frequentCold" class='ctrl__counter-input ctrl_16_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_16_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_16_increment'>+</div>
@@ -272,7 +282,7 @@
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_17_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_17_counter'>
-                                                    <input asp-for="DryCough" id="dryCough" class='ctrl__counter-input ctrl_17_input d-none' maxlength='10' type='text' value='0'>
+                                                    <input asp-for="LungCancer.DryCough" id="dryCough" class='ctrl__counter-input ctrl_17_input d-none' maxlength='10' type='text' value='0'>
                                                     <div class='ctrl__counter-num ctrl_17_num'>0</div>
                                                 </div>
                                                 <div class='ctrl__button ctrl__button--increment ctrl_17_increment'>+</div>
@@ -282,7 +292,7 @@
                                             <label class="lbl">Alcoholuse</label>
                                             <input type="radio" name="rdo" id="yes5" />
                                             <input type="radio" name="rdo" id="no5" checked />
-                                            <input asp-for="Alcoholuse" id="alcoholuse" type="hidden" value="0" class="res">
+                                            <input asp-for="LungCancer.Alcoholuse" id="alcoholuse" type="hidden" value="0" class="res">
                                             <div class="switch sw_5">
                                                 <label class="yes yes5" for="yes5">Yes</label>
                                                 <span></span>
@@ -293,7 +303,7 @@
                                             <label class="lbl">Smoking</label>
                                             <input type="radio" name="rdo1" id="yes6" />
                                             <input type="radio" name="rdo1" id="no6" checked />
-                                            <input asp-for="Smoking" id="smoking" type="hidden" value="0" class="res">
+                                            <input asp-for="LungCancer.Smoking" id="smoking" type="hidden" value="0" class="res">
                                             <div class="switch sw_6">
                                                 <label class="yes yes6" for="yes6">Yes</label>
                                                 <span></span>
@@ -304,7 +314,7 @@
                                             <label class="lbl">PassiveSmoker</label>
                                             <input type="radio" name="rdo2" id="yes2" />
                                             <input type="radio" name="rdo2" id="no2" checked />
-                                            <input asp-for="PassiveSmoker" id="passiveSmoker" type="hidden" value="0" class="res">
+                                            <input asp-for="LungCancer.PassiveSmoker" id="passiveSmoker" type="hidden" value="0" class="res">
                                             <div class="switch sw_3">
                                                 <label class="yes yes2" for="yes2">Yes</label>
                                                 <span></span>
@@ -315,7 +325,7 @@
                                             <label class="lbl">Snoring</label>
                                             <input type="radio" name="rdo3" id="yes3" />
                                             <input type="radio" name="rdo3" id="no3" checked />
-                                            <input asp-for="Snoring" id="snoring" type="hidden" value="0" class="res">
+                                            <input asp-for="LungCancer.Snoring" id="snoring" type="hidden" value="0" class="res">
                                             <div class="switch sw_4">
                                                 <label class="yes yes3" for="yes3">Yes</label>
                                                 <span></span>
@@ -347,7 +357,14 @@
         $("button.submit").click(function (e) {
             e.preventDefault();
 
-            if ($("#age").val() < 1) {
+            if($("#PatientName").val() == '') {
+                Swal.fire({
+                    title: "Please Enter Patient Name",
+                    icon: 'error',
+                    showCancelButton: true,
+                });
+            }
+            else if ($("#age").val() < 1) {
                 Swal.fire({
                     title: "Please Enter your age",
                     icon: 'error',
@@ -363,6 +380,7 @@
             }
             else {
                 let model = {
+                    PatientName: $("#PatientName").val(),
                     Age: $("#age").val(),
                     Gender: $("#gender").val(),
                     AirPollution: $("#airPollution").val(),
@@ -435,59 +453,63 @@
         $("a.upload").click(function (e) {
             e.preventDefault();
 
-            var formData = new FormData();
-            formData.append('file', $(this).parent().find("input.drop-zone__input")[0].files[0]); // myFile is the input type="file" control
-
-            let ajaxDiv = $(this).parent().parent().parent().find("div.ajaxbg");
-            ajaxDiv.removeClass("d-none");
-
-            let _url;
-            if ($(this).parent().attr('id') == "pneumonia") {
-                _url = '/Model/Pneumonia';
+            if ($(this).parent().find(".PatientName").val() == '') {
+                Swal.fire({
+                    title: "Please Enter Patient Name",
+                    icon: 'error',
+                    showCancelButton: true,
+                });
             }
-            else if ($(this).parent().attr('id') == "tuberculosis") {
-                _url = '/Model/Tuberculosis';
-            }
+            else {
+                var formData = new FormData();
+                formData.append('file', $(this).parent().find("input.drop-zone__input")[0].files[0]); // myFile is the input type="file" control
+                formData.append('PatientName', $(this).parent().find(".PatientName").val());
 
-            $.ajax({
-                url: _url,
-                type: 'POST',
-                data: formData,
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    ajaxDiv.find("img").addClass("d-none");
-                    setTimeout(() => {
-                        ajaxDiv.animate({ opacity: 0 }, function () {
-                            $(this).addClass("d-none").fadeTo(.1, 1);
-                            $(this).find("img").removeClass("d-none");
-                        });
-                    });
-
-                    if (data.success) {
-                        Swal.fire({
-                            title: data.message,
-                            icon: 'info',
-                            showCancelButton: true,
-                            confirmButtonText: 'Save',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                Swal.fire('Saved!', '', 'success')
-                            }
-                        });
-                    }
-                    else {
-                        Swal.fire({
-                            title: data.message,
-                            icon: 'error',
-                            showCancelButton: true,
-                        });
-                    }
+                let _url;
+                if ($(this).parent().attr('id') == "pneumonia") {
+                    _url = '/Model/Pneumonia';
                 }
-            })
-        });
+                else if ($(this).parent().attr('id') == "tuberculosis") {
+                    _url = '/Model/Tuberculosis';
+                }
 
+                let ajaxDiv = $(this).parent().parent().parent().find("div.ajaxbg");
+                ajaxDiv.removeClass("d-none");
+
+                $.ajax({
+                    url: _url,
+                    type: 'POST',
+                    data: formData,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        ajaxDiv.find("img").addClass("d-none");
+                        setTimeout(() => {
+                            ajaxDiv.animate({ opacity: 0 }, function () {
+                                $(this).addClass("d-none").fadeTo(.1, 1);
+                                $(this).find("img").removeClass("d-none");
+                            });
+                        });
+
+                        if (data.success) {
+                            Swal.fire({
+                                title: data.message,
+                                icon: 'success',
+                                showCancelButton: true
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                title: data.message,
+                                icon: 'error',
+                                showCancelButton: true,
+                            });
+                        }
+                    }
+                })
+            }
+        });
     </script>
     <script src="~/js/model.js"></script>
     @{

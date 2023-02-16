@@ -7125,7 +7125,6 @@ a {
 
 .model .upload {
     width: 100%;
-    margin-top: 18px;
     font-size: 22px !important;
     padding: 15px 0 !important;
     line-height: 0 !important;
@@ -7952,4 +7951,16 @@ input[type=radio] {
 .hardware .submit {
     font-size: 18px;
     font-weight: 600;
+}
+
+.pages .PatientName {
+    border: 1px solid var(--primary-dark-color);
+    background-color: white !important;
+    font-size: 18px;
+    color: var(--primary-dark-color);
+    font-weight: 600;
+}
+
+.pages .PatientName::placeholder {
+    color: #8c8c8d;
 }
