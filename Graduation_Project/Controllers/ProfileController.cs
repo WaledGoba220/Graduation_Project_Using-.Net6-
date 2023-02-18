@@ -41,7 +41,7 @@ namespace Graduation_Project.Controllers
                 bool doctor = await _unitOfWork.TbDoctors.FindAsync(a => a.AppUserId == currentUser.Id);
                 if(doctor == true)
                 {
-                    model.Doctor = await _unitOfWork.TbDoctors.GetFirstOrDefaultAsync(a=>a.AppUserId == currentUser.Id, new[] { "Specialization", "ClinicImages" });
+                    model.Doctor = await _unitOfWork.TbDoctors.GetFirstOrDefaultAsync(a=>a.AppUserId == currentUser.Id, new[] { "Specialization", "ClinicImages", "Pneumonias", "Tuberculosis" });
                     model.ViewsCount = await _unitOfWork.TbDoctorViewsCounts.GetFirstOrDefaultAsync(a => a.DoctorId == model.Doctor.Id);
 
                     var getRatingByDoctorId = await _unitOfWork.TbRatings.GetWhereAsync(a => a.DoctorId == model.Doctor.Id);

@@ -15,6 +15,8 @@ namespace Domain.Models
             ClinicImages = new HashSet<TbClinicImage>();
             Advices = new HashSet<TbAdvice>();
             Ratings = new HashSet<TbRating>();
+            Pneumonias = new HashSet<TbPneumonia>();
+            Tuberculosis = new HashSet<TbTuberculosis>();
         }
         public int Id { get; set; }
         public string? Clinic { get; set; }
@@ -35,5 +37,7 @@ namespace Domain.Models
         public virtual ICollection<TbClinicImage>? ClinicImages { get; set; }
         public virtual ICollection<TbAdvice>? Advices { get; set; }
         public virtual ICollection<TbRating>? Ratings { get; set; }
+        public virtual ICollection<TbPneumonia>? Pneumonias { get; set; }
+        public virtual ICollection<TbTuberculosis>? Tuberculosis { get; set; }
     }
 }

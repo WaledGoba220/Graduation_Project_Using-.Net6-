@@ -15,10 +15,10 @@ namespace Domain.Models
         public string Status { get; set; }
         public DateTime CreationDateTime { get; set; } = DateTime.Now;
 
-        [ForeignKey("User")]
-        public string UserId { get; set; }
+        [ForeignKey("Doctor")]
+        public int DoctorId { get; set; }
 
         // Relations
-        public ApplicationUser? User { get; set; }
+        public TbDoctor? Doctor { get; set; }
     }
 }

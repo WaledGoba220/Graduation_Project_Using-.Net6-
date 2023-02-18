@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "N1LuD6bV0ErZDxvkOQk0kNlOwOzzHDgUCdNzoy8iUzs=",
+  "Hash": "QgNCZaKNyUPKQ40vB8P49v8vm/YVQz6ewON4MR7CZuc=",
   "Source": "Graduation_Project",
   "BasePath": "_content/Graduation_Project",
   "Mode": "Default",
@@ -6171,6 +6171,23 @@
       "OriginalItemSpec": "wwwroot\\Models\\2bb6950c-50b3-4bac-af36-9b7ad2329025.png"
     },
     {
+      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\Models\\2fbf5d3c-1855-400e-906b-18b35973fc85.png",
+      "SourceId": "Graduation_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\",
+      "BasePath": "_content/Graduation_Project",
+      "RelativePath": "Models/2fbf5d3c-1855-400e-906b-18b35973fc85.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Models\\2fbf5d3c-1855-400e-906b-18b35973fc85.png"
+    },
+    {
       "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\Models\\305b1067-c82b-4ba7-902d-6055c33d3510.jpeg",
       "SourceId": "Graduation_Project",
       "SourceType": "Discovered",
@@ -6426,6 +6443,23 @@
       "OriginalItemSpec": "wwwroot\\Models\\53430199-b1ec-4372-b6ee-943563d70917.jpeg"
     },
     {
+      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\Models\\5d918bbe-a875-4076-a739-632b27b991ca.png",
+      "SourceId": "Graduation_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\",
+      "BasePath": "_content/Graduation_Project",
+      "RelativePath": "Models/5d918bbe-a875-4076-a739-632b27b991ca.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Models\\5d918bbe-a875-4076-a739-632b27b991ca.png"
+    },
+    {
       "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\Models\\6129eec9-b0b8-4e0e-acb8-b15fd9241d2b.png",
       "SourceId": "Graduation_Project",
       "SourceType": "Discovered",
@@ -6441,6 +6475,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Models\\6129eec9-b0b8-4e0e-acb8-b15fd9241d2b.png"
+    },
+    {
+      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\Models\\630d06a1-6442-4b4f-9629-8f731cc7ec60.jpeg",
+      "SourceId": "Graduation_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\",
+      "BasePath": "_content/Graduation_Project",
+      "RelativePath": "Models/630d06a1-6442-4b4f-9629-8f731cc7ec60.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Models\\630d06a1-6442-4b4f-9629-8f731cc7ec60.jpeg"
     },
     {
       "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\Models\\693f6f9a-56c0-413b-9c40-52046e1076d0.png",
@@ -6968,6 +7019,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Models\\e57d5d9c-ce37-45c5-973f-895b0c2882e0.jpeg"
+    },
+    {
+      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\Models\\e5fae707-5086-4be9-8aaa-8e8fb59f9d9f.png",
+      "SourceId": "Graduation_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\",
+      "BasePath": "_content/Graduation_Project",
+      "RelativePath": "Models/e5fae707-5086-4be9-8aaa-8e8fb59f9d9f.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Models\\e5fae707-5086-4be9-8aaa-8e8fb59f9d9f.png"
     },
     {
       "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\Models\\e6dd0562-fe73-4174-8c1c-5249ab9be8df.jpeg",

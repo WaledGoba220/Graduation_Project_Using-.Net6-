@@ -109,7 +109,7 @@ namespace Graduation_Project.Controllers
         public async Task<IActionResult> SavePneumonia(TbPneumonia model)
         {
             var currentUser = await GetCurrentUser();
-            model.UserId = currentUser.Id;
+            model.DoctorId = await _unitOfWork.TbDoctors.GetIdByUserIdAsync(currentUser.Id);
 
             await _unitOfWork.TbPneumonias.AddAsync(model);
             await _unitOfWork.Complete();
@@ -168,7 +168,7 @@ namespace Graduation_Project.Controllers
         public async Task<IActionResult> SaveTuberculosis(TbTuberculosis model)
         {
             var currentUser = await GetCurrentUser();
-            model.UserId = currentUser.Id;
+            model.DoctorId = await _unitOfWork.TbDoctors.GetIdByUserIdAsync(currentUser.Id);
 
             await _unitOfWork.TbTuberculosis.AddAsync(model);
             await _unitOfWork.Complete();
@@ -209,7 +209,6 @@ namespace Graduation_Project.Controllers
                 DryCough= model.DryCough,
                 Snoring= model.Snoring
             };
-
             var bodyy = JsonConvert.SerializeObject(body);
             request.AddBody(bodyy, "application/json");
 
