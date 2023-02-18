@@ -7041,7 +7041,9 @@ a {
     }
 
 .account .page .card-header {
-    font-size: 18px;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--primary-dark-color);
 }
 
 /* End historical for modle */

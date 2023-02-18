@@ -24,6 +24,17 @@
             height: auto !important;
             line-height: 22px !important; 
         }
+
+        td .td_active {
+            font-size: 13px;
+            padding: 6px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            color: #fff;
+        }
+        .bg-olive  {
+            background-color: #317c5b;
+        }
     </style>
 }
 
@@ -369,29 +380,89 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach (var item in Model.Doctor.Pneumonias!)
+                                                    @if (Model.Doctor is not null)
                                                     {
-                                                        
-                                                        <tr class="odd">
-                                                            <td>
-                                                                <img style="border-radius: 2px;" width="50" height="50" src="@string.Format("/Models/{0}", item.ImageName)" />
-                                                            </td>
-                                                            <td>@item.PatientName</td>
-                                                            <td>
-                                                                <span class="active bg-secondary">@item.Status</span>
-                                                            </td> 
-                                                            <td>
-                                                                @item.CreationDateTime.ToShortDateString()
-                                                            </td>
+                                                        @foreach (var item in Model!.Doctor!.Pneumonias!.OrderByDescending(a=>a.CreationDateTime))
+                                                        {
+                                                            <tr class="odd">
+                                                                <td>
+                                                                    <img style="border-radius: 2px; width: 40px; height: 40px;" src="@string.Format("/Models/{0}", item.ImageName)" />
+                                                                </td>
+                                                                <td>@item.PatientName</td>
+                                                                <td>
+                                                                    <span class="td_active @(item.Status.Contains("Normal")? "bg-olive" : "bg-danger")">@item.Status</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="moment-date">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
+                                                                </td>
+                                                                <td>
+                                                                    <button onclick=Delete("/Model/DeletePneumonia/@item.Id") class="btn btn-sm btn-danger">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                                            <td>
-                                                                <button onclick=Delete("/Model/DeletePneumonia/@item.Id") class="btn btn-sm btn-danger">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                            
-                                                     }
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                Historical of Tuberculosis
+                            </div>
+                            <div class="card-body">
+                                <div id="example3_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Image
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Patient Name
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Status
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Date and Time
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                                                            Actions
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model.Doctor is not null)
+                                                    {
+                                                        @foreach (var item in Model!.Doctor!.Tuberculosis!.OrderByDescending(a=>a.CreationDateTime))
+                                                        {
+                                                            <tr class="odd">
+                                                                <td>
+                                                                    <img style="border-radius: 2px; width: 40px; height: 40px;" src="@string.Format("/Models/{0}", item.ImageName)" />
+                                                                </td>
+                                                                <td>@item.PatientName</td>
+                                                                <td>
+                                                                    <span class="td_active @(item.Status.Contains("Normal")? "bg-olive" : "bg-danger")">@item.Status</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="moment-date">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
+                                                                </td>
+                                                                <td>
+                                                                    <button onclick=Delete("/Model/DeleteTuberculosis/@item.Id") class="btn btn-sm btn-danger">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
                                                 </tbody>
                                             </table>
                                         </div>
@@ -489,15 +560,10 @@
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+            $("#example3").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
         });
     </script>
     @{
