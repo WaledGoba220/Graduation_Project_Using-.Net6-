@@ -59,6 +59,7 @@ namespace Graduation_Project.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Pneumonia(ModelFileVm model)
         {
@@ -105,7 +106,6 @@ namespace Graduation_Project.Controllers
 
             return Json(new { success = true, message = message });
         }
-
         public async Task<IActionResult> SavePneumonia(TbPneumonia model)
         {
             var currentUser = await GetCurrentUser();
@@ -164,7 +164,6 @@ namespace Graduation_Project.Controllers
 
             return Json(new { success = true, message = message });
         }
-
         public async Task<IActionResult> SaveTuberculosis(TbTuberculosis model)
         {
             var currentUser = await GetCurrentUser();
@@ -221,8 +220,21 @@ namespace Graduation_Project.Controllers
             else
                 message = "Positive Lung Cancer";
 
+            // Save Data
+            model.Status = message;
+            await SaveLungCancer(model);
+
             return Json(new { success = true, message = message });
         }
+        public async Task<IActionResult> SaveLungCancer(TbLungCancer model)
+        {
+            var currentUser = await GetCurrentUser();
+            model.DoctorId = await _unitOfWork.TbDoctors.GetIdByUserIdAsync(currentUser.Id);
 
+            await _unitOfWork.TbLungCancer.AddAsync(model);
+            await _unitOfWork.Complete();
+
+            return Json(new { success = true });
+        }
     }
 }
