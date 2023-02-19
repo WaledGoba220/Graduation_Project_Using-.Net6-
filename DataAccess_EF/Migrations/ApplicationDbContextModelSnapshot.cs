@@ -351,6 +351,104 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("TbDoctorViewsCounts");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbLungCancer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AirPollution")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Alcoholuse")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BalancedDiet")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ChestPain")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ChronicLungDisease")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClubbingofFingerNail")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CoughingofBlood")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DryCough")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DustAllergy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fatigue")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FrequentCold")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GeneticRisk")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Obesity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OccuPationalHazards")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PassiveSmoker")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ShortnessofBreath")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Smoking")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Snoring")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SwallowingDifficulty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WeightLoss")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wheezing")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("TbLungCancer");
+                });
+
             modelBuilder.Entity("Domain.Models.TbPneumonia", b =>
                 {
                     b.Property<int>("Id")
@@ -759,6 +857,17 @@ namespace DataAccess_EF.Migrations
                     b.Navigation("Doctor");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbLungCancer", b =>
+                {
+                    b.HasOne("Domain.Models.TbDoctor", "Doctor")
+                        .WithMany("LungCancers")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("Domain.Models.TbPneumonia", b =>
                 {
                     b.HasOne("Domain.Models.TbDoctor", "Doctor")
@@ -905,6 +1014,8 @@ namespace DataAccess_EF.Migrations
                     b.Navigation("Advices");
 
                     b.Navigation("ClinicImages");
+
+                    b.Navigation("LungCancers");
 
                     b.Navigation("Pneumonias");
 

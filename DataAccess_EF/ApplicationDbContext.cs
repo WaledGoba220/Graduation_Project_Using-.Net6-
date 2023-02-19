@@ -30,6 +30,7 @@ namespace DataAccess_EF
         public DbSet<TbAdviceRequest> TbAdviceRequests { get; set; }
         public DbSet<TbPneumonia> TbPneumonias { get; set; }
         public DbSet<TbTuberculosis> TbTuberculosis { get; set; }
+        public DbSet<TbLungCancer> TbLungCancer { get; set; }
 
     }
 }

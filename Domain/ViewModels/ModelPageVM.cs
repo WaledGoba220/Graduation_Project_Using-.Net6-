@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Domain.ViewModels
 {
     public class ModelPageVM
     {
-        public LungCancerVM? LungCancer { get; set; }
+        public TbLungCancer? LungCancer { get; set; }
         public ModelFileVm? ModelFile { get; set; }
     }
 }

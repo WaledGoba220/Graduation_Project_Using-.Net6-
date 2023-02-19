@@ -178,7 +178,7 @@ namespace Graduation_Project.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> LungCancer(LungCancerVM model)
+        public async Task<IActionResult> LungCancer(TbLungCancer model)
         {
             var client = new RestClient(BaseUrl);
             var request = new RestRequest("Cancer/predict/", Method.Post);
