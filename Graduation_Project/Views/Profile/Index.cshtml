@@ -24,7 +24,6 @@
             height: auto !important;
             line-height: 22px !important; 
         }
-
         td .td_active {
             font-size: 13px;
             padding: 6px 10px;
@@ -34,6 +33,13 @@
         }
         .bg-olive  {
             background-color: #317c5b;
+        }
+        .lungCancer {
+            overflow-x: scroll !important;
+        }
+        .lungCancer tr,
+        .lungCancer tr span {
+            font-size: 11px !important;
         }
     </style>
 }
@@ -386,7 +392,7 @@
                                                         {
                                                             <tr class="odd">
                                                                 <td>
-                                                                    <img style="border-radius: 2px; width: 40px; height: 40px;" src="@string.Format("/Models/{0}", item.ImageName)" />
+                                                                    <img class="lazy" style="border-radius: 2px; width: 40px; height: 40px;" data-src="@string.Format("/Models/{0}", item.ImageName)" />
                                                                 </td>
                                                                 <td>@item.PatientName</td>
                                                                 <td>
@@ -396,7 +402,7 @@
                                                                     <span class="moment-date">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
                                                                 </td>
                                                                 <td>
-                                                                    <button onclick=Delete("/Model/DeletePneumonia/@item.Id") class="btn btn-sm btn-danger">
+                                                                    <button onclick=DeletePneumonia("/Model/DeletePneumonia/@item.Id") class="btn btn-sm btn-danger">
                                                                         <i class="fas fa-trash-alt"></i>
                                                                     </button>
                                                                 </td>
@@ -410,7 +416,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="card mt-4">
                             <div class="card-header">
                                 Historical of Tuberculosis
@@ -446,7 +451,7 @@
                                                         {
                                                             <tr class="odd">
                                                                 <td>
-                                                                    <img style="border-radius: 2px; width: 40px; height: 40px;" src="@string.Format("/Models/{0}", item.ImageName)" />
+                                                                    <img class="lazy" style="border-radius: 2px; width: 40px; height: 40px;" data-src="@string.Format("/Models/{0}", item.ImageName)" />
                                                                 </td>
                                                                 <td>@item.PatientName</td>
                                                                 <td>
@@ -456,7 +461,7 @@
                                                                     <span class="moment-date">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
                                                                 </td>
                                                                 <td>
-                                                                    <button onclick=Delete("/Model/DeleteTuberculosis/@item.Id") class="btn btn-sm btn-danger">
+                                                                    <button onclick=DeleteTuberculosis("/Model/DeleteTuberculosis/@item.Id") class="btn btn-sm btn-danger">
                                                                         <i class="fas fa-trash-alt"></i>
                                                                     </button>
                                                                 </td>
@@ -470,7 +475,153 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="card lungCancer mt-4">
+                            <div class="card-header">
+                                Historical of Lung Cancer
+                            </div>
+                            <div class="card-body">
+                                <div id="example4_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example4" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            PatientName
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Gender
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Age
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Status
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            AirPollution
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Alcoholuse
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            DustAllergy
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            OccuPationalHazards
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            GeneticRisk
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            ChronicLungDisease
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            BalancedDiet
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Obesity
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Smoking
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            PassiveSmoker
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            ChestPain
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            CoughingofBlood
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Fatigue
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            WeightLoss
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            ShortnessofBreath
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Wheezing
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            SwallowingDifficulty
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            ClubbingofFingerNail
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            FrequentCold
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            DryCough
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Snoring
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            Date&Time
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                                                            Actions
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model.Doctor is not null)
+                                                    {
+                                                        @foreach (var item in Model!.Doctor!.LungCancers!.OrderByDescending(a => a.CreationDateTime))
+                                                        {
+                                                            <tr class="odd">
+                                                                <td>@item.PatientName</td>
+                                                                <td>
+                                                                    <span class="td_active bg-primary">@(item.Gender == 1 ? "Male" : "Female")</span>
+                                                                </td>
+                                                                <td>@item.Age</td>
+                                                                <td>
+                                                                    <span class="td_active @(item.Status.Contains("Normal")? "bg-olive" : "bg-danger")">@item.Status</span>
+                                                                </td>
+                                                                <td>@item.AirPollution</td>
+                                                                <td>@item.Alcoholuse</td>
+                                                                <td>@item.DustAllergy</td>
+                                                                <td>@item.OccuPationalHazards</td>
+                                                                <td>@item.GeneticRisk</td>
+                                                                <td>@item.ChronicLungDisease</td>
+                                                                <td>@item.BalancedDiet</td>
+                                                                <td>@item.Obesity</td>
+                                                                <td>@item.Smoking</td>
+                                                                <td>@item.PassiveSmoker</td>
+                                                                <td>@item.ChestPain</td>
+                                                                <td>@item.CoughingofBlood</td>
+                                                                <td>@item.Fatigue</td>
+                                                                <td>@item.WeightLoss</td>
+                                                                <td>@item.ShortnessofBreath</td>
+                                                                <td>@item.Wheezing</td>
+                                                                <td>@item.SwallowingDifficulty</td>
+                                                                <td>@item.ClubbingofFingerNail</td>
+                                                                <td>@item.FrequentCold</td>
+                                                                <td>@item.DryCough</td>
+                                                                <td>@item.Snoring</td>
+                                                                <td>
+                                                                    <span class="moment-date">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
+                                                                </td>
+                                                                <td>
+                                                                    <button onclick=DeleteLungCancer("/Model/DeleteLungCancer/@item.Id") class="btn btn-sm btn-danger">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- End historical for modle -->
                     <!--==================================================================================-->
@@ -541,6 +692,7 @@
     <script src="~/js/profile.js" asp-append-version="true"></script>
     <script src="~/rev/veno-box/venobox.min.js"></script>
     <script src="~/ajax/ClinicImage.js"></script>
+    <script src="~/ajax/Model.js"></script>
     <!-- DataTables  & Plugins -->
     <script src="~/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="~/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -564,6 +716,10 @@
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+            $("#example4").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
         });
     </script>
     @{

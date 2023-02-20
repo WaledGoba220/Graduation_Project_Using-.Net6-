@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using RestSharp;
@@ -32,25 +33,21 @@ namespace Graduation_Project.Controllers
         {
             return await _userManager.GetUserAsync(User);
         }
-        private async Task<List<string>> GetPathAndNameFromFile(IFormFile file)
+        private async Task<string> GetPathAndNameFromFile(IFormFile file)
         {
             var _fileName = file.FileName;
             string newName = Guid.NewGuid().ToString();
             var extension = Path.GetExtension(_fileName);
-            var fileName = string.Concat(newName, extension);
+            var imageName = string.Concat(newName, extension);
             var root = _env.WebRootPath;
-            var path = Path.Combine(root, "Models", fileName);
+            var path = Path.Combine(root, "Models", imageName);
 
             using (var fs = System.IO.File.Create(path))
             {
                 await file.CopyToAsync(fs);
             }
 
-            var list = new List<string>();
-            list.Add(fileName);
-            list.Add(path);
-
-            return list;
+            return imageName;
         }
 
 
@@ -66,9 +63,9 @@ namespace Graduation_Project.Controllers
             if(model.File is null)
                 return Json(new { success = false, message = "Please Choose Image" });
             
-            List<string> list = await GetPathAndNameFromFile(model.File);
+            string imageName = await GetPathAndNameFromFile(model.File);
 
-            string path = list[1];
+            string path = Path.Combine(_env.WebRootPath, "Models", imageName);
             var client = new RestClient(BaseUrl);
             var request = new RestRequest("/pneumonia/predict")
                 .AddParameter("Name", "de.json")
@@ -98,7 +95,7 @@ namespace Graduation_Project.Controllers
             // Save Data
             TbPneumonia tbPneumonia = new()
             {
-                ImageName = list[0],
+                ImageName = imageName,
                 PatientName = model.PatientName,
                 Status = message,
             };
@@ -116,6 +113,28 @@ namespace Graduation_Project.Controllers
 
             return Json(new { success = true });
         }
+        [HttpPost]
+        public async Task<IActionResult> DeletePneumonia(int id)
+        {
+            var getPneumoniaById = await _unitOfWork.TbPneumonias.GetFirstOrDefaultAsync(a => a.Id == id);
+            if (getPneumoniaById is not null)
+            {
+                _unitOfWork.TbPneumonias.Delete(getPneumoniaById);
+
+                // Delete Image From wwwroot
+                var imagePath = Path.Combine(_env.WebRootPath, "Models", getPneumoniaById.ImageName);
+                if (System.IO.File.Exists(imagePath))
+                    System.IO.File.Delete(imagePath);
+
+                await _unitOfWork.Complete();
+
+                return Json(new { success = true, message = "Delete Row Successfully!" });
+            }
+            else
+            {
+                return Json(new { success = false, message = "This Row has already been Deleted" });
+            }
+        }
 
 
         [HttpPost]
@@ -124,9 +143,9 @@ namespace Graduation_Project.Controllers
             if (model.File is null)
                 return Json(new { success = false, message = "Please Choose Image" });
 
-            List<string> list = await GetPathAndNameFromFile(model.File);
+            string imageName = await GetPathAndNameFromFile(model.File);
 
-            string path = list[1];
+            string path = Path.Combine(_env.WebRootPath, "Models", imageName);
             var client = new RestClient(BaseUrl);
             var request = new RestRequest("/tuberculosis/predict")
                 .AddParameter("Name", "de.json")
@@ -156,7 +175,7 @@ namespace Graduation_Project.Controllers
             // Save Data
             TbTuberculosis tbTuberculosis = new()
             {
-                ImageName = list[0],
+                ImageName = imageName,
                 PatientName = model.PatientName,
                 Status = message,
             };
@@ -173,6 +192,28 @@ namespace Graduation_Project.Controllers
             await _unitOfWork.Complete();
 
             return Json(new { success = true });
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteTuberculosis(int id)
+        {
+            var getTuberculosisById = await _unitOfWork.TbTuberculosis.GetFirstOrDefaultAsync(a => a.Id == id);
+            if (getTuberculosisById is not null)
+            {
+                _unitOfWork.TbTuberculosis.Delete(getTuberculosisById);
+
+                // Delete Image From wwwroot
+                var imagePath = Path.Combine(_env.WebRootPath, "Models", getTuberculosisById.ImageName);
+                if (System.IO.File.Exists(imagePath))
+                    System.IO.File.Delete(imagePath);
+
+                await _unitOfWork.Complete();
+
+                return Json(new { success = true, message = "Delete Row Successfully!" });
+            }
+            else
+            {
+                return Json(new { success = false, message = "This Row has already been Deleted" });
+            }
         }
 
 
@@ -236,5 +277,23 @@ namespace Graduation_Project.Controllers
 
             return Json(new { success = true });
         }
+        [HttpPost]
+        public async Task<IActionResult> DeleteLungCancer(int id)
+        {
+            var getLungCancerById = await _unitOfWork.TbLungCancer.GetFirstOrDefaultAsync(a => a.Id == id);
+            if (getLungCancerById is not null)
+            {
+                _unitOfWork.TbLungCancer.Delete(getLungCancerById);
+
+                await _unitOfWork.Complete();
+
+                return Json(new { success = true, message = "Delete Row Successfully!" });
+            }
+            else
+            {
+                return Json(new { success = false, message = "This Row has already been Deleted" });
+            }
+        }
+
     }
 }
