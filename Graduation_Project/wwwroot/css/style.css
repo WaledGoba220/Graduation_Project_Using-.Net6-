@@ -7966,3 +7966,17 @@ input[type=radio] {
 .pages .PatientName::placeholder {
     color: #8c8c8d;
 }
+
+.language {
+    margin-right: 11px !important;
+}
+
+.lang {
+    margin-left: 50px;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 11px;
+    text-transform: capitalize !important;
+}

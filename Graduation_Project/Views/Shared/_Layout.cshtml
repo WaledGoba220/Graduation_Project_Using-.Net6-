@@ -1,9 +1,14 @@
-﻿@inject SignInManager<ApplicationUser> SignInManager
+﻿@using Microsoft.AspNetCore.Localization
+@inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
 @inject RoleManager<IdentityRole> RoleManager
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-       var currentUser = await UserManager.GetUserAsync(User);
+    var reqCulture = Context.Features.Get<IRequestCultureFeature>();
+    var culture = reqCulture.RequestCulture.Culture.Name;
+    bool isArabic = culture == "ar-SA";
+    var currentUser = await UserManager.GetUserAsync(User);
 }
 
 <!doctype html>
@@ -37,9 +42,18 @@
     <!-- Toaster -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
+    @if (isArabic)
+    {
+        <!-- Cairo Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+        <link href="~/css/app.rtl.css" asp-append-version="true" rel="stylesheet">
+    }
+
     @await RenderSectionAsync("Styles", required: false)
 </head>
-<body>
+<body dir=@(isArabic? "rtl": "ltr")>
 
     <!--============= header start ===============-->
     <header id="pq-header" class="pq-header-default ">
@@ -88,31 +102,47 @@
                                 <div id="pq-menu-contain" class="pq-menu-contain">
                                     <ul id="pq-main-menu" class="navbar-nav ml-auto">
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/" ? "current-menu-item" : "")">
-                                            <a asp-controller="Home" asp-action="Index">Home</a>
+                                            <a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                                         </li>
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/model" ? "current-menu-item" : "")">
-                                            <a asp-controller="Model" asp-action="Index">Diseases Detection</a>
+                                            <a asp-controller="Model" asp-action="Index">@Localizer["DiseasesDetection"]</a>
                                         </li>
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/advice" ? "current-menu-item" : "")">
                                             <a asp-controller="Advice" asp-action="Index">
-                                                Medical Advices
+                                                @Localizer["MedicalAdvices"]
                                             </a>
                                         </li>
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/about" ? "current-menu-item" : "")">
-                                            <a href="#">About</a>
+                                            <a href="#">@Localizer["About"]</a>
                                         </li>
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/contact" ? "current-menu-item" : "")">
                                             <a href="contact_us.html">
-                                                Contact Us
+                                                @Localizer["Contact"]
                                             </a>
                                         </li>
                                         @if (User.IsInRole(Roles.Admin)) {
                                             <li class="menu-item">
                                                 <a asp-area="Admin" asp-controller="Home" asp-action="Index">
-                                                    Dashboard
+                                                    @Localizer["Dashboard"]
                                                 </a>
                                             </li>
                                         }
+
+                                        @if (isArabic) {
+                                            <li class="language">
+                                                <a class="lang" href="/Home/SetCulture?Lang=ar-SA&returnUrl=@(Context.Request.Path.Value)">
+                                                    En
+                                                </a>
+                                            </li>
+                                        }
+                                        else {
+                                             <li class="language">
+                                                <a class="lang" href="/Home/SetCulture?Lang=en-US&returnUrl=@(Context.Request.Path.Value)">
+                                                    Ar
+                                                </a>
+                                            </li>
+                                        }
+                                   
                                         <li class="menu-item">
                                             <a class="favorite" asp-controller="Favorite" asp-action="Index">
                                                 @await Component.InvokeAsync("Favorite")
@@ -153,11 +183,11 @@
                                                     </li>
                                                     @if (User.IsInRole(Roles.Doctor)) {
                                                         <li class="menu-item">
-                                                            <a asp-controller="Advice" asp-action="MyAdvices">My Advices <i class="fas fa-file-signature"></i></a>
+                                                            <a asp-controller="Advice" asp-action="MyAdvices">@Localizer["MyAdvices"] <i class="fas fa-file-signature"></i></a>
                                                         </li>
                                                     }
                                                     <li class="menu-item">
-                                                        <a  asp-controller="Account" asp-action="LogOut">LogOut <i class="fas fa-sign-out-alt"></i></a>
+                                                        <a asp-controller="Account" asp-action="LogOut">@Localizer["Logout"] <i class="fas fa-sign-out-alt"></i></a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -165,10 +195,10 @@
                                         else
                                         {
                                             <li class="menu-item">
-                                                <a class="login" asp-controller="Account" asp-action="Login">Log in</a>
+                                                <a class="login" asp-controller="Account" asp-action="Login">@Localizer["Login"]</a>
                                             </li>
                                             <li class="menu-item">
-                                                <a class="signup" asp-controller="Account" asp-action="Register">Register</a>
+                                                <a class="signup" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
                                             </li>
                                         }
                                     </ul>

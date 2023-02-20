@@ -17,6 +17,13 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddControllersWithViews();
 
+// Add Resources File
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization(op =>
+    {
+        op.ResourcesPath = "Resources";
+    });
+
 // Add Hangfire
 builder.Services.AddHangfire(x => x.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddHangfireServer();
@@ -46,6 +53,12 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
     options.TokenLifespan = TimeSpan.FromHours(6);
 });
 
+builder.Services.Configure<SecurityStampValidatorOptions>(options =>
+{
+    // enables immediate logout, after updating the user's stat.
+    options.ValidationInterval = TimeSpan.Zero;
+});
+
 // Configure Cookie
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -63,6 +76,9 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAdviceService, AdviceService>();
+
+// Localization
+builder.Services.AddLocalization();
 
 // Pagination
 builder.Services.AddCloudscribePagination();
@@ -87,8 +103,18 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseRouting();
 app.UseStaticFiles();
+app.UseRouting();
+
+// Use Cultures
+var supportedCulture = new[] { "ar-SA", "en-US" };
+app.UseRequestLocalization(r =>
+{
+    r.AddSupportedUICultures(supportedCulture);
+    r.AddSupportedCultures(supportedCulture);
+    r.SetDefaultCulture("en-US");
+});
+
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();

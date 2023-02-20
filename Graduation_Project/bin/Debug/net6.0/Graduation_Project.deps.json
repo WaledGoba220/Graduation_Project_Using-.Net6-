@@ -332,6 +332,11 @@
         "runtime": {
           "Graduation_Project.dll": {}
         },
+        "resources": {
+          "ar/Graduation_Project.resources.dll": {
+            "locale": "ar"
+          }
+        },
         "compile": {
           "Graduation_Project.dll": {}
         }

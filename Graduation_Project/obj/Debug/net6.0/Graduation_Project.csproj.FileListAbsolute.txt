@@ -587,3 +587,8 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\Micro
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\RestSharp.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Debug\net6.0\ar\Graduation_Project.resources.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.Resources.Views.Shared._Layout.resources
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.Resources.Views.Shared._Layout.ar.resources
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.csproj.GenerateResource.cache
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\ar\Graduation_Project.resources.dll
