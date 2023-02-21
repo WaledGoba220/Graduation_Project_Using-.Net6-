@@ -1,4 +1,5 @@
-﻿@model HomePageVM
+﻿@inject IViewLocalizer Localizer
+@model HomePageVM
 
 @{
     ViewData["Title"] = "Home Page";
@@ -22,18 +23,13 @@
                 <img src="rev/assets/1-51.jpg" alt="" title="1-51.jpg" class="rev-slidebg tp-rs-img" data-no-retina>
                 <!--
                    -->
-                <rs-layer id="slider-24-slide-84-layer-0" data-type="text" data-color="#666666" data-rsp_ch="on"
+                <rs-layer class="content" id="slider-24-slide-84-layer-0" data-type="text" data-color="#666666" data-rsp_ch="on"
                           data-xy="xo:30px;y:m;yo:2px,17px,29px,17px;" data-text="w:normal;s:16,16,14,12;l:32,24,22,20;fw:600;"
                           data-dim="w:654px,565px,436px,268px;h:auto,auto,45px,27px;" data-vbility="t,t,t,f"
                           data-frame_0="x:50,39,22px,13px;y:0,0,0px,0px;"
                           data-frame_1="x:0,0,0px,0px;y:0,0,0px,0px;st:1100;sp:1000;sR:1100;" data-frame_999="o:0;st:w;sR:6900;"
                           style="z-index:11;font-family:'Quicksand';margin-top: 130px;">
-                    The Patient Safety Initiative aims to increase the process of awareness among the community in order to
-                    maintain public safety for all, especially from lung syndrome diseases related to the breathing process, and to
-                    find appropriate solutions through programs and blogs that allow this,
-                    <br>
-                    whether in order to facilitate
-                    knowledge of the disease itself or finding treatment and solutions that Help with that.
+                    @Localizer["ContentSlider_1"]
                 </rs-layer>
                 <!--
                    -->
@@ -42,7 +38,7 @@
                           data-text="w:normal;s:14,14,14,13;l:22,22,26,21;fw:600;" data-dim="w:auto,auto,auto,144px;"
                           data-frame_0="x:50,39,29,17;" data-frame_1="st:600;sp:1000;sR:600;" data-frame_999="o:0;st:w;sR:7400;"
                           style="z-index:9;font-family:'Quicksand';text-transform:uppercase;">
-                    Passion for caring
+                    @Localizer["SubTitleSlider_1"]
                 </rs-layer>
                 <!--
                    -->
@@ -52,7 +48,7 @@
                           data-border="boc:#14457b;bow:1px,1px,1px,1px;" data-frame_0="x:50,39,29,17;"
                           data-frame_1="st:900;sp:1000;sR:900;" data-frame_999="o:0;st:w;sR:7100;"
                           style="z-index:10;font-family:'Quicksand';text-transform:capitalize;">
-                    Patient Safety <br> Initiatives
+                    @Localizer["TitleSlider_1"]
                 </rs-layer>
                 <!--
                    -->
@@ -70,17 +66,13 @@
                 <img src="rev/assets/2-51.jpg" alt="" title="2-51.jpg" class="rev-slidebg tp-rs-img" data-no-retina>
                 <!--
                    -->
-                <rs-layer id="slider-24-slide-85-layer-0" data-type="text" data-color="#666666" data-rsp_ch="on"
+                <rs-layer class="content" id="slider-24-slide-85-layer-0" data-type="text" data-color="#666666" data-rsp_ch="on"
                           data-xy="xo:30px;y:m;yo:2px,17px,29px,17px;" data-text="w:normal;s:16,16,14,12;l:32,24,22,20;fw:600;"
                           data-dim="w:654px,565px,436px,268px;h:auto,auto,45px,27px;" data-vbility="t,t,t,f"
                           data-frame_0="x:50,39,22px,13px;y:0,0,0px,0px;"
                           data-frame_1="x:0,0,0px,0px;y:0,0,0px,0px;st:1700;sp:1000;" data-frame_999="o:0;st:w;sR:6370;"
                           style="z-index:11;font-family:'Quicksand'; margin-top: 110px;">
-                    Our system aims to allow the process of communication between the patient and the doctor, in order to
-                    facilitate the recovery process for the patient and for the sake of awareness and general knowledge,
-                    <br>
-                    through medical advice that takes place in the system and allows the patient to inquire about the medical and the
-                    doctor can help and respond to it.
+                    @Localizer["ContentSlider_2"]
                 </rs-layer>
                 <!--
                    -->
@@ -89,7 +81,7 @@
                           data-text="w:normal;s:14,14,14,13;l:22,22,26,21;fw:600;" data-frame_0="x:50,39,29,17;"
                           data-frame_1="st:1100;sp:1000;sR:1100;" data-frame_999="o:0;st:w;sR:6900;"
                           style="z-index:9;font-family:'Quicksand';text-transform:uppercase;">
-                    Great Experience In Bulding
+                    @Localizer["SubTitleSlider_2"]
                 </rs-layer>
                 <!--
                    -->
@@ -99,9 +91,7 @@
                           data-border="boc:#14457b;bow:1px,1px,1px,1px;" data-frame_0="x:50,39,29,17;"
                           data-frame_1="st:1400;sp:1000;sR:1400;" data-frame_999="o:0;st:w;sR:6600;"
                           style="z-index:10;font-family:'Quicksand';text-transform:capitalize;">
-                    Communication between
-                    <br>
-                    patients and Doctors
+                    @Localizer["TitleSlider_2"]
                 </rs-layer>
                 <!--
                    -->
@@ -119,19 +109,13 @@
                 <img src="rev/assets/3-2.jpg" alt="" title="3-2" class="rev-slidebg tp-rs-img" data-no-retina>
                 <!--
                    -->
-                <rs-layer id="slider-24-slide-86-layer-0" data-type="text" data-color="#666666" data-rsp_ch="on"
+                <rs-layer class="content" id="slider-24-slide-86-layer-0" data-type="text" data-color="#666666" data-rsp_ch="on"
                           data-xy="xo:30px;y:m;yo:2px,17px,29px,17px;" data-text="w:normal;s:16,16,14,12;l:32,24,22,20;fw:600;"
                           data-dim="w:654px,565px,436px,268px;h:auto,auto,45px,27px;" data-vbility="t,t,t,f"
                           data-frame_0="x:50,39,22px,13px;y:0,0,0px,0px;"
                           data-frame_1="x:0,0,0px,0px;y:0,0,0px,0px;st:1700;sp:1000;" data-frame_999="o:0;st:w;sR:6370;"
                           style="z-index:11;font-family:'Quicksand'; margin-top: 140px;">
-                    You probably already know that smoking increases your risk of lung cancer. But this is not the only disease
-                    that can cause it. In fact, smoking is associated with most lung diseases, including chronic obstructive
-                    pulmonary disease, idiopathic pulmonary fibrosis, and asthma.
-                    <br>
-                    It also makes smokers more likely to die.
-                    Smoking also causes lungs to age more rapidly. Eventually, the chemicals can change lung cells from normal to
-                    cancerous.
+                    @Localizer["ContentSlider_3"]
                 </rs-layer>
                 <!--
                    -->
@@ -140,7 +124,7 @@
                           data-text="w:normal;s:14,14,14,13;l:22,22,26,21;fw:600;" data-frame_0="x:50,39,29,17;"
                           data-frame_1="st:1100;sp:1000;sR:1100;" data-frame_999="o:0;st:w;sR:6900;"
                           style="z-index:9;font-family:'Quicksand';text-transform:uppercase;">
-                    higher level of care
+                    @Localizer["SubTitleSlider_3"]
                 </rs-layer>
                 <!--
                    -->
@@ -150,9 +134,7 @@
                           data-border="boc:#14457b;bow:1px,1px,1px,1px;" data-frame_0="x:50,39,29,17;"
                           data-frame_1="st:1400;sp:1000;sR:1400;" data-frame_999="o:0;st:w;sR:6600;"
                           style="z-index:10;font-family:'Quicksand';text-transform:capitalize;">
-                    Lung cancer
-                    <br>
-                    and deadly smoking
+                    @Localizer["TitleSlider_3"]
                 </rs-layer>
                 <!--
                    -->
@@ -174,71 +156,64 @@
 </rs-module-wrap>
 
 
-<   <section class="servicebox p-lg-0 pb-0 pq-bg-grey ">
-      <div class="container pq-mt-60">
-         <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-6 col-12 mb-4">
-               <div class="pq-info-box pq-style-1">
-                  <div class="pq-info-box-right-icon"> <i class="fas fa-file-signature"></i> </div>
-                  <div class="pq-info-box-icon"><i class=" flaticon-doctor"></i></div>
-                  <h5 class="pq-info-title">Medical Advices</h5>
-                  <p class="pq-infobox-description">
-                     The medical advice blog aims to increase awareness among patients, increase the effectiveness of
-                     communication between patients and doctors, and facilitate knowledge of the risks of diseases, as well as the
-                     medical reasons that avoid these diseases.
-                  </p>
-                  <a class="pq-button pq-button-flat special-btn" href="tips.html">
-                     <div class="pq-button-block"> <span class="pq-button-text">More</span> <i class="ion ion-plus-round"></i> </div>
-                  </a>
-               </div>
+<section class="servicebox p-lg-0 pb-0 pq-bg-grey ">
+    <div class="container pq-mt-60">
+        <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-12 mb-4">
+            <div class="pq-info-box pq-style-1">
+                <div class="pq-info-box-right-icon"> <i class="fas fa-file-signature"></i> </div>
+                <div class="pq-info-box-icon"><i class=" flaticon-doctor"></i></div>
+                <h5 class="pq-info-title">@Localizer["TitleService_1"]</h5>
+                <p class="pq-infobox-description">
+                    @Localizer["ContentService_1"]
+                </p>
+                <a class="pq-button pq-button-flat special-btn" href="tips.html">
+                    <div class="pq-button-block"> <span class="pq-button-text">@Localizer["More"]</span> <i class="ion ion-plus-round"></i> </div>
+                </a>
             </div>
-            <div class="col-lg-6 col-md-6 col-12 pt-md-0 pt-4 mb-4">
-               <div class="pq-info-box pq-style-2">
-                  <div class="pq-info-box-right-icon"> <i class=" flaticon-medical-doctor"></i> </div>
-                  <div class="pq-info-box-icon"><i class="fa-solid fa-disease"></i></div>
-                  <h5 class="pq-info-title">Diseases Detection</h5>
-                  <p class="pq-infobox-description">
-                     The disease detection process is useful for discovering a group of serious diseases that affect human health 
-                     and that may lead to death if they are not resisted, such as pneumonia, tuberculosis and lung cancer.
-                  </p>
-                  <a class="pq-button pq-button-flat" href="Detection.html">
-                     <div class="pq-button-block"> <span class="pq-button-text">More</span> <i class="ion ion-plus-round"></i> </div>
-                  </a>
-               </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 pt-md-0 pt-4 mb-4">
+            <div class="pq-info-box pq-style-2">
+                <div class="pq-info-box-right-icon"> <i class=" flaticon-medical-doctor"></i> </div>
+                <div class="pq-info-box-icon"><i class="fa-solid fa-disease"></i></div>
+                <h5 class="pq-info-title">@Localizer["TitleService_2"]</h5>
+                <p class="pq-infobox-description">
+                    @Localizer["ContentService_2"]
+                </p>
+                <a class="pq-button pq-button-flat" href="Detection.html">
+                    <div class="pq-button-block"> <span class="pq-button-text">@Localizer["More"]</span> <i class="ion ion-plus-round"></i> </div>
+                </a>
             </div>
-            <div class="col-lg-6 col-md-6 col-12 pt-md-0 pt-4 mb-4">
-               <div class="pq-info-box pq-style-2">
-                  <div class="pq-info-box-right-icon"> <i class="fa-solid fa-fingerprint"></i> </div>
-                  <div class="pq-info-box-icon"><i class=" flaticon-medical-history"></i></div>
-                  <h5 class="pq-info-title">Measuring box</h5>
-                  <p class="pq-infobox-description">
-                     This box aims to measure the temperature, heartbeat and blood oxygen level to a large extent
-                     Accurate proportion, this is intended to show the initial indications of the patient's condition, as if an abnormality had occurred
-                     In any of them, it is seen that certain symptoms of the respiratory tract and breathing appear.
-                  </p>
-                  <a class="pq-button pq-button-flat" href="box.html">
-                     <div class="pq-button-block"> <span class="pq-button-text">More</span> <i class="ion ion-plus-round"></i> </div>
-                  </a>
-               </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 pt-md-0 pt-4 mb-4">
+            <div class="pq-info-box pq-style-2">
+                <div class="pq-info-box-right-icon"> <i class="fa-solid fa-fingerprint"></i> </div>
+                <div class="pq-info-box-icon"><i class=" flaticon-medical-history"></i></div>
+                <h5 class="pq-info-title">@Localizer["TitleService_3"]</h5>
+                <p class="pq-infobox-description">
+                    @Localizer["ContentService_3"]
+                </p>
+                <a class="pq-button pq-button-flat" href="box.html">
+                    <div class="pq-button-block"> <span class="pq-button-text">@Localizer["More"]</span> <i class="ion ion-plus-round"></i> </div>
+                </a>
             </div>
-            <div class="col-lg-6 col-md-6 col-12 pt-xl-0 pt-4">
-               <div class="pq-info-box pq-style-3">
-                  <div class="pq-info-box-right-icon"> <i class=" flaticon-care"></i> </div>
-                  <div class="pq-info-box-icon"><i class="fa-solid fa-seedling"></i></div>
-                  <h5 class="pq-info-title">Lung Transplant</h5>
-                  <p class="pq-infobox-description">
-                     Lung transplantation in the system helps patients with serious diseases such as pulmonary fibrosis to all
-                     types of lung cancer and other diseases, to facilitate delivery to hospitals where the organ is available for
-                     Completing the transplant and saving the patient's life, but this is through several proofs.
-                  </p>
-                  <a class="pq-button pq-button-flat special-btn" href="box.html">
-                     <div class="pq-button-block"> <span class="pq-button-text">More</span> <i class="ion ion-plus-round"></i> </div>
-                  </a>
-               </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 pt-xl-0 pt-4">
+            <div class="pq-info-box pq-style-3">
+                <div class="pq-info-box-right-icon"> <i class=" flaticon-care"></i> </div>
+                <div class="pq-info-box-icon"><i class="fa-solid fa-seedling"></i></div>
+                <h5 class="pq-info-title">@Localizer["TitleService_4"]</h5>
+                <p class="pq-infobox-description">
+                    @Localizer["ContentService_4"]
+                </p>
+                <a class="pq-button pq-button-flat special-btn" href="box.html">
+                    <div class="pq-button-block"> <span class="pq-button-text">@Localizer["More"]</span> <i class="ion ion-plus-round"></i> </div>
+                </a>
             </div>
-         </div>
-      </div>
-   </section>
+        </div>
+        </div>
+    </div>
+</section>
    <!--Section End-->
 
    <!--Section about start-->

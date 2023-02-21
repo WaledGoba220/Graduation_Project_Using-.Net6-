@@ -120,9 +120,6 @@
   <data name="About" xml:space="preserve">
     <value>من نحن</value>
   </data>
-  <data name="Browse" xml:space="preserve">
-    <value>تصفح</value>
-  </data>
   <data name="Contact" xml:space="preserve">
     <value>اتصل بنا</value>
   </data>

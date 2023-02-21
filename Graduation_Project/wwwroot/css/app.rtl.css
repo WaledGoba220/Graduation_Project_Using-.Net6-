@@ -1,0 +1,98 @@
+﻿body {
+    font-size: 1.3rem !important;
+    text-align: right;
+}
+
+#pq-header .text-right {
+    text-align: left !important;
+}
+
+header#pq-header .pq-top-header .text-right .pq-header-social ul, header#pq-header .pq-top-header .pq-header-social.text-right ul {
+    float: left !important;
+}
+
+header#pq-header .pq-top-header .pq-header-contact ul li {
+    float: right !important;
+    border-left: none !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+header#pq-header .pq-top-header .pq-header-contact ul li:last-child {
+    border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+    header#pq-header .pq-top-header .pq-header-contact ul li i {
+        margin-right: 0;
+        margin-left: 10px;
+    }
+
+    .navbar-brand {
+        margin-right: 0;
+        margin-left: var(--bs-navbar-brand-margin-end);
+    }
+
+header#pq-header .pq-bottom-header .navbar .navbar-nav {
+    float: left;
+}
+
+    header#pq-header .pq-bottom-header .navbar .navbar-nav li {
+        margin-right: 0 !important;
+        margin-left: 25px;
+    }
+
+        header#pq-header .pq-bottom-header .navbar .navbar-nav li a {
+            font-size: 20px;
+        }
+
+.lang {
+    margin-left: 0;
+    margin-right: 50px;
+}
+
+header#pq-header .pq-bottom-header .navbar .navbar-nav li i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.menu-item .favorite .number {
+    right: auto;
+    left: -12px;
+}
+
+.nav_profile {
+    margin: 0 !important;
+}
+
+header#pq-header .pq-bottom-header .navbar .navbar-nav li:hover .sub-menu {
+    right: auto;
+    left: -50%;
+    padding-right: 0;
+}
+
+header#pq-header .pq-bottom-header .navbar .navbar-nav li .sub-menu li a {
+    font-size: 17px;
+}
+
+header .nav_profile .img_cover:after {
+    right: auto;
+    left: -3px;
+}
+
+#rev_slider_24_1 .content {
+    font-size: 20px !important;
+}
+
+.pq-info-box .pq-info-box-right-icon {
+    left: 15px;
+    right: auto;
+}
+
+.pq-info-box:hover .pq-info-box-right-icon {
+    right: auto;
+    left: 25px;
+}
+
+.pq-button span {
+    margin-right: 0;
+    margin-left: 10px;
+}

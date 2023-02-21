@@ -23,6 +23,7 @@ namespace Graduation_Project.Controllers
             return View(model);
         }
 
+
         // Switch Between Cultures
         public IActionResult SetCulture(string lang, string returnUrl)
         {
