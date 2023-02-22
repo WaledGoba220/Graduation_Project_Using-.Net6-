@@ -79,6 +79,26 @@ namespace Graduation_Project.Resources.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our website aims to provide several customized services to the user, whether the user is a patient or a doctor, as the
+        ///                                    site has several features and advantages..
+        /// </summary>
+        public static string ContentFooter {
+            get {
+                return ResourceManager.GetString("ContentFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright 2023 GOBA All Rights
+        ///                                Reserved.
+        /// </summary>
+        public static string Copyright {
+            get {
+                return ResourceManager.GetString("Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         public static string Dashboard {
@@ -147,6 +167,15 @@ namespace Graduation_Project.Resources.Views.Shared {
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Useful Links.
+        /// </summary>
+        public static string UsefulLinks {
+            get {
+                return ResourceManager.GetString("UsefulLinks", resourceCulture);
             }
         }
     }

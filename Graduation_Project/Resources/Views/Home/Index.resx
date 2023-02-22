@@ -117,6 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ContentAbout" xml:space="preserve">
+    <value>&lt;br&gt;
+                     Our website aims to provide several customized services to the user, whether the user is a patient or a doctor, as the
+                     site has several features and advantages, for example:
+                     &lt;br&gt; 
+                     the site allows to register an account of its own, in order to
+                     maintain security and provide features for the registered account. For example, there are four fixed services that
+                     Provided by the site to the user.</value>
+  </data>
+  <data name="ContentDisease_1" xml:space="preserve">
+    <value>Tuberculosis (TB) is a bacterial infection spread through inhaling tiny droplets from the coughs or sneezes of
+                        an infected person. It mainly affects the lungs, but it can affect any part of the body, including the tummy
+                        (abdomen), glands, bones and nervous system.</value>
+  </data>
+  <data name="ContentDisease_2" xml:space="preserve">
+    <value>Pneumonia is swelling (inflammation) of the tissue in one or both lungs. It's usually caused by a bacterial 
+                        infection or a virus.
+                        The symptoms of pneumonia can develop suddenly over 24 to 48 hours, or they may come on more slowly 
+                        over several days. Pneumonia is usually the result of a bacterial infection.</value>
+  </data>
+  <data name="ContentDisease_3" xml:space="preserve">
+    <value>Lung cancer is a type of cancer that begins in the lungs. Your lungs are two spongy organs in your chest that 
+                        take in oxygen when you inhale and release carbon dioxide when you exhale. Lung cancer is the leading cause 
+                        of cancer deaths worldwide.</value>
+  </data>
+  <data name="ContentDisease_4" xml:space="preserve">
+    <value>coronaviruses are a type of virus. There are many different kinds, and some cause disease. A coronavirus 
+                        identified in 2019, SARS-CoV-2, has caused a pandemic of respiratory illness, called COVID-19. The coronavirus 
+                        can be spread from person to person.</value>
+  </data>
+  <data name="ContentDisease_5" xml:space="preserve">
+    <value>Asthma is a condition in which your airways narrow and swell and may produce extra mucus. This can make 
+                        breathing difficult and trigger coughing, a whistling sound (wheezing) when you breathe out and shortness of 
+                        breath.</value>
+  </data>
+  <data name="ContentDisease_6" xml:space="preserve">
+    <value>Chronic obstructive pulmonary disease is a leading cause of death and disability, but has only recently been 
+                        extensively explored from a cellular and molecular perspective. The inflammation and proteolysis in chronic 
+                        obstructive pulmonary disease is an amplification of the normal inflammatory response to cigarette smoke.</value>
+  </data>
+  <data name="ContentDisease_7" xml:space="preserve">
+    <value>Pulmonary hypertension (PH) is high blood pressure in the lungs. This means that the blood vessels that carry 
+                        blood from the heart to the lungs become hard and narrow, making the heart work harder to pump the blood 
+                        through.</value>
+  </data>
+  <data name="ContentDisease_8" xml:space="preserve">
+    <value>A pulmonary embolism is a blood clot that blocks and stops blood flow to an artery in the lung. In most cases, 
+                        the blood clot starts in a deep vein in the leg and travels to the lung. Rarely, the clot forms in a vein in another 
+                        part of the body. When a blood clot forms in one or more of the deep veins in the body, it's called a deep vein 
+                        thrombosis (DVT).</value>
+  </data>
   <data name="ContentService_1" xml:space="preserve">
     <value>The medical advice blog aims to increase awareness among patients, increase the effectiveness of
                     communication between patients and doctors, and facilitate knowledge of the risks of diseases, as well as the
@@ -155,8 +209,32 @@
                     Smoking also causes lungs to age more rapidly. Eventually, the chemicals can change lung cells from normal to
                     cancerous.</value>
   </data>
+  <data name="Diseases" xml:space="preserve">
+    <value>Diseases</value>
+  </data>
+  <data name="ExpertDoctors" xml:space="preserve">
+    <value>EXPERT DOCTORS</value>
+  </data>
+  <data name="HappyPatients" xml:space="preserve">
+    <value>HAPPY PATIENTS</value>
+  </data>
+  <data name="LatestMedicalAdvices" xml:space="preserve">
+    <value>Latest Medical Advices</value>
+  </data>
+  <data name="MedicalAdvices" xml:space="preserve">
+    <value>Medical Advices</value>
+  </data>
   <data name="More" xml:space="preserve">
     <value>More</value>
+  </data>
+  <data name="SavedLungs" xml:space="preserve">
+    <value>SAVED LUNGS</value>
+  </data>
+  <data name="SomeCommonDiseases" xml:space="preserve">
+    <value>Some Common Diseases</value>
+  </data>
+  <data name="SubTitleAbout" xml:space="preserve">
+    <value>About Us</value>
   </data>
   <data name="SubTitleSlider_1" xml:space="preserve">
     <value>Passion for caring</value>
@@ -166,6 +244,33 @@
   </data>
   <data name="SubTitleSlider_3" xml:space="preserve">
     <value>higher level of care</value>
+  </data>
+  <data name="TitleAbout" xml:space="preserve">
+    <value>Joining Hands With GOBA Team</value>
+  </data>
+  <data name="TitleDisease_1" xml:space="preserve">
+    <value>Tuberculosis</value>
+  </data>
+  <data name="TitleDisease_2" xml:space="preserve">
+    <value>Pneumonia</value>
+  </data>
+  <data name="TitleDisease_3" xml:space="preserve">
+    <value>Lung Cancer</value>
+  </data>
+  <data name="TitleDisease_4" xml:space="preserve">
+    <value>COVID</value>
+  </data>
+  <data name="TitleDisease_5" xml:space="preserve">
+    <value>Asthma</value>
+  </data>
+  <data name="TitleDisease_6" xml:space="preserve">
+    <value>Chronic obstructive pulmonary disease</value>
+  </data>
+  <data name="TitleDisease_7" xml:space="preserve">
+    <value>Pulmonary Hypertension</value>
+  </data>
+  <data name="TitleDisease_8" xml:space="preserve">
+    <value>Blocked lung artery</value>
   </data>
   <data name="TitleService_1" xml:space="preserve">
     <value>Medical Advices</value>

@@ -1329,7 +1329,7 @@ Blog
     .pq-blog-post .pq-post-media .pq-post-date {
         font-family: var(--title-fonts);
         background: var(--primary-color);
-        padding: 4px 8px;
+        padding: 4px 8px 6px 8px;
         line-height: normal;
         text-transform: capitalize;
         color: var(--white-color);
@@ -2772,7 +2772,7 @@ footer#pq-footer {
     width: 100%;
     float: left;
     position: relative;
-    bottom: -31px;
+    bottom: -43px;
 }
 
     footer#pq-footer:before {
@@ -7979,4 +7979,12 @@ input[type=radio] {
     border-radius: 4px;
     padding: 6px 11px;
     text-transform: capitalize !important;
+}
+
+.pq-blog {
+    padding: 60px 0;
+}
+
+.pq-button span {
+    margin-right: 10px !important;
 }

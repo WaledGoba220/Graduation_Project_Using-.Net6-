@@ -96,3 +96,53 @@ header .nav_profile .img_cover:after {
     margin-right: 0;
     margin-left: 10px;
 }
+
+.pq-dark-bg-side-right:before {
+    left: auto;
+    right: 55%;
+}
+
+.no-js .owl-carousel, .owl-carousel.owl-loaded {
+    direction: ltr;
+}
+
+.pq-blog-post .pq-post-media .fav_box,
+.pq-blog-post .pq-post-media .pq-post-date {
+    left: auto;
+    right: 15px;
+}
+
+.pq-blog-post .pq-blog-contain {
+    direction: rtl;
+}
+
+.pq-blog-post .pq-post-meta ul li {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.advices .doctorImage, .item .doctorImage {
+    margin-right: 0;
+    margin-left: 7px;
+}
+
+.pq-blog-post .pq-post-meta ul li i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+footer#pq-footer .pq-footer-style-1 .pq-footer-social ul li {
+    float: right;
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+footer#pq-footer .pq-footer-style-1 ul#menu-useful-links li a:before {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+footer#pq-footer .pq-footer-style-1 ul.pq-contact li i {
+    margin-right: 0;
+    margin-left: 20px;
+}

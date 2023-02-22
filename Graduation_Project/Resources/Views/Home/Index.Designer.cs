@@ -61,6 +61,120 @@ namespace Graduation_Project.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;br&gt;
+        ///                     Our website aims to provide several customized services to the user, whether the user is a patient or a doctor, as the
+        ///                     site has several features and advantages, for example:
+        ///                     &lt;br&gt; 
+        ///                     the site allows to register an account of its own, in order to
+        ///                     maintain security and provide features for the registered account. For example, there are four fixed services that
+        ///                     Provided by the s [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ContentAbout {
+            get {
+                return ResourceManager.GetString("ContentAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tuberculosis (TB) is a bacterial infection spread through inhaling tiny droplets from the coughs or sneezes of
+        ///                        an infected person. It mainly affects the lungs, but it can affect any part of the body, including the tummy
+        ///                        (abdomen), glands, bones and nervous system..
+        /// </summary>
+        public static string ContentDisease_1 {
+            get {
+                return ResourceManager.GetString("ContentDisease_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pneumonia is swelling (inflammation) of the tissue in one or both lungs. It&apos;s usually caused by a bacterial 
+        ///                        infection or a virus.
+        ///                        The symptoms of pneumonia can develop suddenly over 24 to 48 hours, or they may come on more slowly 
+        ///                        over several days. Pneumonia is usually the result of a bacterial infection..
+        /// </summary>
+        public static string ContentDisease_2 {
+            get {
+                return ResourceManager.GetString("ContentDisease_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lung cancer is a type of cancer that begins in the lungs. Your lungs are two spongy organs in your chest that 
+        ///                        take in oxygen when you inhale and release carbon dioxide when you exhale. Lung cancer is the leading cause 
+        ///                        of cancer deaths worldwide..
+        /// </summary>
+        public static string ContentDisease_3 {
+            get {
+                return ResourceManager.GetString("ContentDisease_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to coronaviruses are a type of virus. There are many different kinds, and some cause disease. A coronavirus 
+        ///                        identified in 2019, SARS-CoV-2, has caused a pandemic of respiratory illness, called COVID-19. The coronavirus 
+        ///                        can be spread from person to person..
+        /// </summary>
+        public static string ContentDisease_4 {
+            get {
+                return ResourceManager.GetString("ContentDisease_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asthma is a condition in which your airways narrow and swell and may produce extra mucus. This can make 
+        ///                        breathing difficult and trigger coughing, a whistling sound (wheezing) when you breathe out and shortness of 
+        ///                        breath..
+        /// </summary>
+        public static string ContentDisease_5 {
+            get {
+                return ResourceManager.GetString("ContentDisease_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chronic obstructive pulmonary disease is a leading cause of death and disability, but has only recently been 
+        ///                        extensively explored from a cellular and molecular perspective. The inflammation and proteolysis in chronic 
+        ///                        obstructive pulmonary disease is an amplification of the normal inflammatory response to cigarette smoke..
+        /// </summary>
+        public static string ContentDisease_6 {
+            get {
+                return ResourceManager.GetString("ContentDisease_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pulmonary hypertension (PH) is high blood pressure in the lungs. This means that the blood vessels that carry 
+        ///                        blood from the heart to the lungs become hard and narrow, making the heart work harder to pump the blood 
+        ///                        through..
+        /// </summary>
+        public static string ContentDisease_7 {
+            get {
+                return ResourceManager.GetString("ContentDisease_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A pulmonary embolism is a blood clot that blocks and stops blood flow to an artery in the lung. In most cases, 
+        ///                        the blood clot starts in a deep vein in the leg and travels to the lung. Rarely, the clot forms in a vein in another 
+        ///                        part of the body. When a blood clot forms in one or more of the deep veins in the body, it&apos;s called a deep vein 
+        ///                        thrombosis (DVT)..
+        /// </summary>
+        public static string ContentDisease_8 {
+            get {
+                return ResourceManager.GetString("ContentDisease_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The medical advice blog aims to increase awareness among patients, increase the effectiveness of
         ///                    communication between patients and doctors, and facilitate knowledge of the risks of diseases, as well as the
         ///                    medical reasons that avoid these diseases..
@@ -140,11 +254,83 @@ namespace Graduation_Project.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diseases.
+        /// </summary>
+        public static string Diseases {
+            get {
+                return ResourceManager.GetString("Diseases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXPERT DOCTORS.
+        /// </summary>
+        public static string ExpertDoctors {
+            get {
+                return ResourceManager.GetString("ExpertDoctors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HAPPY PATIENTS.
+        /// </summary>
+        public static string HappyPatients {
+            get {
+                return ResourceManager.GetString("HappyPatients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest Medical Advices.
+        /// </summary>
+        public static string LatestMedicalAdvices {
+            get {
+                return ResourceManager.GetString("LatestMedicalAdvices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medical Advices.
+        /// </summary>
+        public static string MedicalAdvices {
+            get {
+                return ResourceManager.GetString("MedicalAdvices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More.
         /// </summary>
         public static string More {
             get {
                 return ResourceManager.GetString("More", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SAVED LUNGS.
+        /// </summary>
+        public static string SavedLungs {
+            get {
+                return ResourceManager.GetString("SavedLungs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some Common Diseases.
+        /// </summary>
+        public static string SomeCommonDiseases {
+            get {
+                return ResourceManager.GetString("SomeCommonDiseases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Us.
+        /// </summary>
+        public static string SubTitleAbout {
+            get {
+                return ResourceManager.GetString("SubTitleAbout", resourceCulture);
             }
         }
         
@@ -172,6 +358,87 @@ namespace Graduation_Project.Resources.Views.Home {
         public static string SubTitleSlider_3 {
             get {
                 return ResourceManager.GetString("SubTitleSlider_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Joining Hands With GOBA Team.
+        /// </summary>
+        public static string TitleAbout {
+            get {
+                return ResourceManager.GetString("TitleAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tuberculosis.
+        /// </summary>
+        public static string TitleDisease_1 {
+            get {
+                return ResourceManager.GetString("TitleDisease_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pneumonia.
+        /// </summary>
+        public static string TitleDisease_2 {
+            get {
+                return ResourceManager.GetString("TitleDisease_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lung Cancer.
+        /// </summary>
+        public static string TitleDisease_3 {
+            get {
+                return ResourceManager.GetString("TitleDisease_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COVID.
+        /// </summary>
+        public static string TitleDisease_4 {
+            get {
+                return ResourceManager.GetString("TitleDisease_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asthma.
+        /// </summary>
+        public static string TitleDisease_5 {
+            get {
+                return ResourceManager.GetString("TitleDisease_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chronic obstructive pulmonary disease.
+        /// </summary>
+        public static string TitleDisease_6 {
+            get {
+                return ResourceManager.GetString("TitleDisease_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pulmonary Hypertension.
+        /// </summary>
+        public static string TitleDisease_7 {
+            get {
+                return ResourceManager.GetString("TitleDisease_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blocked lung artery.
+        /// </summary>
+        public static string TitleDisease_8 {
+            get {
+                return ResourceManager.GetString("TitleDisease_8", resourceCulture);
             }
         }
         

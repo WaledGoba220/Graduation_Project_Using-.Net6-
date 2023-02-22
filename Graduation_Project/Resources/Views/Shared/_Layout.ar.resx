@@ -123,6 +123,14 @@
   <data name="Contact" xml:space="preserve">
     <value>اتصل بنا</value>
   </data>
+  <data name="ContentFooter" xml:space="preserve">
+    <value>يهدف موقعنا إلى تقديم العديد من الخدمات المخصصة للمستخدم ، سواء كان المستخدم مريضًا أو طبيبًا أيضًا
+                                    يحتوي الموقع على العديد من الميزات والمزايا.</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>حقوق الطبع والنشر 2023 GOBA جميع الحقوق
+                             محجوزه</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>لوحة التحكم</value>
   </data>
@@ -146,5 +154,8 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>مستخدم جديد</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>روابط مفيدة</value>
   </data>
 </root>

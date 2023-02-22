@@ -123,6 +123,14 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="ContentFooter" xml:space="preserve">
+    <value>Our website aims to provide several customized services to the user, whether the user is a patient or a doctor, as the
+                                    site has several features and advantages.</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright 2023 GOBA All Rights
+                                Reserved</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
@@ -146,5 +154,8 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Useful Links</value>
   </data>
 </root>
