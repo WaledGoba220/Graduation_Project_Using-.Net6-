@@ -1,6 +1,11 @@
-﻿@model RegisterVM
+﻿@using Microsoft.AspNetCore.Localization
+@inject IViewLocalizer Localizer
+@model RegisterVM
 
 @{
+    var reqCulture = Context.Features.Get<IRequestCultureFeature>();
+    var culture = reqCulture.RequestCulture.Culture.Name;
+    bool isArabic = culture == "ar-SA";
     ViewData["Title"] = "Register";
     Layout = null;
 }
@@ -27,7 +32,17 @@
     <!-- Toaster -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <!--  Style CSS -->
-    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true">
+    
+    @if (isArabic)
+    {
+        <!-- Cairo Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+        <link href="~/css/app.rtl.css" asp-append-version="true" rel="stylesheet">
+    }
+
 </head>
 <body>
 
@@ -37,27 +52,26 @@
             <path fill="#fff" fill-opacity="1" d="M0,128L1440,224L1440,320L0,320Z"></path>
         </svg>
         <div class="overlay"></div>
-        <div class="content">
+        <div class="content register">
             <div class="container">
                 <div class="row justify-content-between">
-                    <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="700">
-                        <a asp-controller="Home">
+                    <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="700" style="text-align: left;">
+                        <a asp-controller="Home" asp-action="Index">
                             <img class="logo_white" src="~/images/logo_white.png" alt="">
                         </a>
                         <h2>Genuine Observational Biomedical Assistant</h2>
-                        <h6>See how NetSuite can help your company.</h6>
                     </div>
-                    <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="700">
+                    <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="700" dir=@(isArabic? "rtl": "ltr")>
                         <div class="box w-100 p-4">
-                            <h2 class="mb-4">Register</h2>
+                            <h2 class="mb-4">@Localizer["Register"]</h2>
                             <div class="types d-flex justify-content-center">
                                 <div class="type type_1 text-center active_type">
                                     <i class="fas fa-user-injured"></i>
-                                    <div class="name">Patient</div>
+                                    <div class="name">@Localizer["Patient"]</div>
                                 </div>
                                 <div class="type type_2 text-center">
                                     <i class="fas fa-user-md"></i>
-                                    <div class="name">Doctor</div>
+                                    <div class="name">@Localizer["Doctor"]</div>
                                 </div>
                             </div>
                             <form role="form" method="post" asp-action="Register" class="mt-3 mb-1">
@@ -65,28 +79,28 @@
                                 <input type="text" id="role" value="Patient" name="role" hidden>
 
                                 <div class="form-group mb-3">
-                                    <input asp-for="UserName" type="text" class="form-control" placeholder="Username">
+                                    <input asp-for="UserName" type="text" class="form-control" placeholder="@Localizer["Username"]">
                                     <i class="fas fa-user"></i>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input asp-for="Email" type="email" class="form-control" placeholder="Email">
+                                    <input asp-for="Email" type="email" class="form-control" placeholder="@Localizer["Email"]">
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                                    <input asp-for="Password" type="password" class="form-control" placeholder="@Localizer["Password"]">
                                     <i class="fas fa-lock"></i>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+                                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="@Localizer["ConfirmPassword"]">
                                     <i class="fas fa-lock"></i>
                                 </div>
 
-                                <button type="submit" class="submit mt-2 mb-3">Submit</button>
+                                <button type="submit" class="submit mt-2 mb-3">@Localizer["Submit"]</button>
 
                             </form>
 
                             <div class="extra_login">
-                                <div>Or Login With</div>
+                                <div>@Localizer["OrLoginWith"]</div>
                             </div>
 
                             <ul class="social mt-3 mb-4">
@@ -110,7 +124,7 @@
                                 </li>
                             </ul>
 
-                            <p class="text-center login_txt">Already a member? <a asp-action="Login">Login here</a></p>
+                            <p class="text-center login_txt">@Localizer["AlreadyMember"] <a asp-controller="Account" asp-action="Login">@Localizer["LoginHere"]</a></p>
 
                         </div>
                     </div>
@@ -132,7 +146,6 @@
     <script src="~/js/login_script.js" asp-append-version="true"></script>
 
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
         await Html.RenderPartialAsync("_Notification");
     }
 </body>

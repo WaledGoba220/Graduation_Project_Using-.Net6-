@@ -146,3 +146,87 @@ footer#pq-footer .pq-footer-style-1 ul.pq-contact li i {
     margin-right: 0;
     margin-left: 20px;
 }
+
+.login form .form-group input {
+    padding-left: 0;
+    padding-right: 58px;
+}
+
+.login form .form-group i {
+    left: auto;
+    right: 14px;
+}
+
+.login form .form-group:after {
+    left: auto;
+    right: 45px;
+}
+
+.model .drop-zone span {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.model_3 select {
+    padding: 0 1em 0 3.5em;
+}
+
+select.round {
+    background-position: calc(101.1% - 423px) calc(1em + -2px), calc(41.5px - 15px) calc(1em + -2px), calc(100% - 19.4em) 0.3em;
+}
+
+select.round:focus {
+    background-position: calc(102.1% - 423px) calc(1em + -2px), calc(36.7px - 15px) calc(1em + -2px), calc(100% - 19.4em) 0.3em;
+}
+
+.ctrl__button--decrement {
+    border-radius: 0 5px 5px 0;
+}
+
+.ctrl__button--increment {
+    border-radius: 5px 0 0 5px;
+}
+.switch span {
+    transform: rotate(45deg);
+}
+
+#no5:checked ~ .sw_5 span {
+    margin-left: 0;
+    margin-right: -8px;
+}
+
+    #no5:checked ~ .sw_5 span:after {
+        margin-left: 0;
+        margin-right: 8px;
+    }
+
+#no6:checked ~ .sw_6 span {
+    margin-left: 0;
+    margin-right: -8px;
+}
+
+    #no6:checked ~ .sw_6 span:after {
+        margin-left: 0;
+        margin-right: 8px;
+    }
+
+#no2:checked ~ .sw_3 span {
+    margin-left: 0;
+    margin-right: -8px;
+}
+
+    #no2:checked ~ .sw_3 span:after {
+        margin-left: 0;
+        margin-right: 8px;
+    }
+
+
+#no3:checked ~ .sw_4 span {
+    margin-left: 0;
+    margin-right: -8px;
+}
+
+    #no3:checked ~ .sw_4 span:after {
+        margin-left: 0;
+        margin-right: 8px;
+    }

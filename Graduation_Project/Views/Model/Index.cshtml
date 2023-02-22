@@ -1,4 +1,5 @@
-﻿@model ModelPageVM
+﻿@inject IViewLocalizer Localizer
+@model ModelPageVM
 
 @{
     ViewData["Title"] = "Diseases Detection";
@@ -24,13 +25,13 @@
             <div class="col-lg-3 col-md-4 mb-lg-0 mb-md-0 mb-4">
                 <div class="tabs">
                     <li class="active model_1">
-                        Pneumonia
+                        @Localizer["Pneumonia"]
                     </li>
                     <li class="model_2">
-                        Tuberculosis
+                        @Localizer["Tuberculosis"]
                     </li>
                     <li class="model_3">
-                        Lung Cancer
+                        @Localizer["LungCancer"]
                     </li>
                 </div>
             </div>
@@ -46,15 +47,15 @@
                         <form id="pneumonia">
                             <div class="drop-zone">
                                 <span class="drop-zone__prompt mr-3">
-                                    Drop image here or click to upload
+                                    @Localizer["DropImage"]
                                 </span>
                                 <i class="fas fa-upload"></i>
                                 <input asp-for="ModelFile.File" type="file" name="file" class="drop-zone__input">
                             </div>
                             <div class="form-group mb-3 mt-4">
-                                <input placeholder="Enter Patient Name" class="PatientName" asp-for="ModelFile.PatientName" type="text" name="PatientName">
+                                <input placeholder="@Localizer["EnterPatientName"]" class="PatientName" asp-for="ModelFile.PatientName" type="text" name="PatientName">
                             </div>
-                            <a class="btn btn-success upload">Upload <i class="fas fa-upload"></i></a>
+                            <a class="btn btn-success upload">@Localizer["Upload"] <i class="fas fa-upload"></i></a>
                         </form>
                     </div>
                     <!-- End Model_1 -->
@@ -64,15 +65,15 @@
                         <form id="tuberculosis">
                             <div class="drop-zone">
                                 <span class="drop-zone__prompt mr-3">
-                                    Drop image here or click to upload
+                                    @Localizer["DropImage"]
                                 </span>
                                 <i class="fas fa-upload"></i>
                                 <input asp-for="ModelFile.File" type="file" name="file" class="drop-zone__input">
                             </div>
                             <div class="form-group mb-3 mt-4">
-                                <input placeholder="Enter Patient Name" class="PatientName" asp-for="ModelFile.PatientName" type="text" name="PatientName">
+                                <input placeholder="@Localizer["EnterPatientName"]" class="PatientName" asp-for="ModelFile.PatientName" type="text" name="PatientName">
                             </div>
-                            <a class="btn btn-success upload">Upload <i class="fas fa-upload"></i></a>
+                            <a class="btn btn-success upload">@Localizer["Upload"] <i class="fas fa-upload"></i></a>
                         </form>
                     </div>
                     <!-- End Model_2 -->
@@ -81,28 +82,28 @@
                     <div class="hardware model_3 page">
                         <div class="card">
                             <div class="card-header">
-                                Lung Cancer
+                                @Localizer["LungCancer"]
                             </div>
                             <div class="card-body">
                                 <form id="lungCancer" >
                                     <div class="row">
                                         <div class="form-group col-lg-12">
-                                                <label class="lbl" for="PatientName">Patient Name</label>
+                                            <label class="lbl" for="PatientName">@Localizer["PatientName"]</label>
                                             <input class="PatientName" asp-for="LungCancer.PatientName" type="text" name="PatientName" id="PatientName">
                                         </div>
                                         <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl" for="gender">Gender</label>
+                                            <label class="lbl" for="gender">@Localizer["Gender"]</label>
                                             <select class="round" name="" id="gender" asp-for="LungCancer.Gender">
-                                                <option value="1">Male</option>
-                                                <option value="2">Female</option>
+                                                <option value="1">@Localizer["Male"]</option>
+                                                <option value="2">@Localizer["Female"]</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-2 col-lg-6">
-                                            <label class="lbl" for="age">Age</label>
+                                            <label class="lbl" for="age">@Localizer["Age"]</label>
                                             <input id="age" type="number" asp-for="LungCancer.Age">
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">AirPollution</label>
+                                                <label class="lbl">@Localizer["AirPollution"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement'>&ndash;</div>
                                                 <div class='ctrl__counter'>
@@ -113,7 +114,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">DustAllergy</label>
+                                                <label class="lbl">@Localizer["DustAllergy"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement decrement_ctrl_2'>&ndash;</div>
                                                 <div class='ctrl__counter counter_ctrl_2'>
@@ -124,7 +125,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">OccuPationalHazards</label>
+                                            <label class="lbl">@Localizer["OccuPationalHazards"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_3_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_3_counter'>
@@ -135,7 +136,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">GeneticRisk</label>
+                                            <label class="lbl">@Localizer["GeneticRisk"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_4_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_4_counter'>
@@ -146,7 +147,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">ChronicLungDisease</label>
+                                            <label class="lbl">@Localizer["ChronicLungDisease"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_5_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_5_counter'>
@@ -157,7 +158,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">BalancedDiet</label>
+                                            <label class="lbl">@Localizer["BalancedDiet"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_6_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_6_counter'>
@@ -168,7 +169,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">Obesity</label>
+                                            <label class="lbl">@Localizer["Obesity"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_7_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_7_counter'>
@@ -179,7 +180,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">ChestPain</label>
+                                            <label class="lbl">@Localizer["ChestPain"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_8_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_8_counter'>
@@ -190,7 +191,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">CoughingofBlood</label>
+                                            <label class="lbl">@Localizer["CoughingofBlood"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_9_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_9_counter'>
@@ -201,7 +202,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">Fatigue</label>
+                                            <label class="lbl">@Localizer["Fatigue"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_10_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_10_counter'>
@@ -212,7 +213,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">WeightLoss</label>
+                                            <label class="lbl">@Localizer["WeightLoss"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_11_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_11_counter'>
@@ -223,7 +224,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">ShortnessofBreath</label>
+                                            <label class="lbl">@Localizer["ShortnessofBreath"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_12_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_12_counter'>
@@ -234,7 +235,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">Wheezing</label>
+                                            <label class="lbl">@Localizer["Wheezing"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_13_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_13_counter'>
@@ -245,7 +246,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">SwallowingDifficulty</label>
+                                            <label class="lbl">@Localizer["SwallowingDifficulty"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_14_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_14_counter'>
@@ -256,7 +257,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">ClubbingofFingerNail</label>
+                                            <label class="lbl">@Localizer["ClubbingofFingerNail"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_15_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_15_counter'>
@@ -267,7 +268,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">FrequentCold</label>
+                                            <label class="lbl">@Localizer["FrequentCold"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_16_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_16_counter'>
@@ -278,7 +279,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">DryCough</label>
+                                            <label class="lbl">@Localizer["DryCough"]</label>
                                             <div class='ctrl'>
                                                 <div class='ctrl__button ctrl__button--decrement ctrl_17_decrement'>&ndash;</div>
                                                 <div class='ctrl__counter ctrl_17_counter'>
@@ -289,53 +290,53 @@
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">Alcoholuse</label>
+                                            <label class="lbl">@Localizer["Alcoholuse"]</label>
                                             <input type="radio" name="rdo" id="yes5" />
                                             <input type="radio" name="rdo" id="no5" checked />
                                             <input asp-for="LungCancer.Alcoholuse" id="alcoholuse" type="hidden" value="0" class="res">
                                             <div class="switch sw_5">
-                                                <label class="yes yes5" for="yes5">Yes</label>
+                                                <label class="yes yes5" for="yes5">@Localizer["Yes"]</label>
                                                 <span></span>
-                                                <label class="no no5" for="no5">No</label>
+                                                <label class="no no5" for="no5">@Localizer["No"]</label>
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">Smoking</label>
+                                            <label class="lbl">@Localizer["Smoking"]</label>
                                             <input type="radio" name="rdo1" id="yes6" />
                                             <input type="radio" name="rdo1" id="no6" checked />
                                             <input asp-for="LungCancer.Smoking" id="smoking" type="hidden" value="0" class="res">
                                             <div class="switch sw_6">
-                                                <label class="yes yes6" for="yes6">Yes</label>
+                                                <label class="yes yes6" for="yes6">@Localizer["Yes"]</label>
                                                 <span></span>
-                                                <label class="no no6" for="no6">No</label>
+                                                <label class="no no6" for="no6">@Localizer["No"]</label>
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">PassiveSmoker</label>
+                                            <label class="lbl">@Localizer["PassiveSmoker"]</label>
                                             <input type="radio" name="rdo2" id="yes2" />
                                             <input type="radio" name="rdo2" id="no2" checked />
                                             <input asp-for="LungCancer.PassiveSmoker" id="passiveSmoker" type="hidden" value="0" class="res">
                                             <div class="switch sw_3">
-                                                <label class="yes yes2" for="yes2">Yes</label>
+                                                <label class="yes yes2" for="yes2">@Localizer["Yes"]</label>
                                                 <span></span>
-                                                <label class="no no2" for="no2">No</label>
+                                                <label class="no no2" for="no2">@Localizer["No"]</label>
                                             </div>
                                         </div>
                                         <div class="form-group mb-3 col-lg-3">
-                                            <label class="lbl">Snoring</label>
+                                            <label class="lbl">@Localizer["Snoring"]</label>
                                             <input type="radio" name="rdo3" id="yes3" />
                                             <input type="radio" name="rdo3" id="no3" checked />
                                             <input asp-for="LungCancer.Snoring" id="snoring" type="hidden" value="0" class="res">
                                             <div class="switch sw_4">
-                                                <label class="yes yes3" for="yes3">Yes</label>
+                                                <label class="yes yes3" for="yes3">@Localizer["Yes"]</label>
                                                 <span></span>
-                                                <label class="no no3" for="no3">No</label>
+                                                <label class="no no3" for="no3">@Localizer["No"]</label>
                                             </div>
                                         </div>
 
                                     </div>
 
-                                    <button type="submit" class="submit mt-3 w-100">Send <i class="fas fa-paper-plane"></i></button>
+                                    <button type="submit" class="submit mt-3 w-100">@Localizer["Send"] <i class="fas fa-paper-plane"></i></button>
                                 </form>
                             </div>
                         </div>

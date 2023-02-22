@@ -52,6 +52,10 @@
     padding-top: 90px;
 }
 
+.login .register {
+    padding-top: 70px;
+}
+
 .login .logo_white {
     width: 250px;
 }
