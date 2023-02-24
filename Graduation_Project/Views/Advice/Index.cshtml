@@ -1,7 +1,8 @@
-﻿@model AdvicesVM
+﻿@inject IViewLocalizer Localizer
+@model AdvicesVM
 
 @{
-    ViewData["Title"] = "Advices";
+    ViewData["Title"] = Localizer["Advices"];
     int number = Convert.ToInt32(ViewData["itemsCount"]);
 }
 
@@ -12,26 +13,26 @@
             <div class="col-lg-12">
                 <nav aria-label="breadcrumb">
                     <div class="pq-breadcrumb-title">
-                        <h2>Medical Advices</h2>
+                        <h2>@Localizer["MedicalAdvices"]</h2>
                     </div>
                     <div class="pq-breadcrumb-container mt-2">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="index.html">
-                                    <i class="fas fa-home mr-2"></i>Home
+                                <a asp-controller="Home" asp-action="Index">
+                                    <i class="fas fa-home mr-2"></i>@Localizer["Home"]
                                 </a>
                             </li>
                             @if (TempData["TitlePage"] is not null)
                             {
                                 <li class="breadcrumb-item">
-                                    <a asp-action="Index">
-                                        <i class="fas fa-file-signature"></i>Medical Advices
+                                    <a asp-controller="Advice" asp-action="Index">
+                                        <i class="fas fa-file-signature"></i>@Localizer["MedicalAdvices"]
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item active">@TempData["TitlePage"]</li>
                             }
                             else {
-                                <li class="breadcrumb-item active">Medical Advices</li>
+                                <li class="breadcrumb-item active">@Localizer["MedicalAdvices"]</li>
                             }
                         </ol>
                     </div>
@@ -56,27 +57,27 @@
                     <select class="round w-100" id="DiseaseTypeId" asp-for="SearchAdvice.DiseaseTypeId" asp-items="@(new SelectList(ViewBag.LstDiseaseTypes, "Id","Name_EN"))">
                         <option value=""></option>
                     </select>
-                    <div class="title">Type of disease</div>
+                    <div class="title">@Localizer["TypeOfdisease"]</div>
                     <i class="fas fa-stethoscope"></i>
                 </div>
                 <div class="box col-3">
                     <select class="round w-100" id="DiseaseId" asp-for="SearchAdvice.DiseaseId" asp-items="@(new SelectList(Model.SearchAdvice.Diseases, "Id","Name_EN"))">
                     </select>
-                    <div class="title">Disease</div>
+                    <div class="title">@Localizer["Disease"]</div>
                     <i class="fas fa-disease"></i>  
                 </div>
                 <div class="box col-4">
-                    <input type="text" asp-for="SearchAdvice.Title" class="w-100 text-center" placeholder="Search By Title Of Advice">
+                    <input type="text" asp-for="SearchAdvice.Title" class="w-100 text-center" placeholder="@Localizer["SearchTitle"]">
                 </div>
                 <div class="box col-2">
-                    <button type="submit" class="w-100">Search</button>
+                    <button type="submit" class="w-100">@Localizer["Search"]</button>
                 </div>
             </div>
         </form>
 
         <div class="header mb-4 mt-0 d-flex justify-content-between align-items-center">
             <div class="title">
-                <h6>We Found <span>@number</span> Advices for you!</h6>
+                <h6>@Localizer["WeFound"] <span>@number</span> @Localizer["AdvicesForYou"]</h6>
             </div>
         </div>
 
@@ -170,5 +171,4 @@
             });
         });
     </script>
-
 }

@@ -314,3 +314,48 @@ div.dt-buttons {
 #example4_filter {
     text-align: left;
 }
+
+.advices .search_box .box .title {
+    font-size: 14px;
+    right: 49px;
+    left: auto;
+}
+
+.advices .search_box .box i {
+    right: 20px;
+    left: auto;
+}
+
+.advices .search_box .box:after {
+    right: 0;
+    left: auto;
+}
+
+.advices .search_box .box select {
+    padding: 18px 36px 0 0;
+    background-position: calc(4.2%) calc(1em + 29px), calc(6.1%) calc(1em + 29px), calc(0%) 37px;
+}
+
+.advices .search_box .box select:focus {
+    background-position: calc(6%) calc(1em + 29px), calc(4%) calc(1em + 29px), calc(0%) 37px;
+}
+
+.advices .search_box .box input {
+    font-size: 19px;
+}
+
+.advices .search_box .box:last-child {
+    padding-left: 0;
+}
+
+.advices .search_box .box button {
+    font-size: 19px;
+}
+
+.advices .header .title h6 {
+    font-size: 24px;
+}
+
+.pagination {
+    direction: ltr;
+}

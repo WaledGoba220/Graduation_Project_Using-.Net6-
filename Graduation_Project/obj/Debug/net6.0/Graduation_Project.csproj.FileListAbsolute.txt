@@ -602,3 +602,5 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Gradu
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.Resources.Views.Model.Index.ar.resources
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.Resources.Views.Profile.Index.resources
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.Resources.Views.Profile.Index.ar.resources
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.Resources.Views.Advice.Index.resources
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Debug\net6.0\Graduation_Project.Resources.Views.Advice.Index.ar.resources
