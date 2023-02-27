@@ -449,6 +449,41 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("TbLungCancer");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbMeasuringBox", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float?>("HeartRate")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("Oxygen")
+                        .HasColumnType("real");
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float?>("Temperature")
+                        .HasColumnType("real");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TbMeasuringBox");
+                });
+
             modelBuilder.Entity("Domain.Models.TbPneumonia", b =>
                 {
                     b.Property<int>("Id")
@@ -866,6 +901,17 @@ namespace DataAccess_EF.Migrations
                         .IsRequired();
 
                     b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("Domain.Models.TbMeasuringBox", b =>
+                {
+                    b.HasOne("Domain.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Models.TbPneumonia", b =>
