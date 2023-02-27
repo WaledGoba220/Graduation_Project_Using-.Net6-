@@ -427,13 +427,8 @@
                         if (data.success) {
                             Swal.fire({
                                 title: data.message,
-                                icon: 'info',
-                                showCancelButton: true,
-                                confirmButtonText: 'Save',
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    Swal.fire('Saved!', '', 'success')
-                                }
+                                icon: 'success',
+                                showCancelButton: true
                             });
                         }
                         else {

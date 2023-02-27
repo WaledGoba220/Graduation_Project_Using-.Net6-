@@ -75,7 +75,9 @@ namespace Graduation_Project.Controllers
 
             var array = response.Content!.Split('"');
 
-            double result = Convert.ToDouble(array[3]) * 100;
+            double persentage = 0;
+            double.TryParse(array[3], System.Globalization.NumberStyles.Number , new System.Globalization.CultureInfo("en-US"), out persentage);
+            double result = persentage * 100;
 
             string message = String.Empty;
             if (result <= 30)
@@ -155,7 +157,9 @@ namespace Graduation_Project.Controllers
 
             var array = response.Content!.Split('"');
 
-            double result = Convert.ToDouble(array[3]) * 100;
+            double persentage = 0;
+            double.TryParse(array[3], System.Globalization.NumberStyles.Number, new System.Globalization.CultureInfo("en-US"), out persentage);
+            double result = persentage * 100;
 
             string message = String.Empty;
             if (result <= 30)
