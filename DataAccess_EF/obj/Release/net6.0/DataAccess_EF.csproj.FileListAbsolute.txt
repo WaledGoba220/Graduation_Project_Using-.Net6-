@@ -1,0 +1,17 @@
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\bin\Release\net6.0\DataAccess_EF.deps.json
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\bin\Release\net6.0\DataAccess_EF.runtimeconfig.json
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\bin\Release\net6.0\DataAccess_EF.dll
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\bin\Release\net6.0\DataAccess_EF.pdb
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\bin\Release\net6.0\Domain.dll
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\bin\Release\net6.0\Domain.pdb
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.csproj.AssemblyReference.cache
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.GeneratedMSBuildEditorConfig.editorconfig
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.AssemblyInfoInputs.cache
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.AssemblyInfo.cs
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.csproj.CoreCompileInputs.cache
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.csproj.CopyComplete
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.dll
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\refint\DataAccess_EF.dll
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.pdb
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\DataAccess_EF.genruntimeconfig.cache
+E:\Asp.net Projects\Graduation_Project\DataAccess_EF\obj\Release\net6.0\ref\DataAccess_EF.dll

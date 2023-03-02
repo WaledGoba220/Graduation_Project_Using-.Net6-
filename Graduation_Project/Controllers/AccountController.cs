@@ -85,12 +85,14 @@ namespace Graduation_Project.Controllers
                     await _userManager.AddToRoleAsync(user, Roles.Doctor);
                 }
 
-                // Create Link
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var url = Url.Action("ConfirmEmail", "Account", new { token = token, userId = user.Id }, Request.Scheme);
-                // Send Email
-                string formatUrl = $"<h3> To confirm email, you should <a href='{url}'> Click here </a> </h3>";
-                _emailSender.SendEmail(user.Email, "Email Confirmation", formatUrl);
+                //// Create Link
+                //var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                //var url = Url.Action("ConfirmEmail", "Account", new { token = token, userId = user.Id }, Request.Scheme);
+                //// Send Email
+                //string formatUrl = $"<h3> To confirm email, you should <a href='{url}'> Click here </a> </h3>";
+                //_emailSender.SendEmail(user.Email, "Email Confirmation", formatUrl);
+
+
 
                 TempData["Success"] = createUser.Message;
                 return RedirectToAction("LogIn");

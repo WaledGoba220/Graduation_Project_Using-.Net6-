@@ -43,6 +43,16 @@ namespace Graduation_Project.Controllers
                 {
                     // Get User From Db
                     var user = await _userManager.FindByEmailAsync(model.Email);
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    string role = string.Empty;
+                    if(userRoles.Count > 0)
+                    {
+                        role = userRoles[0];
+                    }
+                    else
+                    {
+                        role = "Patient";
+                    }
 
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var keyDetail = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]);
@@ -69,6 +79,7 @@ namespace Graduation_Project.Controllers
                     response.Content = new
                     {
                         UserId = user.Id,
+                        Role = role,
                         Token = tokenHandler.WriteToken(token),
                         ExpireDate = DateTime.UtcNow.AddDays(5).ToString("MM/dd/yyyy HH:mm:ss")
                     };

@@ -63,6 +63,7 @@ namespace Domain.Services
         {
             try
             {
+                user.EmailConfirmed = true;
                 var createUser = await _userManager.CreateAsync(user, password);
                 if (createUser.Succeeded)
                 {
