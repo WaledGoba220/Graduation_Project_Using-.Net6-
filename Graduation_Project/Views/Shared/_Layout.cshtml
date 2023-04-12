@@ -104,14 +104,25 @@
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/" ? "current-menu-item" : "")">
                                             <a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                                         </li>
-                                        <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/model" ? "current-menu-item" : "")">
-                                            <a asp-controller="Model" asp-action="Index">@Localizer["DiseasesDetection"]</a>
-                                        </li>
+                                        @if (User.IsInRole(Roles.Doctor))
+                                        {
+                                            <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/model" ? "current-menu-item" : "")">
+                                                <a asp-controller="Model" asp-action="Index">@Localizer["DiseasesDetection"]</a>
+                                            </li>
+                                        }
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/advice" ? "current-menu-item" : "")">
                                             <a asp-controller="Advice" asp-action="Index">
                                                 @Localizer["MedicalAdvices"]
                                             </a>
                                         </li>
+                                        @if (currentUser is not null) 
+                                        {
+                                            <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/lungtransplant" ? "current-menu-item" : "")">
+                                                <a asp-controller="LungTransplant" asp-action="Index">
+                                                    @Localizer["LungTransplant"]
+                                                </a>
+                                            </li>
+                                        }
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/about" ? "current-menu-item" : "")">
                                             <a href="#">@Localizer["About"]</a>
                                         </li>
@@ -120,7 +131,8 @@
                                                 @Localizer["Contact"]
                                             </a>
                                         </li>
-                                        @if (User.IsInRole(Roles.Admin)) {
+                                        @if (User.IsInRole(Roles.Admin)) 
+                                        {
                                             <li class="menu-item">
                                                 <a asp-area="Admin" asp-controller="Home" asp-action="Index">
                                                     @Localizer["Dashboard"]
@@ -128,14 +140,16 @@
                                             </li>
                                         }
 
-                                        @if (isArabic) {
+                                        @if (isArabic) 
+                                        {
                                             <li class="language">
                                                 <a class="lang" href="/Home/SetCulture?Lang=en-US&returnUrl=@(Context.Request.Path.Value)">
                                                     En
                                                 </a>
                                             </li>
                                         }
-                                        else {
+                                        else 
+                                        {
                                              <li class="language">
                                                 <a class="lang" href="/Home/SetCulture?Lang=ar-SA&returnUrl=@(Context.Request.Path.Value)">
                                                     Ar
@@ -181,7 +195,8 @@
                                                             </div>
                                                         </a>
                                                     </li>
-                                                    @if (User.IsInRole(Roles.Doctor)) {
+                                                    @if (User.IsInRole(Roles.Doctor)) 
+                                                    {
                                                         <li class="menu-item">
                                                             <a asp-controller="Advice" asp-action="MyAdvices">@Localizer["MyAdvices"] <i class="fas fa-file-signature"></i></a>
                                                         </li>

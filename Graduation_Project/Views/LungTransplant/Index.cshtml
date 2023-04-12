@@ -1,0 +1,145 @@
+﻿@inject IViewLocalizer Localizer
+@model LungTransplantVM
+
+@{
+    ViewData["Title"] = "Lung Transplant";
+}
+
+@section Styles {
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="~/rev/steppr/bs-stepper.min.css">
+}
+
+<div class="lung mt-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h4 class="card-title">Lung Transplant</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="bs-stepper">
+                            <div class="bs-stepper-header" role="tablist">
+                                <!-- your steps here -->
+                                <div class="step" data-target="#logins-part">
+                                    <button type="button" class="step-trigger" role="tab" aria-controls="logins-part"
+                                            id="logins-part-trigger">
+                                        <span class="bs-stepper-circle">1</span>
+                                        <span class="bs-stepper-label">Personal Information</span>
+                                    </button>
+                                </div>
+                                <div class="line"></div>
+                                <div class="step" data-target="#information-part">
+                                    <button type="button" class="step-trigger" role="tab" aria-controls="information-part"
+                                            id="information-part-trigger">
+                                        <span class="bs-stepper-circle">2</span>
+                                        <span class="bs-stepper-label">Lung Information</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="bs-stepper-content">
+                                    <form asp-controller="LungTransplant" asp-action="AddRequest" method="post" role="form" enctype="multipart/form-data">
+                                    <!-- your steps content here -->
+                                    <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+                                        <div class="form-group">
+                                            <i class="fa fa-user"></i>
+                                            <input asp-for="FullName" type="text" class="form-control" placeholder="Full Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <i class="fa fa-phone"></i>
+                                            <input asp-for="Phone" type="number" class="form-control" placeholder="Phone">
+                                        </div>
+                                        <div class="row mb-lg-0 mb-4">
+                                            <div class="col-lg-8">
+                                                <div class="form-group">
+                                                    <i class="fa fa-person"></i>
+                                                    <input asp-for="Age" type="number" class="form-control" placeholder="Age">
+                                                </div>
+                                                <div class="form-group">
+                                                    <i class="fa fa-envelope"></i>
+                                                    <input asp-for="NationalId" type="number" class="form-control" placeholder="National ID">
+                                                </div>
+                                                <div class="form-group form-group-select">
+                                                    <i class="fa fa-city"></i>
+                                                    <select asp-for="City" class="round" id="special">
+                                                        <option value="Alex">Alexandria</option>
+                                                        <option value="Cairo">Cairo</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <i class="fa fa-location"></i>
+                                                    <input asp-for="Address" type="text" class="form-control" placeholder="Address">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="model">
+                                                    <div class="drop-zone">
+                                                        <span class="drop-zone__prompt mr-3">
+                                                            Drop National ID or click to upload
+                                                        </span>
+                                                        <i class="fas fa-upload"></i>
+                                                        <input asp-for="NationalImage" type="file" id="myfilemodel1" name="nationalimage" class="drop-zone__input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-primary py-3 px-4" onclick="stepper.next()">Next</button>
+                                    </div>
+                                    <div id="information-part" class="content" role="tabpanel"
+                                         aria-labelledby="information-part-trigger">
+                                        <div class="row mb-4">
+                                            <div class="col-md-6 mb-3">
+                                                <div class="model">
+                                                    <div class="drop-zone">
+                                                        <span class="drop-zone__prompt mr-3">
+                                                            Drop Analysis File or click to upload
+                                                        </span>
+                                                        <i class="fas fa-upload"></i>
+                                                        <input asp-for="AnalysisFile" type="file" id="myfilemodel1" name="analysisfile" class="drop-zone__input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="model">
+                                                    <div class="drop-zone">
+                                                        <span class="drop-zone__prompt mr-3">
+                                                            Drop Chest Ray or click to upload
+                                                        </span>
+                                                        <i class="fas fa-upload"></i>
+                                                        <input asp-for="ChestRayImage" type="file" id="myfilemodel1" name="chestrayimage" class="drop-zone__input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex buttons">
+                                            <button type="button" class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/rev/steppr/bs-stepper.min.js"></script>
+    <script>
+        // BS-Stepper Init
+        document.addEventListener('DOMContentLoaded', function () {
+            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_Notification");
+    }
+}
+

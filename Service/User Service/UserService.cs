@@ -67,7 +67,7 @@ namespace Domain.Services
                 var createUser = await _userManager.CreateAsync(user, password);
                 if (createUser.Succeeded)
                 {
-                    return OperationResult.Succeeded("Register Successfully!, Please Confirm your Email");
+                    return OperationResult.Succeeded("Register Successfully!");
                 }
                 else
                 {

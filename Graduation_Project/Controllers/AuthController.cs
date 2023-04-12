@@ -31,7 +31,7 @@ namespace Graduation_Project.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> LoginAsync([FromForm] LoginVM model)
+        public async Task<IActionResult> LoginAsync(LoginVM model)
         {
             BaseResponse response = new BaseResponse();
             try
@@ -44,44 +44,19 @@ namespace Graduation_Project.Controllers
                     // Get User From Db
                     var user = await _userManager.FindByEmailAsync(model.Email);
                     var userRoles = await _userManager.GetRolesAsync(user);
+                    
                     string role = string.Empty;
                     if(userRoles.Count > 0)
-                    {
                         role = userRoles[0];
-                    }
                     else
-                    {
                         role = "Patient";
-                    }
-
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var keyDetail = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]);
-
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.NameIdentifier, user.Id)
-                    };
-
-                    var tokenDescriptor = new SecurityTokenDescriptor
-                    {
-                        Audience = _configuration["JWT:Audience"],
-                        Issuer = _configuration["JWT:Issuer"],
-                        Expires = DateTime.UtcNow.AddDays(5),
-                        Subject = new ClaimsIdentity(claims),
-                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyDetail), SecurityAlgorithms.HmacSha256Signature)
-                    };
-
-                    var token = tokenHandler.CreateToken(tokenDescriptor);
-
+                    
                     response.IsSuccess = true;
                     response.Message = result.Message;
                     response.Content = new
                     {
                         UserId = user.Id,
                         Role = role,
-                        Token = tokenHandler.WriteToken(token),
-                        ExpireDate = DateTime.UtcNow.AddDays(5).ToString("MM/dd/yyyy HH:mm:ss")
                     };
                     return Ok(response);
                 }
@@ -94,11 +69,10 @@ namespace Graduation_Project.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                return BadRequest(response);
             }
         }
-
-
-
     }
 }

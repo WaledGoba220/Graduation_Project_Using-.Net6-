@@ -57,14 +57,14 @@
 }
 
 .login .logo_white {
-    width: 250px;
+    width: 370px;
 }
 
 .login .content h2 {
     margin-top: 10px;
     color: white;
     font-weight: bold;
-    font-size: 35px;
+    font-size: 25px;
     margin-bottom: 30px;
 }
 
@@ -76,12 +76,15 @@
     .login .content {
         padding-top: 20px;
     }
+    .login .logo_box {
+        text-align: center !important;
+    }
     .login .logo_white {
-        width: 190px;
+        width: 250px;
     }
     .login .content h2 {
         margin-top: 5px;
-        font-size: 27px;
+        font-size: 22px;
         margin-bottom: 15px;
     }
     .login .content h6 {
@@ -95,10 +98,10 @@
         padding-top: 10px;
     }
     .login .logo_white {
-        width: 160px;
+        width: 180px;
     }
     .login .content h2 {
-        font-size: 21px;
+        font-size: 17px;
         margin-bottom: 10px;
     }
     .login .content h6 {

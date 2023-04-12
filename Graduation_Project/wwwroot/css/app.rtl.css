@@ -359,3 +359,9 @@ div.dt-buttons {
 .pagination {
     direction: ltr;
 }
+
+@media (max-width: 992px) {
+    .lang {
+        margin-right: 15px;
+    }
+}

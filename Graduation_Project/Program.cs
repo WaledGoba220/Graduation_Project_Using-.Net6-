@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Service.Advice_Service;
+using Service.LungTransplant_Service;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,31 +76,12 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.SlidingExpiration = true;
 });
 
-// Configure JWTBearer Token
-builder.Services.AddAuthentication(x =>
-{
-    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(o =>
-{
-    var Key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
-    o.SaveToken = true;
-    o.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["JWT:Issuer"],
-        ValidAudience = builder.Configuration["JWT:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Key)
-    };
-});
-
 // Add Dependence Injection
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAdviceService, AdviceService>();
+builder.Services.AddScoped<ILungTransplantService, LungTransplantService>();
 
 // Localization
 builder.Services.AddLocalization();

@@ -90,9 +90,7 @@ namespace Graduation_Project.Controllers
                 //var url = Url.Action("ConfirmEmail", "Account", new { token = token, userId = user.Id }, Request.Scheme);
                 //// Send Email
                 //string formatUrl = $"<h3> To confirm email, you should <a href='{url}'> Click here </a> </h3>";
-                //_emailSender.SendEmail(user.Email, "Email Confirmation", formatUrl);
-
-
+                //await _emailSender.SendEmail(user.Email, "Email Confirmation", formatUrl);
 
                 TempData["Success"] = createUser.Message;
                 return RedirectToAction("LogIn");

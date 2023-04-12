@@ -146,6 +146,9 @@
   <data name="Logout" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="LungTransplant" xml:space="preserve">
+    <value>زراعة الرئة</value>
+  </data>
   <data name="MedicalAdvices" xml:space="preserve">
     <value>نصائح طبية</value>
   </data>

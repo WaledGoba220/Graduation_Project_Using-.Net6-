@@ -146,6 +146,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="LungTransplant" xml:space="preserve">
+    <value>Lung Transplant</value>
+  </data>
   <data name="MedicalAdvices" xml:space="preserve">
     <value>Medical Advices</value>
   </data>

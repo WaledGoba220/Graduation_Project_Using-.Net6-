@@ -28,6 +28,8 @@ namespace Domain
         ITuberculosisRepository TbTuberculosis { get; }
         ILungCancerRepository TbLungCancer { get; }
         IMeasuringBoxRepository TbMeasuringBox { get; }
+        ILungTransplantRepository TbLungTransplant { get; }
+
 
         Task<int> Complete();
     }

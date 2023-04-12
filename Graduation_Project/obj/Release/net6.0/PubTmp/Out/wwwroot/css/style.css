@@ -87,6 +87,11 @@
 /*==================================================
 [ General ]
 ==================================================*/
+
+html {
+    overflow-x: hidden !important;
+    height: auto;
+}
 body {
     background: var(--white-color);
     font-family: var(--body-fonts);
@@ -95,6 +100,7 @@ body {
     font-weight: normal;
     line-height: 2;
     color: var(--secondary-color);
+    width: 100% !important;
     overflow-x: hidden;
 }
 
@@ -7987,4 +7993,13 @@ input[type=radio] {
 
 div.dataTables_wrapper div.dataTables_info {
     padding-top: 0 !important;
+}
+
+@media (max-width: 992px) {
+    .lang {
+        margin-left: 15px;
+        font-size: 15px !important;
+        padding: 8px 16px !important;
+        width: 50px !important;
+    }
 }

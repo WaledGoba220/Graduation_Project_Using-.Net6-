@@ -22,7 +22,7 @@ namespace Graduation_Project.Controllers
         }
 
         [HttpPost("Save")]
-        public async Task<IActionResult> SaveAsync([FromBody] MeasuringBoxVM model)
+        public async Task<IActionResult> SaveAsync(MeasuringBoxVM model)
         {
             BaseResponse response = new();
 
@@ -30,6 +30,12 @@ namespace Graduation_Project.Controllers
             {
                 response.IsSuccess = false;
                 response.Message = "Patient Name is Required";
+                return BadRequest(response);
+            }
+            else if (String.IsNullOrEmpty(model.UserId))
+            {
+                response.IsSuccess = false;
+                response.Message = "Please Login To Continue";
                 return BadRequest(response);
             }
 

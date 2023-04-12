@@ -39,6 +39,8 @@ namespace Service.Advice_Service
                 };
 
                 await _unitOfWork.TbAdvices.AddAsync(dt);
+                await _unitOfWork.Complete();
+
                 return OperationResult.Succeeded("Add New Advice Successfully!");
 
             }
@@ -66,6 +68,8 @@ namespace Service.Advice_Service
                 advice.AppUserId = model.UserId;
 
                 _unitOfWork.TbAdvices.Update(advice);
+                await _unitOfWork.Complete();
+
                 return OperationResult.Succeeded("Update Advice Successfully!");
             }
             catch (Exception ex)

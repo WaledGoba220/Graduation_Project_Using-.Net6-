@@ -300,6 +300,7 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\Pub
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\Hangfire.Core.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\Hangfire.SqlServer.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\Humanizer.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\MailKit.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\MessagePack.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\MessagePack.Annotations.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -354,6 +355,7 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\Pub
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\MimeKit.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\NuGet.Common.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\NuGet.Configuration.dll
@@ -364,6 +366,7 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\Pub
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\NuGet.ProjectModel.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\NuGet.Protocol.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\NuGet.Versioning.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\BouncyCastle.Crypto.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\RestSharp.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\System.Composition.AttributedModel.dll
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\PubTmp\Out\System.Composition.Convention.dll

@@ -144,6 +144,15 @@ namespace Graduation_Project.Resources.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lung Transplant.
+        /// </summary>
+        public static string LungTransplant {
+            get {
+                return ResourceManager.GetString("LungTransplant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medical Advices.
         /// </summary>
         public static string MedicalAdvices {

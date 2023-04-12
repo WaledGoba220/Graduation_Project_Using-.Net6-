@@ -8,6 +8,6 @@ namespace E_Exam.Utility.EmailSender
 {
     public interface IEmailSender
     {
-        void SendEmail(string email, string subject, string htmlMessage);
+        Task SendEmail(string email, string subject, string htmlMessage);
     }
 }

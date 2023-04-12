@@ -605,3 +605,6 @@ E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\ref
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\Graduation_Project.pdb
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\Graduation_Project.genruntimeconfig.cache
 E:\Asp.net Projects\Graduation_Project\Graduation_Project\obj\Release\net6.0\ref\Graduation_Project.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Release\net6.0\MailKit.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Release\net6.0\MimeKit.dll
+E:\Asp.net Projects\Graduation_Project\Graduation_Project\bin\Release\net6.0\BouncyCastle.Crypto.dll

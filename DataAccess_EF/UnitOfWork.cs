@@ -30,6 +30,7 @@ namespace DataAccess_EF
         public ITuberculosisRepository TbTuberculosis { get; private set; }
         public ILungCancerRepository TbLungCancer { get; private set; }
         public IMeasuringBoxRepository TbMeasuringBox { get; private set; }
+        public ILungTransplantRepository TbLungTransplant { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -52,6 +53,7 @@ namespace DataAccess_EF
             TbTuberculosis = new TuberculosisRepository(context);
             TbLungCancer = new LungCancerRepository(context);
             TbMeasuringBox = new MeasuringBoxRepository(context);
+            TbLungTransplant = new LungTransplantRepository(context);
         }
 
         public async Task<int> Complete()
