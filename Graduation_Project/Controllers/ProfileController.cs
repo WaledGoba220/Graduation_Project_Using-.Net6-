@@ -36,6 +36,7 @@ namespace Graduation_Project.Controllers
 
             ProfilePageVM model = new();
             model.User = currentUser;
+            model.User.LungTransplants = await _unitOfWork.TbLungTransplant.GetWhereAsync(a => a.UserId == model.User.Id);
             if (User.IsInRole(Roles.Doctor))
             {
                 bool doctor = await _unitOfWork.TbDoctors.FindAsync(a => a.AppUserId == currentUser.Id);
@@ -45,13 +46,12 @@ namespace Graduation_Project.Controllers
                     model.ViewsCount = await _unitOfWork.TbDoctorViewsCounts.GetFirstOrDefaultAsync(a => a.DoctorId == model.Doctor.Id);
 
                     var getRatingByDoctorId = await _unitOfWork.TbRatings.GetWhereAsync(a => a.DoctorId == model.Doctor.Id);
-                    if (getRatingByDoctorId is not null)
+                    if (getRatingByDoctorId is not null && getRatingByDoctorId.Count() > 0)
                     {
                         int ratingCount = getRatingByDoctorId.Count();
                         model.CalculateRating = getRatingByDoctorId.Sum(a => a.Rate) / ratingCount;
                         ViewBag.RatingCount = ratingCount;
                     }
-
                 }
 
                 ViewBag.LstSpecialization = await _unitOfWork.TbSpecialization.GetAllAsync();

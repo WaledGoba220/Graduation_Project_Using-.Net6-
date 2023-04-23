@@ -29,6 +29,7 @@ namespace Domain
         ILungCancerRepository TbLungCancer { get; }
         IMeasuringBoxRepository TbMeasuringBox { get; }
         ILungTransplantRepository TbLungTransplant { get; }
+        ILungAnalysisFileRepository TbLungAnalysisFile { get; }
 
 
         Task<int> Complete();

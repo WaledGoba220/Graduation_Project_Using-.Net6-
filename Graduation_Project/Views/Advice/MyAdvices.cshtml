@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "My Advices";
     int number = Convert.ToInt32(ViewData["itemsCount"]);
+    var userId = ViewData["UserId"];
 }
 
 <!--============= breadcrumb start ===============-->
@@ -53,7 +54,7 @@
                     <input class="advice_id" type="hidden" asp-for="AdviceVM.Id" value="0" />
 
                     @*UserId*@
-                    <input type="hidden" asp-for="AdviceVM.UserId" value="@ViewBag.UserId" />
+                    <input type="hidden" asp-for="AdviceVM.UserId" value="@userId" />
 
                     
                     @*DoctorId*@

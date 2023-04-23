@@ -99,6 +99,10 @@
                             </li>
                         </a>
                     }
+                    <li class="lungtransplant">
+                        <i class="fas fa-lungs"></i>
+                            @Localizer["LungTransplantRequests"]
+                    </li>
                     <a asp-controller="Account" asp-action="LogOut">
                         <li>
                             <i class="bi bi-box-arrow-left"></i>
@@ -326,10 +330,10 @@
                                     <div class="box">
                                         <ul>
                                             <li>
-                                                <i class="fas fa-map-marker-alt"></i> @Model.Doctor.City, @Model.Doctor.Country
+                                                <i class="fas fa-map-marker-alt"></i> @Model.Doctor?.City, @Model.Doctor?.Country
                                             </li>
                                             <li>
-                                                <i class="fas fa-phone"></i> @Model.Doctor.Phone
+                                                <i class="fas fa-phone"></i> @Model.Doctor?.Phone
                                             </li>
                                             @if(Model.ViewsCount is not null) {
                                                 <li>
@@ -345,7 +349,7 @@
                                         </ul>
                                         <div class="special">
                                             <h6><i class="fas fa-tag"></i> @Localizer["Specialization"]:</h6>
-                                            <span>@Model.Doctor.Specialization?.Name_EN</span>
+                                            <span>@Model.Doctor?.Specialization?.Name_EN</span>
                                         </div>
                                     </div>
                                 </div>
@@ -710,6 +714,96 @@
                     </div>
                     <!-- End historical for hardware -->
                     <!--==================================================================================-->
+                    <!-- Start Lung Transplant Requests -->
+                    <div class="lungtransplant page">
+                        <div class="card">
+                            <div class="card-header">
+                                @Localizer["LungTransplantRequests"]
+                            </div>
+                            <div class="card-body">
+                                <div id="example1_wrapper5" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="example5" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            @Localizer["ChestRay"]
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            @Localizer["NationalPhoto"]
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            @Localizer["FullName"]
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            @Localizer["AnalysisFile"]
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            @Localizer["Status"]
+                                                        </th>
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                                            @Localizer["DateAndTime"]
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                                                            @Localizer["Actions"]
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model.User!.LungTransplants!.Count() > 0)
+                                                    {
+                                                        @foreach (var item in Model.User!.LungTransplants!.OrderByDescending(a=>a.CreationDateTime))
+                                                        {
+                                                            <tr class="odd">
+                                                                <td>
+                                                                    <img class="lazy" style="border-radius: 2px; width: 40px; height: 40px;" data-src="data:image/*;base64,@(Convert.ToBase64String(item.ChestRayImage))" />
+                                                                </td>
+                                                                <td>
+                                                                    <img class="lazy" style="border-radius: 2px; width: 40px; height: 40px;" data-src="data:image/*;base64,@(Convert.ToBase64String(item.NationalImage))" />
+                                                                </td>
+                                                                <td>@item.FullName</td>
+                                                                <td>
+                                                                    <a class="btn btn-danger" asp-controller="LungTransplant" asp-action="Download" asp-route-id="@item.Id" target="_blank"><i class="fas fa-file-pdf mr-1"></i> @Localizer["AnalysisFile"]</a>
+                                                                </td>
+                                                                <td>
+                                                                    @if (Status.Processing == item.Status)
+                                                                    {
+                                                                        <span class="td_active bg-primary">@item.Status</span>
+                                                                    }
+                                                                    else if (Status.Rejected == item.Status)
+                                                                    {
+                                                                        <span class="td_active bg-danger">@item.Status</span>
+                                                                    }
+                                                                    else if (Status.Accepted == item.Status)
+                                                                    {
+                                                                        <span class="td_active bg-success">@item.Status</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="td_active bg-warning">@item.Status</span>
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    <span class="moment-date">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</span>
+                                                                </td>
+                                                                <td>
+                                                                    <a class="btn btn-sm btn-primary" asp-controller="LungTransplant" asp-action="RequestDetails" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a>
+                                                                    <button onclick=DeletePneumonia("/Model/DeletePneumonia/@item.Id") class="btn btn-sm btn-danger">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -756,6 +850,10 @@
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example6_wrapper .col-md-6:eq(0)');
+            $("#example5").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example5_wrapper .col-md-6:eq(0)');
         });
     </script>
     @{

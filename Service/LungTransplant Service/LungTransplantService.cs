@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utility.Consts;
+using Microsoft.AspNetCore.Http;
+using Org.BouncyCastle.Asn1.Cmp;
+using Org.BouncyCastle.Asn1.Crmf;
+using DataAccess_EF;
 
 namespace Service.LungTransplant_Service
 {
@@ -20,16 +24,16 @@ namespace Service.LungTransplant_Service
 
         public async Task<OperationResult> AddRequestAsync(LungTransplantVM model, string userId)
         {
+            var getRequestsByNationalId = await _unitOfWork.TbLungTransplant.GetWhereAsync(a => a.NationalId == model.NationalId && a.Status != Status.Rejected && a.Status != Status.Accepted);
+            if (getRequestsByNationalId?.Any() == true)
+                return OperationResult.Error("The Natopnal ID is already in processing");
+
             // Convert file from IFormFile to byte[]
             using var nationalImageStream = new MemoryStream();
             await model.NationalImage.CopyToAsync(nationalImageStream);
 
-            using var analysisFileStream = new MemoryStream();
-            await model.AnalysisFile.CopyToAsync(analysisFileStream);
-
             using var chestRayImageStream = new MemoryStream();
             await model.ChestRayImage.CopyToAsync(chestRayImageStream);
-
 
             try
             {
@@ -44,19 +48,18 @@ namespace Service.LungTransplant_Service
                     UserId = userId,
                     NationalImage = nationalImageStream.ToArray(),
                     ChestRayImage = chestRayImageStream.ToArray(),
-                    AnalysisFile = analysisFileStream.ToArray(),
                     Status = Status.Pending
                 };
-
                 await _unitOfWork.TbLungTransplant.AddAsync(dt);
                 await _unitOfWork.Complete();
 
-                return OperationResult.Succeeded("Send your Request Successfully!");
+                return OperationResult.Succeeded(dt.Id.ToString());
             }
             catch (Exception ex)
             {
                 return OperationResult.Error(ex.Message);
             }
         }
+
     }
 }

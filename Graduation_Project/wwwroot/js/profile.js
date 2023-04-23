@@ -86,7 +86,7 @@ window.onclick = function (event) {
 $(".account .tabs li").click(function () {
   $(this).addClass("active").siblings().removeClass("active");
 });
-//Historical For Modle
+//Historical For Model
 $(".account .tabs .Modle").click(function () {
   $(".account .pages .page").removeClass("active");
   $(".account .pages .Modle").addClass("active");
@@ -101,11 +101,12 @@ $(".account .tabs .hardware").click(function () {
   $(".account .pages .page").removeClass("active");
   $(".account .pages .hardware").addClass("active");
 });
-// My Advices
-$(".account .tabs .my_advices").click(function () {
-  $(".account .pages .page").removeClass("active");
-  $(".account .pages .my_advices").addClass("active");
+//historical For Lung Transplants
+$(".account .tabs .lungtransplant").click(function () {
+    $(".account .pages .page").removeClass("active");
+    $(".account .pages .lungtransplant").addClass("active");
 });
+
 
 //////////////////////////////////////////////////////////////////////////
 

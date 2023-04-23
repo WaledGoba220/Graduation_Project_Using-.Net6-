@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Domain.Models
 {
     public class ApplicationUser : IdentityUser
     {
+
         public string? FullName { get; set; }
         public byte[]? Photo { get; set; }
-
         public DateTime Date { get; set; } = DateTime.Now;
+
+        public virtual IEnumerable<TbLungTransplant>? LungTransplants { get; set; }
     }
 }

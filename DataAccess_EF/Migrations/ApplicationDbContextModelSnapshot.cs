@@ -351,6 +351,42 @@ namespace DataAccess_EF.Migrations
                     b.ToTable("TbDoctorViewsCounts");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbLungAnalysisFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LungTransplantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Size")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LungTransplantId");
+
+                    b.ToTable("TbLungAnalysisFile");
+                });
+
             modelBuilder.Entity("Domain.Models.TbLungCancer", b =>
                 {
                     b.Property<int>("Id")
@@ -463,10 +499,6 @@ namespace DataAccess_EF.Migrations
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
-
-                    b.Property<byte[]>("AnalysisFile")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<byte[]>("ChestRayImage")
                         .IsRequired()
@@ -950,6 +982,17 @@ namespace DataAccess_EF.Migrations
                     b.Navigation("Doctor");
                 });
 
+            modelBuilder.Entity("Domain.Models.TbLungAnalysisFile", b =>
+                {
+                    b.HasOne("Domain.Models.TbLungTransplant", "LungTransplant")
+                        .WithMany()
+                        .HasForeignKey("LungTransplantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LungTransplant");
+                });
+
             modelBuilder.Entity("Domain.Models.TbLungCancer", b =>
                 {
                     b.HasOne("Domain.Models.TbDoctor", "Doctor")
@@ -964,7 +1007,7 @@ namespace DataAccess_EF.Migrations
             modelBuilder.Entity("Domain.Models.TbLungTransplant", b =>
                 {
                     b.HasOne("Domain.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("LungTransplants")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -1098,6 +1141,11 @@ namespace DataAccess_EF.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("LungTransplants");
                 });
 
             modelBuilder.Entity("Domain.Models.TbAdvice", b =>

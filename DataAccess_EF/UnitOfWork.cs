@@ -31,6 +31,7 @@ namespace DataAccess_EF
         public ILungCancerRepository TbLungCancer { get; private set; }
         public IMeasuringBoxRepository TbMeasuringBox { get; private set; }
         public ILungTransplantRepository TbLungTransplant { get; private set; }
+        public ILungAnalysisFileRepository TbLungAnalysisFile { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -54,6 +55,7 @@ namespace DataAccess_EF
             TbLungCancer = new LungCancerRepository(context);
             TbMeasuringBox = new MeasuringBoxRepository(context);
             TbLungTransplant = new LungTransplantRepository(context);
+            TbLungAnalysisFile = new LungAnalysisFileRepository(context);
         }
 
         public async Task<int> Complete()

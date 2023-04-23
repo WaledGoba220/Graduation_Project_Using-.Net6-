@@ -21,7 +21,7 @@ namespace Graduation_Project.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment _env;
         private IUnitOfWork _unitOfWork;
-        private const string BaseUrl = "https://goba.onrender.com"; 
+
         public ModelController(IUnitOfWork unitOfWork, IWebHostEnvironment env, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
@@ -66,7 +66,7 @@ namespace Graduation_Project.Controllers
             string imageName = await GetPathAndNameFromFile(model.File);
 
             string path = Path.Combine(_env.WebRootPath, "Models", imageName);
-            var client = new RestClient(BaseUrl);
+            var client = new RestClient(ModeBaseUrl.BaseUrl);
             var request = new RestRequest("/pneumonia/predict")
                 .AddParameter("Name", "de.json")
                 .AddParameter("Description", "json file")
@@ -148,7 +148,7 @@ namespace Graduation_Project.Controllers
             string imageName = await GetPathAndNameFromFile(model.File);
 
             string path = Path.Combine(_env.WebRootPath, "Models", imageName);
-            var client = new RestClient(BaseUrl);
+            var client = new RestClient(ModeBaseUrl.BaseUrl);
             var request = new RestRequest("/tuberculosis/predict")
                 .AddParameter("Name", "de.json")
                 .AddParameter("Description", "json file")
@@ -224,7 +224,7 @@ namespace Graduation_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> LungCancer(TbLungCancer model)
         {
-            var client = new RestClient(BaseUrl);
+            var client = new RestClient(ModeBaseUrl.BaseUrl);
             var request = new RestRequest("Cancer/predict/", Method.Post);
             request.AddHeader("Content-Type", "application/json");
             var body = new

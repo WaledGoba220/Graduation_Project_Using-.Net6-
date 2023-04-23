@@ -20,7 +20,6 @@ namespace Domain.Models
         public string City { get; set; }
         public string Address { get; set; }
         public byte[] NationalImage { get; set; }
-        public byte[] AnalysisFile { get; set; }
         public byte[] ChestRayImage { get; set; }
         public string Status { get; set; }
         public DateTime CreationDateTime { get; set; } = DateTime.Now;

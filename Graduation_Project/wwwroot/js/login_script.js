@@ -16,8 +16,8 @@ window.onload = function(){
     //////////////////////////////////
     // Add Role
 
-    var role_1 = "Patient";
-    var role_2 = "Doctor";
+    var role_1 = "patient";
+    var role_2 = "doctor";
 
     $(".login .types .type").on('click', function(){
         $(".login .types .type").each(function(){

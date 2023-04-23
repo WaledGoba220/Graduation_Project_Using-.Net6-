@@ -95,7 +95,7 @@ namespace Graduation_Project.Controllers
             int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
             var currentUser = await GetCurrentUser();
-            ViewBag.UserId = currentUser.Id;
+            ViewData["UserId"] = currentUser.Id;
             int doctorId = await _unitOfWork.TbDoctors.GetIdByUserIdAsync(currentUser.Id);
             ViewBag.doctorId = doctorId;
             ViewBag.LstDiseaseTypes = await _unitOfWork.TbDiseaseTypes.GetAllAsync();

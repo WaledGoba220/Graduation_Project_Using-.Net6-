@@ -132,6 +132,9 @@
   <data name="Alexandria" xml:space="preserve">
     <value>الاسكندرية</value>
   </data>
+  <data name="AnalysisFile" xml:space="preserve">
+    <value>ملف التحاليل</value>
+  </data>
   <data name="BalancedDiet" xml:space="preserve">
     <value>نظام غذائي متوازن</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="ChestPain" xml:space="preserve">
     <value>ألم صدر</value>
+  </data>
+  <data name="ChestRay" xml:space="preserve">
+    <value>اشعة الصدر</value>
   </data>
   <data name="ChronicLungDisease" xml:space="preserve">
     <value>مرض الرئة المزمن</value>
@@ -226,6 +232,9 @@
   <data name="Logout" xml:space="preserve">
     <value>تسجيل خروج</value>
   </data>
+  <data name="LungTransplantRequests" xml:space="preserve">
+    <value>طلبات زراعة الرئة</value>
+  </data>
   <data name="MeasuringBox" xml:space="preserve">
     <value>صندوق القياس</value>
   </data>
@@ -234,6 +243,12 @@
   </data>
   <data name="MyProfile" xml:space="preserve">
     <value>الصفحة الشخصية</value>
+  </data>
+  <data name="NationalId" xml:space="preserve">
+    <value>رقم البطاقة</value>
+  </data>
+  <data name="NationalPhoto" xml:space="preserve">
+    <value>البطاقة</value>
   </data>
   <data name="Obesity" xml:space="preserve">
     <value>بدانة</value>

@@ -132,6 +132,9 @@
   <data name="Alexandria" xml:space="preserve">
     <value>Alexandria</value>
   </data>
+  <data name="AnalysisFile" xml:space="preserve">
+    <value>AnalysisFile</value>
+  </data>
   <data name="BalancedDiet" xml:space="preserve">
     <value>Balanced Diet</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="ChestPain" xml:space="preserve">
     <value>Chest Pain</value>
+  </data>
+  <data name="ChestRay" xml:space="preserve">
+    <value>Chest Ray</value>
   </data>
   <data name="ChronicLungDisease" xml:space="preserve">
     <value>Chronic Lung Disease</value>
@@ -226,6 +232,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="LungTransplantRequests" xml:space="preserve">
+    <value>Lung transplant requests</value>
+  </data>
   <data name="MeasuringBox" xml:space="preserve">
     <value>Measuring Box</value>
   </data>
@@ -234,6 +243,12 @@
   </data>
   <data name="MyProfile" xml:space="preserve">
     <value>My Profile</value>
+  </data>
+  <data name="NationalId" xml:space="preserve">
+    <value>National Id</value>
+  </data>
+  <data name="NationalPhoto" xml:space="preserve">
+    <value>NationalPhoto</value>
   </data>
   <data name="Obesity" xml:space="preserve">
     <value>Obesity</value>

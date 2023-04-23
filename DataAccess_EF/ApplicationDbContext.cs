@@ -33,6 +33,7 @@ namespace DataAccess_EF
         public DbSet<TbLungCancer> TbLungCancer { get; set; }
         public DbSet<TbMeasuringBox> TbMeasuringBox { get; set; }
         public DbSet<TbLungTransplant> TbLungTransplants { get; set; }
+        public DbSet<TbLungAnalysisFile> TbLungAnalysisFile { get; set; }
 
     }
 }
