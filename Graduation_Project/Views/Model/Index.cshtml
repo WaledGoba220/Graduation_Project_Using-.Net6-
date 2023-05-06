@@ -24,13 +24,13 @@
             <!-- Start Tabs -->
             <div class="col-lg-3 col-md-4 mb-lg-0 mb-md-0 mb-4">
                 <div class="tabs">
-                    <li class="active model_1">
+                    <li class="active model_1" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in-up">
                         @Localizer["Pneumonia"]
                     </li>
-                    <li class="model_2">
+                    <li class="model_2" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in-up">
                         @Localizer["Tuberculosis"]
                     </li>
-                    <li class="model_3">
+                    <li class="model_3" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in-up">
                         @Localizer["LungCancer"]
                     </li>
                 </div>
@@ -45,17 +45,17 @@
                     <!-- Strat Model_1 -->
                     <div class="page model_1 active">
                         <form id="pneumonia">
-                            <div class="drop-zone">
+                            <div class="drop-zone" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                 <span class="drop-zone__prompt mr-3">
                                     @Localizer["DropImage"]
                                 </span>
                                 <i class="fas fa-upload"></i>
                                 <input asp-for="ModelFile.File" type="file" name="file" class="drop-zone__input">
                             </div>
-                            <div class="form-group mb-3 mt-4">
+                            <div class="form-group mb-3 mt-4" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                 <input placeholder="@Localizer["EnterPatientName"]" class="PatientName" asp-for="ModelFile.PatientName" type="text" name="PatientName">
                             </div>
-                            <a class="btn btn-success upload">@Localizer["Upload"] <i class="fas fa-upload"></i></a>
+                            <a class="btn btn-success upload" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">@Localizer["Upload"] <i class="fas fa-upload"></i></a>
                         </form>
                     </div>
                     <!-- End Model_1 -->

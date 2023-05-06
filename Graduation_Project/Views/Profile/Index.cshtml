@@ -27,7 +27,7 @@
         }
         td .td_active {
             font-size: 13px;
-            padding: 6px 10px;
+            padding: 3px 10px;
             border-radius: 3px;
             display: inline-block;
             color: #fff;
@@ -762,26 +762,31 @@
                                                                 <td>
                                                                     <img class="lazy" style="border-radius: 2px; width: 40px; height: 40px;" data-src="data:image/*;base64,@(Convert.ToBase64String(item.NationalImage))" />
                                                                 </td>
-                                                                <td>@item.FullName</td>
+                                                                @if(item.FullName.Length > 14) {
+                                                                    <td>@item.FullName.Substring(0, 14)...</td>
+                                                                }
+                                                                else{
+                                                                    <td>@item.FullName</td>
+                                                                }
                                                                 <td>
-                                                                    <a class="btn btn-danger" asp-controller="LungTransplant" asp-action="Download" asp-route-id="@item.Id" target="_blank"><i class="fas fa-file-pdf mr-1"></i> @Localizer["AnalysisFile"]</a>
+                                                                    <a class="btn btn-sm btn-danger" asp-controller="LungTransplant" asp-action="AnalysisFile" asp-route-id="@item.Id" target="_blank"><i class="fas fa-file-pdf mr-1"></i> @Localizer["AnalysisFile"]</a>
                                                                 </td>
                                                                 <td>
                                                                     @if (Status.Processing == item.Status)
                                                                     {
-                                                                        <span class="td_active bg-primary">@item.Status</span>
+                                                                        <span class="td_active btn-sm bg-primary">@item.Status</span>
                                                                     }
                                                                     else if (Status.Rejected == item.Status)
                                                                     {
-                                                                        <span class="td_active bg-danger">@item.Status</span>
+                                                                        <span class="td_active btn-sm bg-danger">@item.Status</span>
                                                                     }
                                                                     else if (Status.Accepted == item.Status)
                                                                     {
-                                                                        <span class="td_active bg-success">@item.Status</span>
+                                                                        <span class="td_active btn-sm bg-success">@item.Status</span>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <span class="td_active bg-warning">@item.Status</span>
+                                                                        <span class="td_active btn-sm bg-warning">@item.Status</span>
                                                                     }
                                                                 </td>
                                                                 <td>
@@ -811,8 +816,6 @@
         </div>
     </div>
 </div>
-
-<br>
 
 @section Scripts {
     <script src="~/js/profile.js" asp-append-version="true"></script>

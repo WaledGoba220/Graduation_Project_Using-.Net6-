@@ -81,7 +81,7 @@ namespace Graduation_Project.Controllers
             }
         }
 
-        public async Task<IActionResult> Download(int id)
+        public async Task<IActionResult> AnalysisFile(int id)
         {
             var selectedFile = await _unitOfWork.TbLungAnalysisFile.GetFirstOrDefaultAsync(a => a.LungTransplantId == id);
             if (selectedFile is not null)

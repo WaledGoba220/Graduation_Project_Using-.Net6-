@@ -38,29 +38,69 @@
 <!--============= Start Request Details ===============-->
 <div class="requestDetails mt-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-lg-0 mb-3">
                 <div class="d-flex">
                     <div class="item">
                         <h4 class="title">Chest Ray</h4>
                         <div class="img_box mb-3">
                             <a class="venobox" data-gall="myGallery" href="data:image/*;base64,@(Convert.ToBase64String(Model.ChestRayImage))">
-                                <img data-src="data:image/*;base64,@(Convert.ToBase64String(Model.ChestRayImage))" class="lazy w-100" alt="">
+                                <img data-src="data:image/*;base64,@(Convert.ToBase64String(Model.ChestRayImage))" class="lazy w-100 h-100" alt="">
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <h4 class="title">National Id</h4>
-                        <div class="img_box mb-3">
+                        <div class="img_box">
                             <a class="venobox" data-gall="myGallery" href="data:image/*;base64,@(Convert.ToBase64String(Model.NationalImage))">
-                                <img data-src="data:image/*;base64,@(Convert.ToBase64String(Model.NationalImage))" class="lazy w-100" alt="">
+                                <img data-src="data:image/*;base64,@(Convert.ToBase64String(Model.NationalImage))" class="lazy w-100 h-100" alt="">
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-
+            <div class="lines col-lg-6">
+                <div class="line">
+                    <span>Full Name: </span> @Model.FullName
+                </div>
+                <div class="line">
+                    <span>Age: </span> @Model.Age
+                </div>
+                <div class="line">
+                    <span>City: </span> @Model.City
+                </div>
+                <div class="line">
+                    <span>National ID: </span> @Model.NationalId
+                </div>
+                <div class="line">
+                    <span>Phone: </span> @Model.Phone
+                </div>
+                <div class="line">
+                    <span>Address: </span> @Model.Address
+                </div>
+                <div class="line">
+                    <span>Analysis File: </span>
+                    <a class="btn btn-danger" asp-controller="LungTransplant" asp-action="AnalysisFile" asp-route-id="@Model.Id" target="_blank"><i class="fas fa-file-pdf mr-1"></i> Analysis File</a>
+                </div>
+                <div class="line">
+                    <span>Status: </span> 
+                    @if (Status.Processing == Model.Status)
+                    {
+                        <button class="btn btn-primary">@Model.Status</button>
+                    }
+                    else if (Status.Rejected == Model.Status)
+                    {
+                        <button class="btn btn-danger">@Model.Status</button>
+                    }
+                    else if (Status.Accepted == Model.Status)
+                    {
+                        <button class="btn btn-success">@Model.Status</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-warning">@Model.Status</button>
+                    }
+                </div>
             </div>
         </div>
     </div>

@@ -51,7 +51,7 @@
 <section class="3-colume-grid advices pb-5 pt-0">
     <div class="container">
 
-        <form asp-action="Search" role="form" method="get">
+        <form asp-action="Search" role="form" method="get" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in-down">
             <div class="search_box row justify-content-center align-items-center mb-5">
                 <div class="box col-3">
                     <select class="round w-100" id="DiseaseTypeId" asp-for="SearchAdvice.DiseaseTypeId" asp-items="@(new SelectList(ViewBag.LstDiseaseTypes, "Id","Name_EN"))">
@@ -86,7 +86,7 @@
             {
                 @foreach (var item in Model.LstAdvices)
                 {
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                         <partial name="_Advice" model="item" />
                     </div>
                 }

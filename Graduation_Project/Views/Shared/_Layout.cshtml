@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <!-- Toaster -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <!-- Aos Animation -->
+    <link rel="stylesheet" href="~/js/aos/aos.css">
 
     @if (isArabic)
     {
@@ -124,7 +126,7 @@
                                             </li>
                                         }
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/about" ? "current-menu-item" : "")">
-                                            <a href="#">@Localizer["About"]</a>
+                                            <a asp-controller="About" asp-action="Index">@Localizer["About"]</a>
                                         </li>
                                         <li class="menu-item @(Context.Request.Path.Value.ToLower() == "/contact" ? "current-menu-item" : "")">
                                             <a href="contact_us.html">
@@ -243,51 +245,51 @@
                     <div class="row">
                         <div class="col-xl-4 col-md-6">
                             <div class="pq-footer-block">
-                                <img src="~/images/logo_white.png" class="pq-footer-logo img-fluid" alt="medicate-footer-logo">
-                                <p>
+                                <img src="~/images/logo_white.png" class="pq-footer-logo img-fluid" alt="medicate-footer-logo" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in-down">
+                                <p data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                     @Localizer["ContentFooter"]
                                 </p>
 
                                 <div class="pq-footer-social">
                                     <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="#"><i class="fab fa-pinterest"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4  col-md-6">
                             <div class="pq-footer-block">
-                                <h4 class="footer-title">@Localizer["UsefulLinks"]</h4>
+                                <h4 data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in-down" class="footer-title">@Localizer["UsefulLinks"]</h4>
                                 <div class="menu-useful-links-container">
                                     <ul id="menu-useful-links" class="menu">
-                                        <li><a href="about-us.html">@Localizer["Home"]</a></li>
-                                        <li><a href="contact-us.html">@Localizer["Contact"]</a></li>
-                                        <li><a href="our-services.html">@Localizer["About"]</a></li>
-                                        <li><a href="doctor-1.html">@Localizer["DiseasesDetection"]</a></li>
-                                        <li><a href="our-doctor.html">@Localizer["MedicalAdvices"]</a></li>
-                                        <li><a href="home-visit.html">@Localizer["Register"]</a></li>
-                                        <li><a href="faq.html">@Localizer["Login"]</a></li>
-                                        <li><a href="make-appoinment.html">@Localizer["Logout"]</a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="about-us.html">@Localizer["Home"]</a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="contact-us.html">@Localizer["Contact"]</a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="our-services.html">@Localizer["About"]</a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="doctor-1.html">@Localizer["DiseasesDetection"]</a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="our-doctor.html">@Localizer["MedicalAdvices"]</a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="home-visit.html">@Localizer["Register"]</a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="faq.html">@Localizer["Login"]</a></li>
+                                        <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in"><a href="make-appoinment.html">@Localizer["Logout"]</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4  col-md-6">
                             <div class="pq-footer-block">
-                                <h4 class="footer-title">@Localizer["Contact"]</h4>
+                                <h4 data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in-down" class="footer-title">@Localizer["Contact"]</h4>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <ul class="pq-contact">
-                                            <li>
+                                            <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                                 <a href="tel:+01552163006">
                                                     <i class="fas fa-phone"></i>
                                                     <span> +201552163006</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <li data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                                 <a href="mailto:abdallafathy1023@gmail.com">
                                                     <i class="fas fa-envelope"></i><span>abdallafathy1023@gmail.com</span>
                                                 </a>
@@ -334,6 +336,8 @@
     <script src="~/rev/js/rbtools.min.js"></script>
     <script src="~/rev/js/rs6.min.js"></script>
     <script src="~/js/rev-custom.js"></script>
+    <!-- Aos Animation -->
+    <script src="~/js/aos/aos.js"></script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -349,7 +353,7 @@
         });
     </script>
     <!--custom js-->
-    <script src="~/js/custom.js"></script>
+    <script src="~/js/custom.js" asp-append-version="true"></script>
 
     @RenderSectionAsync("Scripts", required: false);
 

@@ -49,7 +49,7 @@
                         <div class="ajaxbg d-none">
                             <img src="~/images/giphy.gif" />
                         </div>
-                        <div class="pq-post-media">
+                        <div class="pq-post-media" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                             <a class="add_fav" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-Id="@Model.Advice.Id" data-id="@Model.Advice.Id">
                                 <div class="fav_box">
                                     <i class="far fa-heart"></i>
@@ -63,7 +63,7 @@
                         <div class="pq-blog-contain">
                             <div class="pq-post-meta">
                                 <ul class="d-flex align-items-center justify-content-between">
-                                    <li class="pq-post-author">
+                                    <li class="pq-post-author" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                         <a asp-controller="User" asp-action="Index" asp-route-userName="@Model.Advice.AppUser.UserName">
                                             <div class="d-flex align-items-center">
                                                 <div class="doctorImage">
@@ -79,7 +79,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li class="pq-post-comment">
+                                    <li class="pq-post-comment" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                         <a>
                                             <i class="fa fa-comments"></i>
                                             @Model.Advice.Comments.Count() Comments
@@ -87,7 +87,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="pq-post-meta">
+                            <div class="pq-post-meta" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                 <ul class="d-flex align-items-center justify-content-between">
                                     <li class="pq-post-author">
                                         <i class="fas fa-stethoscope"></i>
@@ -99,13 +99,13 @@
                                     </li>
                                 </ul>
                             </div>
-                            <h3 class="mb-3">@Model.Advice.Title</h3>
-                            <p>
+                            <h3 class="mb-3" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">@Model.Advice.Title</h3>
+                            <p data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                 @Model.Advice.Content
                             </p>
                         </div>
                     </div>
-                    <div id="comments" class="pq-comment-area">
+                    <div id="comments" class="pq-comment-area" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                         <div class="mb-3 d-flex justify-content-between align-items-center">
                             <div>
                                 <h3 class="comments-title pt-0">@Model.Advice.Comments.Count() Comment </h3>
@@ -325,7 +325,7 @@
                 </div>
                 <div class="col-lg-4 mt-lg-0 mt-5">
                     <div class="Sidebar-style-2">
-                        <div class="doctor_profile">
+                        <div class="doctor_profile" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                             @if (Model.Advice.AppUser.Photo is null)
                             {
                                 <img class="photo" src="~/images/person.png" alt="">
@@ -334,7 +334,7 @@
                             {
                                 <img class="lazy photo" data-src="data:image/*;base64,@(Convert.ToBase64String(Model.Advice.AppUser.Photo))" alt="">
                             }
-                            <div class="info">
+                            <div class="info" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                 <h3>@Model.Advice.AppUser.FullName</h3>
                                 <div class="specialization">@ViewBag.Specialization</div>
                                 <li>
@@ -346,7 +346,7 @@
                                 <li>
                                     <i class="fas fa-map-marker-alt"></i> @Model.Advice.Doctor!.City - @Model.Advice.Doctor!.Country
                                 </li>
-                                <div class="mb-2 stars">
+                                <div class="mb-2 stars" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                     <span class="mr-2">(@ViewBag.RatingCount)</span>
                                     <i class="fa-solid fa-star @(Model.CalculateRating >= 1 ? "active": "")"></i>
                                     <i class="fa-solid fa-star @(Model.CalculateRating >= 2 ? "active": "")"></i>
@@ -354,7 +354,7 @@
                                     <i class="fa-solid fa-star @(Model.CalculateRating >= 4 ? "active": "")"></i>
                                     <i class="fa-solid fa-star @(Model.CalculateRating == 5 ? "active": "")"></i>
                                 </div>
-                                <div class="share-link">
+                                <div class="share-link" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                     <a href="https://www.facebook.com/" target="_blank">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
@@ -371,7 +371,7 @@
                             </div>
                         </div>
                         @if (ViewBag.UserId is not null) {
-                            <div class="posts d-flex justify-content-between align-items-center pb-3">
+                            <div class="posts d-flex justify-content-between align-items-center pb-3" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                 <div>
                                     <h3 class="mb-0">Add Rating</h3>
                                 </div>
@@ -392,7 +392,7 @@
                             <h3>Latest Advices</h3>
                             @foreach (var item in Model.LatestAdvices!)
                             {
-                                <div class="post mb-4 d-flex align-items-center">
+                                <div class="post mb-4 d-flex align-items-center" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                                     <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
                                         <div class="image">
                                             <img class="lazy" data-src="data:image/*;base64,@(Convert.ToBase64String(item.Image))" alt="">

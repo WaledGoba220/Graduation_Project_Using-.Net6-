@@ -110,7 +110,7 @@
             @if(Model.LstAdvices is not null) {
                 @foreach (var item in Model.LstAdvices)
                 {
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" data-aos-delay="100" data-aos-duration="800" data-aos="zoom-in">
                         <partial name="_Advice" model="item" />
                     </div>
                 }
