@@ -8112,3 +8112,7 @@ div.dataTables_wrapper div.dataTables_info {
 }
 
 /* End Team */
+
+.map {
+    padding-bottom: 0 !important;
+}
