@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TF3Xkn5lQ4y1VKfyh/T7LxV0RvgVdFb96na/ekCta8Q=",
+  "Hash": "E4JhZA3BHBXRkNl0qdHIK++3lv0/8lsijl6AUr7Dh4o=",
   "Source": "Graduation_Project",
   "BasePath": "_content/Graduation_Project",
   "Mode": "Default",
@@ -3961,12 +3961,12 @@
       "OriginalItemSpec": "wwwroot\\images\\about\\eslam.jpeg"
     },
     {
-      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\images\\about\\team.jpg",
+      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\images\\about\\team.jpeg",
       "SourceId": "Graduation_Project",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\",
       "BasePath": "_content/Graduation_Project",
-      "RelativePath": "images/about/team.jpg",
+      "RelativePath": "images/about/team.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -3975,7 +3975,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\about\\team.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\about\\team.jpeg"
+    },
+    {
+      "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\images\\about\\team11.jpg",
+      "SourceId": "Graduation_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\",
+      "BasePath": "_content/Graduation_Project",
+      "RelativePath": "images/about/team11.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\about\\team11.jpg"
     },
     {
       "Identity": "E:\\Asp.net Projects\\Graduation_Project\\Graduation_Project\\wwwroot\\images\\about\\waled.jpg",
