@@ -16,11 +16,12 @@
 > The Onion architecture is a form of layered architecture and we can visualize these layers as concentric circles. Hence the name Onion architecture. The Onion architecture was first introduced by Jeffrey Palermo, to overcome the issues of the traditional N-layered architecture approach.
 
 There are multiple ways that we can split the onion, but we are going to choose the following approach where we are going to split the architecture into **4 layers:**
-
 1. Domain Layer
 2. Service Layer
 3. Infrastructure Layer
 4. Presentation Layer
 
+Conceptually, we can consider that the Infrastructure and Presentation layers are on the same level of the hierarchy.
+Now, let us go ahead and look at each layer with more detail to see why we are introducing it and what we are going to create inside of that layer:
 
 
