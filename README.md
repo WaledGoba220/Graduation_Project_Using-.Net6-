@@ -9,4 +9,4 @@
 4. **Lung Transplant:** It is a form through which all personal data and all requirements are added that prove that the patient needs a lung transplant, and the validity of this data is detected by artificial intelligence and the authority concerned with lung transplantation to facilitate this process.
 
 ## System Architecture
-> **Using Onion architecture
+> **Using Onion architecture**
