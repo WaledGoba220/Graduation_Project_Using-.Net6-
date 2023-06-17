@@ -34,3 +34,24 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 - **Flow of Dependencies**
 > The main idea behind the Onion architecture is the flow of dependencies, or rather how the layers interact with each other. The deeper the layer resides inside the Onion, the fewer dependencies it has.
 > The Domain layer does not have any direct dependencies on the outside layers. It is isolated, in a way, from the outside world. The outer layers are all allowed to reference the layers that are directly below them in the hierarchy.
+> We can conclude that all the dependencies in the Onion architecture flow inwards. But we should ask ourselves, why is this important?
+> The flow of dependencies dictates what a certain layer in the Onion architecture can do. Because it depends on the layers below it in the hierarchy, it can only call the methods that are exposed by the lower layers.
+> We can use lower layers of the Onion architecture to define contracts or interfaces. The outer layers of the architecture implement these interfaces. This means that in the Domain layer, we are not concerning ourselves with infrastructure details such as the database or external services.
+> Using this approach, we can encapsulate all of the rich business logic in the Domain and Service layers without ever having to know any implementation details. In the Service layer, we are going to depend only on the interfaces that are defined by the layer below, which is the Domain layer.
+> Enough theory, let us see some code. We have already prepared a working project for you and we’re going to be looking at each of the projects in the solution, and talking about how they fit into the Onion architecture.
+
+### Solution Structure
+> As we can see, it consists of the Web project, which is our ASP.NET Core application, and six class libraries. The Domain project will hold the Domain layer implementation. The Services and Services.
+> Abstractions are going to be our Service layer implementation. The Persistence project will be our Infrastructure layer, and the Presentation project will be the Presentation layer implementation.
+
+
+
+
+
+
+
+
+
+
+
+
