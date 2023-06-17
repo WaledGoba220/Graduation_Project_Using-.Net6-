@@ -11,3 +11,9 @@
 ## System Architecture
 ### Onion Architecture
 > The Onion architecture is also commonly known as the “Clean architecture” or “Ports and adapters”. These architectural approaches are just variations of the same theme.
+
+### What is the Onion Architecture?
+> The Onion architecture is a form of layered architecture and we can visualize these layers as concentric circles. Hence the name Onion architecture. The Onion architecture was first introduced by Jeffrey Palermo, to overcome the issues of the traditional N-layered architecture approach.
+
+There are multiple ways that we can split the onion, but we are going to choose the following approach where we are going to split the architecture into 4 layers:
+
