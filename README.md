@@ -54,7 +54,7 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 ### **2. Service Layer**
 > The Service layer sits right above the Domain layer, which means that it has a reference to the Domain layer. The Service layer is split into two projects, Services.Abstractions and Services.
 > In the Services.Abstractions project you can find the definitions for the service interfaces that are going to encapsulate the main business logic. Also, we are using the Contracts project to define the Data Transfer Objects (DTO) that we are going to consume with the service interfaces.
-**> What is the motivation for splitting the Service layer?**
+**What is the motivation for splitting the Service layer?**
 > - Why are we going through so much trouble to split our service interfaces and implementations into two separate projects?
 > - As you can see, we mark the service implementations with the internal keyword, which means they will not be publicly available outside of the Services project. > - On the other hand, the service interfaces are public.
 > - Do you remember what we said about the flow of dependencies?
