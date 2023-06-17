@@ -23,8 +23,5 @@ There are multiple ways that we can split the onion, but we are going to choose 
 
 Conceptually, we can consider that the Infrastructure and Presentation layers are on the same level of the hierarchy.
 Now, let us go ahead and look at each layer with more detail to see why we are introducing it and what we are going to create inside of that layer:
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="[https://user-images.githubusercontent.com/25423296/163456776-7f95b81a-f1ed-45f7-b7ab-8fa810d529fa.png](https://images.app.goo.gl/cJjioS6CQ71EXqwU6)https://images.app.goo.gl/cJjioS6CQ71EXqwU6">
-  <source media="(prefers-color-scheme: light)" srcset="[https://user-images.githubusercontent.com/25423296/163456776-7f95b81a-f1ed-45f7-b7ab-8fa810d529fa.png](https://images.app.goo.gl/cJjioS6CQ71EXqwU6)https://images.app.goo.gl/cJjioS6CQ71EXqwU6">
-  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="[https://user-images.githubusercontent.com/25423296/163456776-7f95b81a-f1ed-45f7-b7ab-8fa810d529fa.png](https://images.app.goo.gl/cJjioS6CQ71EXqwU6)https://images.app.goo.gl/cJjioS6CQ71EXqwU6">
-</picture>
+> Image
+
