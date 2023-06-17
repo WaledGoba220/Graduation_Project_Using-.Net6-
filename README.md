@@ -17,10 +17,10 @@
 
 There are multiple ways that we can split the onion, but we are going to choose the following approach where we are going to split the architecture into **4 layers:**
 
-***1. Domain Layer
-2. Service Layer
-3. Infrastructure Layer
-4. Presentation Layer***
+**1. Domain Layer**
+**2. Service Layer**
+**3. Infrastructure Layer**
+**4. Presentation Layer**
 
 
 
