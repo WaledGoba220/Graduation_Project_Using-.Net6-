@@ -25,3 +25,6 @@ Conceptually, we can consider that the Infrastructure and Presentation layers ar
 Now, let us go ahead and look at each layer with more detail to see why we are introducing it and what we are going to create inside of that layer:
 > Image
 
+### Advantages of the Onion Architecture
+> Let us take a look at what are the advantages of Onion architecture, and why we would want to implement it in our projects.
+> All of the layers interact with each other strictly through the interfaces defined in the layers below. The flow of dependencies is towards the core of the Onion. We will explain why this is important in the next section.
