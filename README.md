@@ -51,8 +51,19 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 > - Exceptions
 > - Domain services
 
+### **2. Service Layer**
+> The Service layer sits right above the Domain layer, which means that it has a reference to the Domain layer. The Service layer is split into two projects, Services.Abstractions and Services.
+> In the Services.Abstractions project you can find the definitions for the service interfaces that are going to encapsulate the main business logic. Also, we are using the Contracts project to define the Data Transfer Objects (DTO) that we are going to consume with the service interfaces.
+> **What is the motivation for splitting the Service layer?**
+> - Why are we going through so much trouble to split our service interfaces and implementations into two separate projects?
+> - As you can see, we mark the service implementations with the internal keyword, which means they will not be publicly available outside of the Services project. > - On the other hand, the service interfaces are public.
+> - Do you remember what we said about the flow of dependencies?
+> - With this approach, we are being very explicit about what the higher layers of the Onion can and can not do. It is easy to miss here that the 
+> - Services.Abstractions project does not have a reference to the Domain project.
+> - This means that when a higher layer references the Services.Abstractions project it will only be able to call methods that are exposed by this project.
+> - We are going to see why this is very useful later on when we get to the Presentation layer.
 
-
+### **3. Service Layer**
 
 
 
