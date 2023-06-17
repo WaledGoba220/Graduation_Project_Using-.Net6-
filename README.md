@@ -64,7 +64,7 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 > - This means that when a higher layer references the Services.Abstractions project it will only be able to call methods that are exposed by this project.
 > - We are going to see why this is very useful later on when we get to the Presentation layer.
 
-### **3. Service Layer**
+### **3. Infrastructure Layer**
 > The Infrastructure layer should be concerned with encapsulating anything related to external systems or services that our application is interacting with. These external services can be:
 > - Database
 > - Identity provider
