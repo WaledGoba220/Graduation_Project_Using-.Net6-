@@ -8,3 +8,4 @@
 3. **Medical Advices:** Through medical advices, the doctor can add medical advice and users interact with it, and they can add a comment or add this advice to favorites.
 4. **Lung Transplant:** It is a form through which all personal data and all requirements are added that prove that the patient needs a lung transplant, and the validity of this data is detected by artificial intelligence and the authority concerned with lung transplantation to facilitate this process.
 
+## System Architecture
