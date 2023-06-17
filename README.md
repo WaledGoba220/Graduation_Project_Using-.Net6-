@@ -45,11 +45,11 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 > Abstractions are going to be our Service layer implementation. The Persistence project will be our Infrastructure layer, and the Presentation project will be the Presentation layer implementation.
 
 ### **1. Domain Layer**
-The Domain layer is at the core of the Onion architecture. In this layer, we are typically going to define the core aspects of our domain:
-- Entities
-- Repository interfaces
-- Exceptions
-- Domain services
+> The Domain layer is at the core of the Onion architecture. In this layer, we are typically going to define the core aspects of our domain:
+> - Entities
+> - Repository interfaces
+> - Exceptions
+> - Domain services
 
 
 
