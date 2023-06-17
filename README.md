@@ -65,9 +65,18 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 > - We are going to see why this is very useful later on when we get to the Presentation layer.
 
 ### **3. Service Layer**
+> The Infrastructure layer should be concerned with encapsulating anything related to external systems or services that our application is interacting with. These external services can be:
+> - Database
+> - Identity provider
+> - Messaging queue
+> - Email service
 
-
-
+### **4. Presentation Layer**
+> The purpose of the Presentation layer is to represent the entry point to our system so that consumers can interact with the data. We can implement this layer in many ways, for example creating a REST API, gRPC, etc.
+> We are using a Web API built with ASP.NET Core to create a set of RESTful API endpoints for modifying the domain entities and allowing consumers to get back the data.
+> However, we are going to do something different from what you are normally used to when creating Web APIs. By convention, the controllers are defined in the Controllers folder inside of the Web application.
+> Why is this a problem? Because ASP.NET Core uses Dependency Injection everywhere, we need to have a reference to all of the projects in the solution from the Web application project. This allows us to configure our services inside of the Startup class.
+> While this is exactly what we want to do, it introduces a big design flaw. What is preventing our controllers from injecting anything they want inside the constructor? Nothing!
 
 
 
