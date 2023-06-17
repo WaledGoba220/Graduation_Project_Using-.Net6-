@@ -44,7 +44,12 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 > As we can see, it consists of the Web project, which is our ASP.NET Core application, and six class libraries. The Domain project will hold the Domain layer implementation. The Services and Services.
 > Abstractions are going to be our Service layer implementation. The Persistence project will be our Infrastructure layer, and the Presentation project will be the Presentation layer implementation.
 
-
+### **1. Domain Layer**
+The Domain layer is at the core of the Onion architecture. In this layer, we are typically going to define the core aspects of our domain:
+- Entities
+- Repository interfaces
+- Exceptions
+- Domain services
 
 
 
