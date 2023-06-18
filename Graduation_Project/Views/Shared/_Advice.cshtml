@@ -60,7 +60,12 @@
                     </div>
                     <h5 class="pq-blog-title">
                         <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@Model.Id">
-                            @Model.Title.Substring(0, 20)....
+                            @if(Model.Title.Length > 20) {
+                                <span>@Model.Title.Substring(0, 20)...</span>
+                            }
+                            else {
+                                @Model.Title
+                            }
                         </a>
                     </h5>
                     <div class="pq-blog-info">

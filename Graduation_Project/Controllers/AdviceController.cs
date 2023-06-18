@@ -67,7 +67,7 @@ namespace Graduation_Project.Controllers
                 model.LatestAdvices = await _unitOfWork.TbAdvices.GetLatestAdvicesByDoctorId(model.Advice.DoctorId);
                 
                 var getRatingByDoctorId = await _unitOfWork.TbRatings.GetWhereAsync(a => a.DoctorId == model.Advice.DoctorId);
-                if (getRatingByDoctorId is not null)
+                if (getRatingByDoctorId.Count() > 0)
                 {
                     int ratingCount = getRatingByDoctorId.Count();
                     model.CalculateRating = getRatingByDoctorId.Sum(a => a.Rate) / ratingCount;

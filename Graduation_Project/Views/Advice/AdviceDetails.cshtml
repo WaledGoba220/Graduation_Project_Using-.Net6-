@@ -402,7 +402,7 @@
                                         <div class="dateTime moment-date mb-1">@item.CreationDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss", new System.Globalization.CultureInfo("en-US"))</div>
                                         <div class="title">
                                             <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
-                                                @item.Title.Substring(0, 20)...
+                                                @item.Title
                                             </a>
                                         </div>
                                     </div>

@@ -249,7 +249,12 @@
                                         </div>
                                         <h5 class="pq-blog-title">
                                             <a asp-controller="Advice" asp-action="AdviceDetails" asp-route-id="@item.Id">
-                                                @item.Title.Substring(0, 20)....
+                                                @if(item.Title.Length > 20) {
+                                                    <span>@item.Title.Substring(0, 20)...</span>
+                                                }
+                                                else {
+                                                    @item.Title
+                                                }
                                             </a>
                                         </h5>
                                         <div class="pq-blog-info">
