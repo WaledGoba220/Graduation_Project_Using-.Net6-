@@ -1,4 +1,7 @@
 # Graduation Project (GOBA)
+
+[![Semantic description of image](/Graduation_Project/wwwroot/images/about.jpg "Hello World")*My caption*][about.gitlab.com]
+
 ## Abstract
  Our website aims to provide several customized services to the user, whether the user is a patient or a doctor, as the
  site has several features and advantages.
