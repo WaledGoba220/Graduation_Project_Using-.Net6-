@@ -53,6 +53,7 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 
 ### Solution Structure
 > As we can see, it consists of the Web project, which is our ASP.NET Core application, and six class libraries. The Domain project will hold the Domain layer implementation. The Services and Services.
+> <br>
 > Abstractions are going to be our Service layer implementation. The Persistence project will be our Infrastructure layer, and the Presentation project will be the Presentation layer implementation.
 
 ### **1. Domain Layer**
@@ -63,7 +64,10 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 > - Domain services
 
 ### **2. Service Layer**
-> The Service layer sits right above the Domain layer, which means that it has a reference to the Domain layer. The Service layer is split into two projects, Services.Abstractions and Services.
+> The Service layer sits right above the Domain layer, which means that it has a reference to the Domain layer.
+> <br>
+> The Service layer is split into two projects, Services.Abstractions and Services.
+> <br>
 > In the Services.Abstractions project you can find the definitions for the service interfaces that are going to encapsulate the main business logic. Also, we are using the Contracts project to define the Data Transfer Objects (DTO) that we are going to consume with the service interfaces.
 > 
 **What is the motivation for splitting the Service layer?**
@@ -76,17 +80,25 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 > - We are going to see why this is very useful later on when we get to the Presentation layer.
 
 ### **3. Infrastructure Layer**
-> The Infrastructure layer should be concerned with encapsulating anything related to external systems or services that our application is interacting with. These external services can be:
+> The Infrastructure layer should be concerned with encapsulating anything related to external systems or services that our application is interacting with.
+> <br>
+> These external services can be:
 > - Database
 > - Identity provider
 > - Messaging queue
 > - Email service
 
 ### **4. Presentation Layer**
-> The purpose of the Presentation layer is to represent the entry point to our system so that consumers can interact with the data. We can implement this layer in many ways, for example creating a REST API, gRPC, etc.
+> The purpose of the Presentation layer is to represent the entry point to our system so that consumers can interact with the data.
+> <br>
+> We can implement this layer in many ways, for example creating a REST API, gRPC, etc.
+> <br>
 > We are using a Web API built with ASP.NET Core to create a set of RESTful API endpoints for modifying the domain entities and allowing consumers to get back the data.
+> <br>
 > However, we are going to do something different from what you are normally used to when creating Web APIs. By convention, the controllers are defined in the Controllers folder inside of the Web application.
+> <br>
 > Why is this a problem? Because ASP.NET Core uses Dependency Injection everywhere, we need to have a reference to all of the projects in the solution from the Web application project. This allows us to configure our services inside of the Startup class.
+> <br>
 > While this is exactly what we want to do, it introduces a big design flaw. What is preventing our controllers from injecting anything they want inside the constructor? Nothing!
 
 
