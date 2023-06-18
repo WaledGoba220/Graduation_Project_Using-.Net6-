@@ -28,10 +28,19 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 
 ### Advantages of the Onion Architecture
 > Let us take a look at what are the advantages of Onion architecture, and why we would want to implement it in our projects.
-<br>
+> <br>
 > All of the layers interact with each other strictly through the interfaces defined in the layers below. The flow of dependencies is towards the core of the Onion. We will explain why this is important in the next section.
-> Using dependency inversion throughout the project, depending on abstractions (interfaces) and not the implementations, allows us to switch out the implementation at runtime transparently. We are depending on abstractions at compile-time, which gives us strict contracts to work with, and we are being provided with the implementation at runtime.
-> Testability is very high with the Onion architecture because everything depends on abstractions. The abstractions can be easily mocked with a mocking library such as Moq. To learn more about unit testing your projects in ASP.NET Core check out this article Testing MVC Controllers in ASP.NET Core.
+> <br>
+> Using dependency inversion throughout the project, depending on abstractions (interfaces) and not the implementations, allows us to switch out the implementation at runtime transparently.
+> <br>
+> We are depending on abstractions at compile-time, which gives us strict contracts to work with, and we are being provided with the implementation at runtime.
+> <br>
+> Testability is very high with the Onion architecture because everything depends on abstractions.
+> <br>
+> The abstractions can be easily mocked with a mocking library such as Moq.
+> <br>
+> To learn more about unit testing your projects in ASP.NET Core check out this article Testing MVC Controllers in ASP.NET Core.
+> <br>
 > We can write business logic without concern about any of the implementation details. If we need anything from an external system or service, we can just create an interface for it and consume it. We do not have to worry about how it will be implemented. The higher layers of the Onion will take care of implementing that interface transparently.
 - **Flow of Dependencies**
 > The main idea behind the Onion architecture is the flow of dependencies, or rather how the layers interact with each other. The deeper the layer resides inside the Onion, the fewer dependencies it has.
