@@ -104,6 +104,5 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 > <br>
 > While this is exactly what we want to do, it introduces a big design flaw. What is preventing our controllers from injecting anything they want inside the constructor? Nothing!
 
-![Semantic description of image](/Graduation_Project/wwwroot/images/about.jpg "Image Title")
 
 
