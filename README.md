@@ -1,6 +1,6 @@
 # Graduation Project (GOBA)
 
-  <img align="right" top="500" height="250" width="300" alt="GIF" src="/Graduation_Project/wwwroot/images/about.jpg">
+  <img align="right" top="500" height="250" width="300" alt="GIF" src="/Graduation_Project/wwwroot/images/logo.ico">
 
 ## Abstract
  Our website aims to provide several customized services to the user, whether the user is a patient or a doctor, as the
