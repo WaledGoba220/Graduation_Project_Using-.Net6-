@@ -3,7 +3,7 @@
  Our website aims to provide several customized services to the user, whether the user is a patient or a doctor, as the
  site has several features and advantages.
  <br>
- **There are four main servants**
+ **There are four main servants:**
 1. **Diseases Detection:** Some serious lung diseases that are difficult to detect with the naked eye are detected, such as pulmonary fibrosis, tuberculosis and lung cancer. The doctor uploads the x-ray image to the site, and through artificial intelligence and machine learning, it is recognized if the patient has the disease, is healthy, or is exposed to the disease at a certain percentage.
 2. **Measuring box:** Through the measurement box, the heart rate, blood oxygen level, and temperature are measured through the finger of the hand, and these percentages are recorded on the site, and they are shown directly on its mobile application.
 3. **Medical Advices:** Through medical advices, the doctor can add medical advice and users interact with it, and they can add a comment or add this advice to favorites.
@@ -28,6 +28,7 @@ Now, let us go ahead and look at each layer with more detail to see why we are i
 
 ### Advantages of the Onion Architecture
 > Let us take a look at what are the advantages of Onion architecture, and why we would want to implement it in our projects.
+> <br>
 > All of the layers interact with each other strictly through the interfaces defined in the layers below. The flow of dependencies is towards the core of the Onion. We will explain why this is important in the next section.
 > Using dependency inversion throughout the project, depending on abstractions (interfaces) and not the implementations, allows us to switch out the implementation at runtime transparently. We are depending on abstractions at compile-time, which gives us strict contracts to work with, and we are being provided with the implementation at runtime.
 > Testability is very high with the Onion architecture because everything depends on abstractions. The abstractions can be easily mocked with a mocking library such as Moq. To learn more about unit testing your projects in ASP.NET Core check out this article Testing MVC Controllers in ASP.NET Core.
