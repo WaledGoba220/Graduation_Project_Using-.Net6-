@@ -1,6 +1,7 @@
 # Graduation Project (GOBA)
 
-[![Abdallah](/Graduation_Project/wwwroot/images/about.jpg)]
+[![Abdallah]()]
+![Semantic description of image](/Graduation_Project/wwwroot/images/about.jpg "Image Title")
 
 ## Abstract
  Our website aims to provide several customized services to the user, whether the user is a patient or a doctor, as the
